@@ -1,0 +1,36 @@
+<mat-sidenav-container class="sidenav-container">
+  <!-- Sidebar -->
+  <mat-sidenav #sidenav mode="side" opened>
+    <div class="sidebar">
+      <!-- Logo -->
+      <div class="logo">
+        <img src="../../../../assets/images/Logo.png" alt="Logo" class="sidebar-logo">
+        <div class="logo-text">
+          <h1>GWM</h1>
+          <p>Grow With Me</p>
+        </div>
+      </div>
+
+      <!-- Botón para ocultar/mostrar el sidebar -->
+      <button mat-icon-button (click)="toggleSidebar()">
+        <mat-icon>{{ isSidebarOpen ? 'chevron_left' : 'chevron_right' }}</mat-icon>
+      </button>
+
+      <!-- Lista de opciones del menú -->
+      <mat-nav-list>
+        <mat-list-item routerLink="/devices">
+          <mat-icon>wifi</mat-icon> <span *ngIf="isSidebarOpen">Mis dispositivos</span>
+        </mat-list-item>
+        <mat-list-item routerLink="/crops" class="active">
+          <mat-icon>nature</mat-icon> <span *ngIf="isSidebarOpen">Mis cultivos</span>
+        </mat-list-item>
+        <mat-list-item routerLink="/notifications">
+          <mat-icon>notifications</mat-icon> <span *ngIf="isSidebarOpen">Mis notificaciones</span>
+        </mat-list-item>
+        <mat-list-item routerLink="/consultor">
+          <mat-icon>person</mat-icon> <span *ngIf="isSidebarOpen">Mi consultor</span>
+        </mat-list-item>
+      </mat-nav-list>
+    </div>
+  </mat-sidenav>
+</mat-sidenav-container>
