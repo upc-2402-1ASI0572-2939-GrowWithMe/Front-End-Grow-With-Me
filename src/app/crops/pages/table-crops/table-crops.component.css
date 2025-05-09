@@ -1,10 +1,10 @@
-.main-content{
-  margin-left: 250px; /* Deja espacio para el sidebar */
+.main-content {
+  margin-left: 250px;
   padding: 80px;
   height: 70vh;
-  background-color: #F0F9F5; /* Color del espacio en blanco */
+  background-color: #F0F9F5;
 }
-/* Contenedor del título y línea divisoria */
+
 .header {
   display: flex;
   flex-direction: column;
@@ -12,22 +12,20 @@
   padding: 20px;
 }
 
-/* Línea divisoria */
 .divider {
   width: 100%;
   border: none;
-  border-top: 2px solid #5DAA8A; /* Color de la línea divisoria */
+  border-top: 2px solid #5DAA8A;
   margin: 10px 0;
 }
 
-/* Sección del botón de registro */
 .register-section {
   padding: 20px 20px;
 }
 
 button.mat-raised-button {
-  background-color: #5DAA8A !important; /* Color verde del botón */
-  color: white !important; /* Texto blanco */
+  background-color: #5DAA8A !important;
+  color: white !important;
   border-radius: 5px;
   font-size: 16px;
   padding: 8px 20px;
@@ -35,18 +33,18 @@ button.mat-raised-button {
 }
 
 button.mat-raised-button:hover {
-  background-color: #4a9a75 !important; /* Color de hover */
+  background-color: #4a9a75 !important;
 }
 
-/* Tabla */
 table {
-  width: 70%; /* Establece el ancho de la tabla al 80% de su contenedor padre */
-  max-width: 1200px; /* Establece un ancho máximo si deseas que no se estire más allá de cierto tamaño */
+  width: 70%;
+  max-width: 1200px;
   border-radius: 15px;
   margin-top: 30px;
 }
 
-th, td {
+th,
+td {
   text-align: center;
   padding: 10px 10px;
   font-size: 14px;
@@ -58,11 +56,10 @@ th {
 }
 
 td {
-  background-color: #eafaf1; /* Fondo verde claro para las celdas */
-  border-bottom: 1px solid #d3d3d3; /* Línea divisoria entre filas */
+  background-color: #eafaf1;
+  border-bottom: 1px solid #d3d3d3;
 }
 
-/* Interactividad con las filas */
 tr:hover {
-  background-color: #c8e6c9;  /* Color de fondo cuando se pasa el ratón sobre la fila */
+  background-color: #c8e6c9;
 }

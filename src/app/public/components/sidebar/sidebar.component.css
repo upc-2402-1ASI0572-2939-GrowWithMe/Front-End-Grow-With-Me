@@ -4,9 +4,9 @@
 }
 
 mat-sidenav {
-  width: 250px; /* Ancho cuando está abierto */
-  background-color: #DCEFE4; /* Color de fondo del sidebar */
-  color: #225A47; /* Color de texto */
+  width: 250px;
+  background-color: #DCEFE4;
+  color: #225A47;
 }
 
 mat-sidenav[ng-reflect-mode="side"] {
@@ -33,24 +33,22 @@ button.mat-icon-button {
   z-index: 20;
 }
 
-
 mat-list-item span {
   margin-left: 10px;
   color: #225A47;
 }
 
-/* Estilos para el logo */
 .logo {
   display: flex;
   align-items: center;
-  margin-top: 20px; /* Ajusta el espaciado superior según lo necesites */
-  margin-left: 15px; /* Espacio a la izquierda */
+  margin-top: 20px;
+  margin-left: 15px;
 }
 
 .sidebar-logo {
-  width: 50px; /* Ajusta el tamaño del logo */
+  width: 50px;
   height: auto;
-  margin-bottom: 10px; /* Espacio entre el logo y el texto */
+  margin-bottom: 10px;
   margin-right: 10px;
 }
 
@@ -59,28 +57,26 @@ mat-list-item span {
   margin-left: 10px;
 }
 
-/* Estilo para el texto */
 .logo-text h1 {
   margin: 0;
   font-size: 24px;
   font-weight: bold;
-  color: #2e6a47; /* Color verde para "GWM" */
+  color: #2e6a47;
 }
 
 .logo-text p {
   margin: 0;
   font-size: 14px;
-  color: #4c9e71; /* Color verde para "Grow With Me" */
+  color: #4c9e71;
 }
 
-/* Opcional: Asegura que el logo siempre se vea bien en pantallas pequeñas */
 @media (max-width: 768px) {
   .sidebar-logo {
-    width: 40px; /* Tamaño más pequeño en pantallas móviles */
+    width: 40px;
   }
 
   .logo h1 {
-    font-size: 20px; /* Ajuste en el tamaño del texto */
+    font-size: 20px;
   }
 
   .logo p {
@@ -88,12 +84,10 @@ mat-list-item span {
   }
 }
 
-/* Cuando el sidebar está contraído */
 mat-sidenav[ng-reflect-mode="side"]:not([opened]) {
-  width: 70px;  /* Reducido a solo mostrar los íconos */
+  width: 70px;
 }
 
-/* Estilo para los íconos cuando el sidebar está minimizado */
 mat-list-item span {
   display: inline;
 }
@@ -101,5 +95,3 @@ mat-list-item span {
 mat-sidenav[ng-reflect-mode="side"]:not([opened]) mat-list-item span {
   display: none;
 }
-
-
