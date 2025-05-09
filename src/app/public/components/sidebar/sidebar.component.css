@@ -95,3 +95,9 @@ mat-list-item span {
 mat-sidenav[ng-reflect-mode="side"]:not([opened]) mat-list-item span {
   display: none;
 }
+a.logo {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: inherit;
+}

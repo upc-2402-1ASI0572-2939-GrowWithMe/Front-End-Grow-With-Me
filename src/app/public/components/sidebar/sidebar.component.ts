@@ -5,9 +5,9 @@ import { RouterLink } from '@angular/router';
 import { MatIcon } from '@angular/material/icon';
 import { MatSidenav, MatSidenavContainer } from '@angular/material/sidenav';
 import { MatIconButton } from '@angular/material/button';
-import { NgIf } from '@angular/common';
+import {NgIf, NgOptimizedImage} from '@angular/common';
 import { Subscription } from 'rxjs';
-import {RoleService} from '../../../iam/services/role.service.service';
+import {RoleService} from '../../../iam/services/role.service';
 @Component({
   selector: 'app-sidebar',
   standalone: true,
@@ -20,19 +20,20 @@ import {RoleService} from '../../../iam/services/role.service.service';
     MatIconButton,
     MatSidenav,
     NgIf,
+    NgOptimizedImage,
   ],
   templateUrl: './sidebar.component.html',
   styleUrl: './sidebar.component.css',
 })
 export class SidebarComponent implements OnInit, OnDestroy {
   isSidebarOpen: boolean = true;
-  role: 'farmer' | 'consultant' = 'farmer';
+  role: string = 'farmer';
   private roleSub!: Subscription;
 
   constructor(private roleService: RoleService) {}
 
   ngOnInit(): void {
-    this.roleSub = this.roleService.getRole$().subscribe((role) => {
+    this.roleSub = this.roleService.getRole$().subscribe((role: string) => {
       this.role = role;
     });
   }

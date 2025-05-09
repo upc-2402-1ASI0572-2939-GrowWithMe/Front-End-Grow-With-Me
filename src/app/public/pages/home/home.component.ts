@@ -1,6 +1,6 @@
 // src/app/pages/home/home.component.ts
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { RoleService } from '../../../iam/services/role.service.service';
+import { RoleService } from '../../../iam/services/role.service';
 import { MatSidenav, MatSidenavContainer } from '@angular/material/sidenav';
 import { SidebarComponent } from '../../components/sidebar/sidebar.component';
 import { MatButton } from '@angular/material/button';
