@@ -1,0 +1,11 @@
+<div class="calendar-wrapper">
+  <div class="calendar-header">
+    <span class="title">Calendar</span>
+    <span class="crop-name">{{ cropName }}</span>
+  </div>
+
+  <mat-card>
+    <mat-calendar (selectedChange)="onDateSelected($event)"></mat-calendar>
+  </mat-card>
+
+</div>

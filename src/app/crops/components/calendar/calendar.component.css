@@ -1,0 +1,53 @@
+/* Wrapper for header + calendar */
+.calendar-wrapper {
+  max-width: 600px;
+  margin: 1rem auto;
+}
+
+/* Green header */
+.calendar-header {
+  background-color: #225A47;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.75rem 1.25rem;
+  font-weight: bold;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  font-size: 18px;
+}
+
+/* Centered title */
+.title {
+  text-align: center;
+  flex: 1;
+}
+
+/* Crop name aligned right */
+.crop-name {
+  text-align: right;
+  white-space: nowrap;
+}
+
+/* Calendar card */
+mat-card {
+  margin: 0;
+  padding: 1rem;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+/* Remove default highlight for today's date */
+:host ::ng-deep .mat-calendar-body-today {
+  border: none !important;
+  font-weight: normal !important;
+  color: inherit !important;
+}
+
+/* Custom style for selected date */
+:host ::ng-deep .mat-calendar-body-selected {
+  background-color: #c62828 !important; /* red circle */
+  color: white !important;
+  border-radius: 50% !important; /* use 4px for square */
+  outline: none;
+}
