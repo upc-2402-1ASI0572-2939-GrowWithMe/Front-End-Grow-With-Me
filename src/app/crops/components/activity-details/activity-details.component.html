@@ -1,0 +1,36 @@
+<!-- Activity Details Form, only shown if activity exists -->
+<form class="activity-form" *ngIf="hasActivity">
+  <button type="button" class="close-button" (click)="close.emit()" aria-label="Close">&times;</button>
+
+  <h3 class="form-title">Activity Details</h3>
+
+  <div class="form-group">
+    <label class="form-label">Selected Date</label>
+    <input class="form-input" type="date" [value]="date | date:'yyyy-MM-dd'" disabled />
+  </div>
+
+  <div class="form-group">
+    <label class="form-label">Time</label>
+    <input class="form-input" type="time" [value]="time" disabled />
+  </div>
+
+  <div class="form-group">
+    <label class="form-label">Crop</label>
+    <input class="form-input" type="text" [value]="cropName" disabled />
+  </div>
+
+  <div class="form-group">
+    <label class="form-label">Description</label>
+    <textarea class="form-input" rows="3" [value]="description" disabled></textarea>
+  </div>
+</form>
+<!-- Warning Modal -->
+<div class="success-modal" *ngIf="noActivityModalVisible">
+  <div class="modal-content">
+    <div class="checkmark" style="font-size: 3rem;">🔔</div>
+    <h2 style="color: #0f3f30;">WARNING</h2>
+    <p>No activities scheduled for this day.</p>
+    <button (click)="closeNoActivityModal()">Accept</button>
+  </div>
+</div>
+

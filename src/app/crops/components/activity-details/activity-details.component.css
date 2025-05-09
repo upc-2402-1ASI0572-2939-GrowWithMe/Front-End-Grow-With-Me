@@ -1,0 +1,173 @@
+.activity-form {
+  background-color: white;
+  padding: 1rem;
+  border-radius: 8px;
+  max-width: 300px;
+  font-family: Arial, sans-serif;
+}
+
+.form-title {
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+  color: #0f3f30;
+}
+
+.form-group {
+  margin-bottom: 1rem;
+}
+
+.form-label {
+  font-weight: bold;
+  display: block;
+  margin-bottom: 0.25rem;
+  color: #0f3f30;
+}
+
+.form-input {
+  width: 100%;
+  padding: 0.5rem;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 0.95rem;
+}
+
+textarea.form-input {
+  resize: none;
+}
+
+.char-counter {
+  font-size: 0.75rem;
+  text-align: right;
+  display: block;
+  color: #555;
+}
+
+.form-button {
+  background-color: #225A47;
+  color: white;
+  border: none;
+  padding: 0.6rem 1.2rem;
+  border-radius: 16px;
+  width: 100%;
+  cursor: pointer;
+}
+
+.close-button {
+  background-color: #225A47;
+  color: white;
+  border: none;
+  width: 28px;
+  height: 28px;
+  font-size: 18px;
+  font-weight: bold;
+  float: right;
+  margin-top: -8px;
+  margin-right: -8px;
+  cursor: pointer;
+}
+
+.error-message {
+  color: #999904;
+  font-size: 0.8rem;
+  margin-top: 0.25rem;
+  display: block;
+}
+
+.modal-content {
+  background: white;
+  padding: 2rem;
+  border-radius: 16px;
+  text-align: center;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.checkmark {
+  font-size: 2rem;
+  color: #225A47;
+  margin-bottom: 0.5rem;
+}
+
+.modal-content button {
+  background-color: #225A47;
+  color: white;
+  border: none;
+  padding: 0.6rem 1.2rem;
+  border-radius: 12px;
+  margin-top: 1rem;
+  cursor: pointer;
+}
+
+.form-button.delete {
+  background-color: #c0392b;
+  margin-top: 0.5rem;
+}
+
+.confirm-modal .modal-content {
+  background: white;
+  padding: 2rem;
+  border-radius: 16px;
+  text-align: center;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.button-row {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.btn-confirm {
+  background-color: #225A47;
+  color: white;
+  border: none;
+  padding: 0.6rem 1.5rem;
+  border-radius: 16px;
+  cursor: pointer;
+}
+
+.btn-cancel {
+  background-color: red;
+  color: white;
+  border: none;
+  padding: 0.6rem 1.5rem;
+  border-radius: 16px;
+  cursor: pointer;
+}
+.success-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+}
+
+.modal-content {
+  background: white;
+  padding: 2rem;
+  border-radius: 16px;
+  text-align: center;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.modal-content .checkmark {
+  font-size: 2rem;
+  color: #225A47;
+  margin-bottom: 0.5rem;
+}
+
+.modal-content button {
+  background-color: #225A47;
+  color: white;
+  border: none;
+  padding: 0.6rem 1.2rem;
+  border-radius: 12px;
+  margin-top: 1rem;
+  cursor: pointer;
+}
+
