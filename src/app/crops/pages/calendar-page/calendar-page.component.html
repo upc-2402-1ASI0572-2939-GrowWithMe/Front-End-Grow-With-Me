@@ -1,0 +1,10 @@
+<div class="main-content">
+  <div class="header">
+    <h2>Calendar</h2>
+    <hr class="divider" />
+  </div>
+
+  <app-calendar [cropId]="cropId" (dateSelected)="handleDateChange($event)" />
+
+  <app-activity-form *ngIf="selectedDate" [date]="selectedDate" />
+</div>
