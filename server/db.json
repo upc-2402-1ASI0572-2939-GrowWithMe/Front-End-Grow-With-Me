@@ -1,0 +1,56 @@
+{
+  "crops": [
+    {
+      "id": "1",
+      "code": "CROP001",
+      "productName": "Tomatoes",
+      "category": "Vegetables",
+      "area": 120,
+      "location": "South Valley",
+      "status": "Active",
+      "cost": 1500,
+      "profitReturn": 2200,
+      "registrationDate": "2023-03-10T00:00:00Z",
+      "profileId": 1
+    },
+    {
+      "id": "2",
+      "code": "CROP002",
+      "productName": "Mango",
+      "category": "Fruits",
+      "area": 200,
+      "location": "North Region",
+      "status": "Inactive",
+      "cost": 1800,
+      "profitReturn": 2500,
+      "registrationDate": "2022-11-05T00:00:00Z",
+      "profileId": 2
+    },
+    {
+      "id": "3",
+      "code": "CROP003",
+      "productName": "Lettuce",
+      "category": "Greens",
+      "area": 150,
+      "location": "East Zone",
+      "status": "Active",
+      "cost": 1000,
+      "profitReturn": 1700,
+      "registrationDate": "2023-01-20T00:00:00Z",
+      "profileId": 1
+    },
+    {
+      "id": "4",
+      "code": "CROP004",
+      "productName": "Carrots",
+      "category": "Vegetables",
+      "area": 100,
+      "location": "West Zone",
+      "status": "Finished",
+      "cost": 1300,
+      "profitReturn": 2100,
+      "registrationDate": "2022-08-15T00:00:00Z",
+      "profileId": 3
+    }
+  ]
+}
