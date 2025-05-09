@@ -52,5 +52,31 @@
       "registrationDate": "2022-08-15T00:00:00Z",
       "profileId": 3
     }
+  ],
+  "cropActivities": [
+    {
+      "id": "2",
+      "cropId": "1",
+      "description": "Fertilizer application",
+      "date": "2025-05-15T08:31:00.000Z"
+    },
+    {
+      "id": "3",
+      "cropId": "2",
+      "description": "Irrigation setup",
+      "date": "2025-05-20"
+    },
+    {
+      "id": "f9a9",
+      "cropId": "1",
+      "description": "dfdsffdsfds",
+      "date": "2025-05-16T08:54:00.000Z"
+    },
+    {
+      "id": "662d",
+      "cropId": "1",
+      "description": "dsfdsdfs",
+      "date": "2025-05-17T09:31:00.000Z"
+    }
   ]
 }

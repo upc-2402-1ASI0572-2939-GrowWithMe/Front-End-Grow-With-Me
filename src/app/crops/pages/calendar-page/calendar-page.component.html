@@ -4,7 +4,20 @@
     <hr class="divider" />
   </div>
 
-  <app-calendar [cropId]="cropId" (dateSelected)="handleDateChange($event)" />
+  <div class="content-row">
+    <app-calendar [cropId]="cropId" (dateSelected)="handleDateChange($event)" />
 
-  <app-activity-form *ngIf="selectedDate" [date]="selectedDate" />
+    <app-activity-form
+      *ngIf="selectedDate && role === 'farmer'"
+      [date]="selectedDate"
+      [cropId]="cropId"
+      (closeForm)="closeForm()" />
+
+    <app-activity-details
+      *ngIf="selectedDate && role === 'consultant'"
+      [date]="selectedDate"
+      [cropId]="cropId"
+      (close)="closeForm()" />
+
+  </div>
 </div>

@@ -5,3 +5,17 @@
   background-color: #F0F9F5;
   color: #225A47;
 }
+
+.content-row {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+app-calendar,
+app-activity-form {
+  flex: 1 1 300px;
+  max-width: 400px;
+}
