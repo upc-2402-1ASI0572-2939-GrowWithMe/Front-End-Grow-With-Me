@@ -1,4 +1,98 @@
 {
+  "profiles": [
+    {
+      "id": "1",
+      "email": "farmer1@example.com",
+      "password": "123456",
+      "role_id": 1
+    },
+    {
+      "id": "2",
+      "email": "consultant1@example.com",
+      "password": "abc123",
+      "role_id": 2
+    },
+    {
+      "id": "3",
+      "email": "farmer2@example.com",
+      "password": "654321",
+      "role_id": 1
+    },
+    {
+      "id": "4",
+      "email": "consultant2@example.com",
+      "password": "xyz789",
+      "role_id": 2
+    }
+  ],
+  "farmers": [
+    {
+      "id": "1",
+      "firstName": "John",
+      "lastName": "Doe",
+      "email": "farmer1@example.com",
+      "phone": "987654321",
+      "dni": "12345678"
+    },
+    {
+      "id": "3",
+      "firstName": "Maria",
+      "lastName": "Campos",
+      "email": "farmer2@example.com",
+      "phone": "921234567",
+      "dni": "23456789"
+    }
+  ],
+  "consultants": [
+    {
+      "id": "2",
+      "firstName": "Alice",
+      "lastName": "Smith",
+      "email": "consultant1@example.com",
+      "phone": "912345678",
+      "dni": "87654321"
+    },
+    {
+      "id": "4",
+      "firstName": "Carlos",
+      "lastName": "Lopez",
+      "email": "consultant2@example.com",
+      "phone": "931234567",
+      "dni": "76543210"
+    },
+    {
+      "id": "5",
+      "firstName": "Lucía",
+      "lastName": "Fernández",
+      "email": "lucia.fernandez@example.com",
+      "phone": "910876543",
+      "dni": "11223344"
+    },
+    {
+      "id": "6",
+      "firstName": "Daniel",
+      "lastName": "Morales",
+      "email": "daniel.morales@example.com",
+      "phone": "922334455",
+      "dni": "22334455"
+    },
+    {
+      "id": "7",
+      "firstName": "Elena",
+      "lastName": "Ramos",
+      "email": "elena.ramos@example.com",
+      "phone": "933445566",
+      "dni": "33445566"
+    },
+    {
+      "id": "8",
+      "firstName": "Victor",
+      "lastName": "Torres",
+      "email": "victor.torres@example.com",
+      "phone": "944556677",
+      "dni": "44556677"
+    }
+  ],
   "crops": [
     {
       "id": "1",
@@ -37,7 +131,7 @@
       "cost": 1000,
       "profitReturn": 1700,
       "registrationDate": "2023-01-20T00:00:00Z",
-      "profileId": 1
+      "profileId": 3
     },
     {
       "id": "4",
@@ -50,33 +144,50 @@
       "cost": 1300,
       "profitReturn": 2100,
       "registrationDate": "2022-08-15T00:00:00Z",
-      "profileId": 3
+      "profileId": 4
+    }
+  ],
+  "consultations": [
+    {
+      "id": 1,
+      "title": "Crop leaves turning yellow",
+      "description": "The leaves on my tomato plants are yellowing. Could this be a nutrient issue?",
+      "date": "2025-05-10T10:00:00Z",
+      "status": "pending",
+      "farmerId": "1",
+      "sensorData": "Humidity: 60%, Temp: 24°C"
+    },
+    {
+      "id": 2,
+      "title": "Low yield in lettuce crop",
+      "description": "I'm experiencing very low yield this season despite regular irrigation.",
+      "date": "2025-05-07T15:30:00Z",
+      "status": "answered",
+      "farmerId": "3",
+      "sensorData": "Soil pH: 5.8, Temp: 20°C"
+    },
+    {
+      "id": 3,
+      "title": "Unusual spots on mango tree",
+      "description": "There are black spots on the mango leaves and some are falling early.",
+      "date": "2025-05-01T09:15:00Z",
+      "status": "invalid",
+      "farmerId": "1",
+      "sensorData": "Humidity: 75%, Temp: 29°C"
     }
   ],
   "cropActivities": [
     {
-      "id": "2",
+      "id": "2dd0",
       "cropId": "1",
-      "description": "Fertilizer application",
-      "date": "2025-05-15T08:31:00.000Z"
+      "description": "dsadsadsadsa",
+      "date": "2025-05-16T05:04:00.000Z"
     },
     {
-      "id": "3",
-      "cropId": "2",
-      "description": "Irrigation setup",
-      "date": "2025-05-20"
-    },
-    {
-      "id": "f9a9",
+      "id": "8471",
       "cropId": "1",
-      "description": "dfdsffdsfds",
-      "date": "2025-05-16T08:54:00.000Z"
-    },
-    {
-      "id": "662d",
-      "cropId": "1",
-      "description": "dsfdsdfs",
-      "date": "2025-05-17T09:31:00.000Z"
+      "description": "asdasdsa",
+      "date": "2025-05-17T05:03:00.000Z"
     }
   ]
 }
