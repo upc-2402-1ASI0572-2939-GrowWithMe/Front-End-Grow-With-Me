@@ -10,6 +10,6 @@ export const routes: Routes = [
   { path: 'home', component: HomeComponent},
   { path: 'crops', component: TableCropsComponent },
   { path: 'crops/:id/calendar', component: CalendarPageComponent },
-  { path: 'consultor', component: MyConsultantPageComponent },
-  { path: 'consultor/:id/history', component: HistoryViewComponent },
+  { path: 'consultants', component: MyConsultantPageComponent },
+  { path: 'consultants/:id/history', component: HistoryViewComponent },
 ];
