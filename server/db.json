@@ -174,20 +174,23 @@
       "status": "invalid",
       "farmerId": "1",
       "sensorData": "Humidity: 75%, Temp: 29°C"
+    },
+    {
+      "id": 4,
+      "title": "ayuda cultivo",
+      "description": "mi cultivo tiene cierta humedad y temperatura que podria hacer",
+      "date": "2025-05-10T05:15:11.688Z",
+      "status": "pending",
+      "farmerId": "1",
+      "sensorData": "Humidity: 9%, Temp: 9°C"
     }
   ],
   "cropActivities": [
     {
-      "id": "2dd0",
+      "id": 1,
       "cropId": "1",
-      "description": "dsadsadsadsa",
-      "date": "2025-05-16T05:04:00.000Z"
-    },
-    {
-      "id": "8471",
-      "cropId": "1",
-      "description": "asdasdsa",
-      "date": "2025-05-17T05:03:00.000Z"
+      "description": "dsfdsdsf",
+      "date": "2025-05-10T05:28:00.000Z"
     }
   ]
 }
