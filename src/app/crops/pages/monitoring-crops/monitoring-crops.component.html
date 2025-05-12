@@ -1,0 +1,38 @@
+<div class="dashboard-container">
+  <header>
+    <h1>{{ title }}</h1>
+  </header>
+
+  <div class="subheader">
+    <h2>Dashboard: Tomato</h2>
+    <button mat-raised-button class="export-button" (click)="exportData()">
+      <mat-icon>file_download</mat-icon>
+      Export Data
+    </button>
+  </div>
+
+  <div class="dashboard-grid">
+    <!-- Temperature Card -->
+    <div class="card temperature-card">
+      <h3>Temperature</h3>
+      <p>24.5°C</p>
+    </div>
+
+    <!-- Humidity Card -->
+    <div class="card humidity-card">
+      <h3>Humidity</h3>
+      <p>65%</p>
+    </div>
+  </div>
+
+  <!-- Dashboard Section -->
+  <div class="chart-section">
+    <h3>Last 12 Hours Dashboard</h3>
+    <div class="chart-placeholder">
+      <p>The monitoring chart for the last 12 hours will be displayed here.</p>
+    </div>
+  </div>
+
+  <!-- Export Message -->
+  <p class="export-message" *ngIf="exportMessage">{{ exportMessage }}</p>
+</div>
