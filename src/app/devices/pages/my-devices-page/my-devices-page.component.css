@@ -23,10 +23,11 @@
   display: flex;
   flex-direction: column;
   gap: 20px;
+  align-items: flex-start;
 }
 
 .add-device-btn {
-  padding: 6px 12px;
+  padding: 6px 20px;
   background-color: #225A47;
   color: white;
   border: none;
