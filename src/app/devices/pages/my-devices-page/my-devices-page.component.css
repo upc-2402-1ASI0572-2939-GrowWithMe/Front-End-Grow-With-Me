@@ -1,0 +1,41 @@
+.my-devices-content {
+  margin-left: 250px;
+  padding: 20px 80px 80px 80px;
+  background-color: #F0F9F5;
+}
+
+.my-devices-header {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 0 0 20px 0;
+  width: 100%;
+}
+
+.divider {
+  width: 100%;
+  border: none;
+  border-top: 2px solid #5DAA8A;
+  margin: 10px 0;
+}
+
+.my-devices-section {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.add-device-btn {
+  padding: 6px 12px;
+  background-color: #225A47;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.add-device-btn:hover {
+  background-color: #1c4a3b;
+}
