@@ -1,5 +1,7 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {DeviceCardComponent} from '../device-card/device-card.component';
+import {DeviceService} from '../../services/device.service';
+import {Device} from '../../models/device.entity';
 
 @Component({
   selector: 'app-device-list',

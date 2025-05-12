@@ -15,6 +15,7 @@ import {NgForOf, NgIf} from '@angular/common';
   styleUrl: './add-device-form.component.css'
 })
 export class AddDeviceFormComponent {
+  id: string = '';
   name: string = '';
   token: string = '';
   deviceTypes: string[] = ['Humidity Sensor', 'Temperature Sensor'];

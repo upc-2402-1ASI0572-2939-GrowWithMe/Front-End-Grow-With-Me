@@ -16,11 +16,11 @@
       <input type="text" [(ngModel)]="token" name="token" required> />
 
       <label>Type</label>
-      <select [(ngModel)]="type" name="type" required>
+      <select [(ngModel)]="deviceType" name="type" required>
         <option *ngFor="let type of deviceTypes" [value]="type">{{ type }}</option>
       </select>
 
-      <div *ngIf="submitted && (form.invalid || id === null || token === null || type === null)" class="error-message">
+      <div *ngIf="submitted && (form.invalid || id === null || token === null || deviceType === null)" class="error-message">
         Please fill out all fields before submitting.
       </div>
 
