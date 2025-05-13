@@ -102,5 +102,39 @@
       "description": "dsfds",
       "date": "2025-05-17T09:31:00.000Z"
     }
+  ],
+  "notifications": [
+    {
+      "id": "1",
+      "title": "Irrigation Reminder",
+      "message": "Don't forget to check the irrigation system.",
+      "type": "Creation",
+      "date": "2023-10-01T10:00:00Z",
+      "selected": false,
+      "status": "Read",
+      "profileId": 1
+
+    },
+    {
+      "id": "2",
+      "title": "Harvest Time",
+      "message": "The tomatoes are ready for harvest.",
+      "type": "Update",
+      "date": "2023-10-05T10:00:00Z",
+      "selected": false,
+      "status": "Read",
+      "profileId": 1
+    },
+    {
+      "id": "3",
+      "title": "Pest Control Alert",
+      "message": "Check for pests in the mango crop.",
+      "type": "Creation",
+      "date": "2023-10-07T10:00:00Z",
+      "selected": false,
+      "status": "Update",
+      "profileId": 1
+    }
+
   ]
 }
