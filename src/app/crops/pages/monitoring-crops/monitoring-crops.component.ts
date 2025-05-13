@@ -1,12 +1,14 @@
 import { Component } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { DashboardComponent } from '../../components/dashboard/dashboard.component';
+import {NgIf} from '@angular/common';
 @Component({
   selector: 'app-monitoring-crops',
   templateUrl: './monitoring-crops.component.html',
   styleUrls: ['./monitoring-crops-component.css'],
   standalone: true,
-  imports: [MatIconModule,DashboardComponent], // Import MatIconModule here
+
+  imports: [MatIconModule, DashboardComponent,NgIf], // Import MatIconModule here
 })
 export class MonitoringCropsComponent {
   title: string = 'Crop Monitoring';

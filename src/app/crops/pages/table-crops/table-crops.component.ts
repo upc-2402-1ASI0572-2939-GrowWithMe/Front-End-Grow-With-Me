@@ -8,6 +8,7 @@ import { EditCropsComponent } from '../edit-crops/edit-crops.component';
 import { Router, ActivatedRoute, RouterOutlet } from '@angular/router';
 import {Crop} from '../../models/crop.entity';
 import {RoleService} from '../../../iam/services/role.service';
+import {SidebarComponent} from '../../../public/components/sidebar/sidebar.component';
 
 @Component({
   selector: 'app-table-crops',
@@ -18,6 +19,7 @@ import {RoleService} from '../../../iam/services/role.service';
     MatIconButton,
     MatIcon,
     MatButton,
+    SidebarComponent,
   ],
   templateUrl: './table-crops.component.html',
   styleUrl: './table-crops.component.css'
@@ -57,6 +59,10 @@ export class TableCropsComponent implements OnInit {
 
   goToCalendar(id: string): void {
     this.router.navigate([`/crops/${id}/calendar`]);
+  }
+
+  goToMonitoring(id: string): void {
+    this.router.navigate([`/crops/${id}/monitoring`]);
   }
 
   openEditDialog(crop: Crop): void {
