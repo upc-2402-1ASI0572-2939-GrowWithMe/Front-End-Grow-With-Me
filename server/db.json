@@ -28,19 +28,15 @@
   "farmers": [
     {
       "id": "1",
-      "firstName": "John",
-      "lastName": "Doe",
-      "email": "farmer1@example.com",
-      "phone": "987654321",
-      "dni": "12345678"
+      "name": "Juan Pérez",
+      "email": "juan.perez@example.com",
+      "numberOfCrops": 3
     },
     {
-      "id": "3",
-      "firstName": "Maria",
-      "lastName": "Campos",
-      "email": "farmer2@example.com",
-      "phone": "921234567",
-      "dni": "23456789"
+      "id": "2",
+      "name": "Ana Gómez",
+      "email": "ana.gomez@example.com",
+      "numberOfCrops": 5
     }
   ],
   "consultants": [

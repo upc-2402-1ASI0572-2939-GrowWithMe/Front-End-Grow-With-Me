@@ -1,0 +1,43 @@
+<div class="main-content">
+  <div class="header">
+    <h2>Farmers</h2>
+    <hr class="divider" />
+  </div>
+
+  <table mat-table [dataSource]="farmersData" class="mat-elevation-z8">
+    <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef>ID</th>
+      <td mat-cell *matCellDef="let farmer">{{ farmer.id }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef>Name</th>
+      <td mat-cell *matCellDef="let farmer">{{ farmer.name }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="email">
+      <th mat-header-cell *matHeaderCellDef>Email</th>
+      <td mat-cell *matCellDef="let farmer">{{ farmer.email }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="options">
+      <th mat-header-cell *matHeaderCellDef>Options</th>
+      <td mat-cell *matCellDef="let crop">
+
+        <button mat-icon-button>
+          <mat-icon>visibility</mat-icon>
+        </button>
+        <button mat-icon-button>
+          <mat-icon>email</mat-icon>
+        </button>
+      </td>
+    </ng-container>
+
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+  </table>
+
+
+</div>
