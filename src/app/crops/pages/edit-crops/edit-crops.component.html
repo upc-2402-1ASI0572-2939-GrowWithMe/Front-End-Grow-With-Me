@@ -3,7 +3,7 @@
   <form>
     <mat-form-field appearance="fill">
       <mat-label>Tipo de cultivo</mat-label>
-      <mat-select [(value)]="data.crop.type" name="type">
+      <mat-select [(value)]="data.crop.category" name="category">
         <mat-option value="Hortalizas">Hortalizas</mat-option>
         <mat-option value="Frutas">Frutas</mat-option>
         <mat-option value="Verduras">Verduras</mat-option>
@@ -12,7 +12,7 @@
 
     <mat-form-field appearance="fill">
       <mat-label>Nombre del cultivo</mat-label>
-      <input matInput [(ngModel)]="data.crop.name" name="name" required />
+      <input matInput [(ngModel)]="data.crop.productName" name="name" required />
     </mat-form-field>
 
     <mat-form-field appearance="fill">
