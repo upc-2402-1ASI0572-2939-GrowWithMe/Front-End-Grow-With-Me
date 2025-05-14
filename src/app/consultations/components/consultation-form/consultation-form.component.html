@@ -1,0 +1,37 @@
+<div class="modal-backdrop">
+  <div class="modal-box">
+    <div class="modal-header">
+      <h2>Ask a Question</h2>
+      <button class="close-btn" (click)="closeModal.emit()">×</button>
+    </div>
+
+    <form #form="ngForm" (ngSubmit)="submitForm(form)" novalidate>
+      <label>Title</label>
+      <input type="text" [(ngModel)]="title" name="title" required />
+
+      <label>Description</label>
+      <textarea [(ngModel)]="description" name="description" rows="4" required></textarea>
+
+      <label>Humidity (%)</label>
+      <input type="number" [(ngModel)]="humidity" name="humidity" min="0" max="100" required />
+
+      <label>Temperature (°C)</label>
+      <input type="number" [(ngModel)]="temperature" name="temperature" required />
+
+      <div *ngIf="submitted && (form.invalid || humidity === null || temperature === null)" class="error-message">
+        Please fill out all fields before submitting.
+      </div>
+
+      <button type="submit" class="submit-btn">Submit</button>
+    </form>
+  </div>
+</div>
+
+<div class="success-modal" *ngIf="successModalVisible">
+  <div class="modal-content">
+    <div class="checkmark">✔</div>
+    <h2>SUCCESS</h2>
+    <p>Your consultation was submitted successfully.</p>
+    <button (click)="handleSuccessAccept()">Accept</button>
+  </div>
+</div>

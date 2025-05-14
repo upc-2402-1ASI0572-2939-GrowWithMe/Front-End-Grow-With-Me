@@ -1,0 +1,19 @@
+<div class="modal-backdrop">
+  <div class="modal-box">
+    <div class="modal-header">
+      <h2>Consultation Details</h2>
+      <button class="close-btn" (click)="closeModal()">&times;</button>
+    </div>
+
+    <form>
+      <label>Title</label>
+      <input type="text" [value]="consultation.title" disabled />
+
+      <label>Description</label>
+      <textarea rows="4" [value]="consultation.description" disabled></textarea>
+
+      <label>Sensor Data</label>
+      <input type="text" [value]="consultation.sensorData" disabled />
+    </form>
+  </div>
+</div>

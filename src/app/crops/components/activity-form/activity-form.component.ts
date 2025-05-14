@@ -80,18 +80,24 @@ export class ActivityFormComponent implements OnInit {
     const [hours, minutes] = this.time.split(':').map(Number);
     datetime.setHours(hours, minutes, 0, 0);
 
-    const newActivity = {
-      cropId: this.cropId,
-      description: this.description,
-      date: datetime.toISOString()
-    };
+    this.activitiesService.getAll().subscribe(allActivities => {
+      const maxId = allActivities.length > 0 ? Math.max(...allActivities.map(a => +a.id)) : 0;
+      const nextId = maxId + 1;
 
-    this.activitiesService.create(newActivity).subscribe({
-      next: () => {
-        this.modalMessage = 'Activity created successfully';
-        this.successModalVisible = true;
-      },
-      error: err => console.error('Error creating activity:', err)
+      const newActivity = {
+        id: nextId,
+        cropId: this.cropId,
+        description: this.description,
+        date: datetime.toISOString()
+      };
+
+      this.activitiesService.create(newActivity).subscribe({
+        next: () => {
+          this.modalMessage = 'Activity created successfully';
+          this.successModalVisible = true;
+        },
+        error: err => console.error('Error creating activity:', err)
+      });
     });
   }
 
