@@ -1,5 +1,4 @@
 import {Component, OnInit} from '@angular/core';
-import {FarmerService} from '../../farmer';
 import {
   MatCell,
   MatCellDef,
@@ -11,7 +10,8 @@ import {
 } from '@angular/material/table';
 import {MatButton, MatIconButton} from '@angular/material/button';
 import {MatIcon} from '@angular/material/icon';
-import {Farmer} from '../../models/farmer';
+import {Farmer} from '../../models/farmer.entity';
+import {FarmersService} from '../../services/farmers/farmers.service';
 
 @Component({
   selector: 'app-farmers-list',
@@ -37,7 +37,7 @@ export class FarmersListComponent implements OnInit{
   displayedColumns = ['id', 'name', 'email', 'options'];
   farmersData: Farmer[] = [];
 
-  constructor(private farmersService: FarmerService) {}
+  constructor(private farmersService: FarmersService) {}
 
   ngOnInit(): void {
     this.loadFarmersData();
@@ -45,16 +45,16 @@ export class FarmersListComponent implements OnInit{
 
   loadFarmersData(): void {
 
-    this.farmersService.getFarmers().subscribe((data) => {
+    this.farmersService.getFarmers().subscribe((data: Farmer[]) => {
       this.farmersData = data;
 
     });
   }
 
-  // Método para manejar el clic en un farmer
+  // Metodo para manejar el clic en un farmer
   showCrops(farmerId: number): void {
     // Redirigir a la pantalla de cultivos por farmer
-    console.log(`Ver cultivos del farmer con ID: ${farmerId}`);
+    console.log(`Show crops for the farmer ID: ${farmerId}`);
   }
 
 }

@@ -6,7 +6,7 @@ import {Consultant} from '../../models/consultant.entity';
 @Injectable({
   providedIn: 'root'
 })
-export class ConsultantService {
+export class ConsultantsService {
   private apiUrl = 'http://localhost:3000/consultants';
 
   constructor(private http: HttpClient) {}

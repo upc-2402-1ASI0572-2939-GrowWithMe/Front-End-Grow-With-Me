@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Consultant } from '../../../profile/models/consultant.entity';
-import { ConsultantService } from '../../../profile/services/consultants/consultant.service';
+import { ConsultantsService } from '../../../profile/services/consultants/consultants.service';
 import { ConsultantCardComponent } from '../consultant-card/consultant-card.component';
 
 @Component({
@@ -14,7 +14,7 @@ import { ConsultantCardComponent } from '../consultant-card/consultant-card.comp
 export class ConsultantListComponent implements OnInit {
   consultants: Consultant[] = [];
 
-  constructor(private consultantService: ConsultantService) {}
+  constructor(private consultantService: ConsultantsService) {}
 
   ngOnInit(): void {
     this.consultantService.getConsultants().subscribe(data => {
