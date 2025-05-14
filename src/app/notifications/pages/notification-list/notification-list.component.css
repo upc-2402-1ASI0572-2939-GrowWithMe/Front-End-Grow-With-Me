@@ -249,7 +249,7 @@ mat-list-item.unread {
 }
 
 /* Responsive */
-@media (max-width: 768px) {
+/*@media (max-width: 768px) {
   .notifications-container {
     flex-direction: column;
     height: auto;
@@ -264,4 +264,4 @@ mat-list-item.unread {
   .notification-detail {
     min-height: 300px;
   }
-}
+}*/
