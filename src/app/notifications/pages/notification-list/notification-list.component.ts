@@ -3,7 +3,7 @@ import { MatListModule } from '@angular/material/list';
 import { MatCardModule } from '@angular/material/card';
 import { RoleService } from '../../../iam/services/role.service';
 import { NotificationsService } from '../../services/notifications.service';
-import { Notifications } from '../../models/notifications';
+import { Notification } from '../../models/notification.entity';
 import {MatCheckbox} from '@angular/material/checkbox';
 import {NgClass, NgForOf, NgIf} from '@angular/common';
 import {FormsModule} from '@angular/forms';
@@ -18,9 +18,9 @@ import {MatChipListbox, MatChipOption} from '@angular/material/chips';
   imports: [MatListModule, MatCardModule, MatCheckbox, MatIcon, NgIf, NgForOf, FormsModule, NgClass, MatChipListbox, MatChipOption, MatIconButton]
 })
 export class NotificationListComponent implements OnInit {
-  notificationsData: Notifications[] = [];
+  notificationsData: Notification[] = [];
   allSelected: boolean = false;
-  selectedNotification: Notifications | null = null;  // Propiedad para almacenar la notificación seleccionada
+  selectedNotification: Notification | null = null;  // Propiedad para almacenar la notificación seleccionada
 
   constructor(
     private notificationsService: NotificationsService,
@@ -48,15 +48,15 @@ export class NotificationListComponent implements OnInit {
     this.notificationsData.forEach(notification => notification.selected = this.allSelected);
   }
 
-  toggleNotification(notification: Notifications): void {
+  toggleNotification(notification: Notification): void {
     notification.selected = !notification.selected;
   }
 
-  markAsRead(notification: Notifications): void {
+  markAsRead(notification: Notification): void {
     notification.status = 'read';  // Cambiar el estado de la notificación
   }
 
-  deleteNotification(notification: Notifications): void {
+  deleteNotification(notification: Notification): void {
     const confirmDelete = confirm('¿Estás seguro de que deseas eliminar esta notificación?');
     if (confirmDelete) {
       this.notificationsData = this.notificationsData.filter(n => n !== notification);
@@ -72,7 +72,7 @@ export class NotificationListComponent implements OnInit {
   }
 
   // Función para abrir los detalles de la notificación seleccionada
-  openNotificationDetail(notification: Notifications): void {
+  openNotificationDetail(notification: Notification): void {
     this.selectedNotification = notification;
     // Agregar la clase 'show' al panel lateral
     document.querySelector('.notification-detail-panel')?.classList.add('show');
@@ -118,7 +118,7 @@ export class NotificationListComponent implements OnInit {
   }
 
 // Selección de notificación
-  selectNotification(notification: Notifications): void {
+  selectNotification(notification: Notification): void {
     this.selectedNotification = notification;
     if (notification.status === 'unread') {
       this.markAsRead(notification);

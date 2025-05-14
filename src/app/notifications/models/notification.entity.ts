@@ -1,4 +1,4 @@
-export class Notifications {
+export class Notification {
   constructor(
     public id: number,
     public title: string,
