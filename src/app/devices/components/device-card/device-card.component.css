@@ -1,0 +1,36 @@
+.device-card {
+  display: flex;
+
+  background-color: #dff1e9;
+  border-radius: 16px;
+  padding: 20px 24px;
+  max-width: 500px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease-in-out;
+}
+
+.device-card:hover {
+  transform: scale(1.02);
+}
+
+.device-card-header {
+  display: flex;
+  flex-direction: column;
+  color: #0f3f30;
+}
+
+.device-card-header h3 {
+  margin: 0;
+  font-size: 2rem;
+  font-weight: 600;
+}
+
+.device-card-header p {
+  margin: 4px 0;
+  font-size: 1.5rem;
+}
+
+.device-card-body p {
+  margin: 4px 0;
+  font-size: 1rem;
+}

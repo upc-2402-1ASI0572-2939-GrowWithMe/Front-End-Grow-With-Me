@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
+import {MyDevicesPageComponent} from './devices/pages/my-devices-page/my-devices-page.component';
 
 import {MatSidenav, MatSidenavContainer} from '@angular/material/sidenav';
 import {SidebarComponent} from './public/components/sidebar/sidebar.component';
