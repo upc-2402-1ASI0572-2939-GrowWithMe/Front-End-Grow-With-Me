@@ -25,6 +25,22 @@
       "role_id": 2
     }
   ],
+  "devices": [
+    {
+      "id": 1,
+      "name": "ESP32",
+      "token": "123hbasjdasjnf",
+      "deviceType": "Humidity Sensor",
+      "status": "Connected"
+    },
+    {
+      "id": 2,
+      "name": "ARDUINO",
+      "token": "123hbasjdasjnfadsa",
+      "deviceType": "Temperature Sensor",
+      "status": "Connected"
+    }
+  ],
   "farmers": [
     {
       "id": "1",

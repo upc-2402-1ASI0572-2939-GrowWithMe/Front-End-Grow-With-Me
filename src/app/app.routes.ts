@@ -6,6 +6,7 @@ import { MonitoringCropsComponent } from './crops/pages/monitoring-crops/monitor
 import {MyConsultantPageComponent} from './consultations/pages/my-consultant-page/my-consultant-page.component';
 import {HistoryViewComponent} from './consultations/pages/history-view/history-view.component';
 import {FarmersListComponent} from './profile/pages/farmers-list/farmers-list.component';
+import {MyDevicesPageComponent} from './devices/pages/my-devices-page/my-devices-page.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' }, // Ruta predeterminada
@@ -15,5 +16,6 @@ export const routes: Routes = [
   { path: 'crops/:id/monitoring', component: MonitoringCropsComponent }, // Monitoreo de cultivos
   { path: 'consultants', component: MyConsultantPageComponent },
   { path: 'consultants/:id/history', component: HistoryViewComponent },
-  { path: 'farmers', component: FarmersListComponent}
+  { path: 'farmers', component: FarmersListComponent },
+  { path: 'devices', component: MyDevicesPageComponent }
 ];
