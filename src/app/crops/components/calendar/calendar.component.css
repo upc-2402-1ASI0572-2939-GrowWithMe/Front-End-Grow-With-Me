@@ -40,14 +40,14 @@ mat-card {
 
 /* 1. QUITAR el indicador de fecha actual */
 .mat-calendar-body-today {
-  border-color: transparent !important;
+  border-color: transparent;
 }
 
 /* 2. ESTILO para fecha SELECCIONADA (tu indicador personalizado) */
 .mat-calendar-body-selected {
-  background-color: #225A47 !important;
-  color: white !important;
-  border-radius: 50% !important;
+  background-color: #225A47;
+  color: white;
+  border-radius: 50%;
   position: relative;
 }
 

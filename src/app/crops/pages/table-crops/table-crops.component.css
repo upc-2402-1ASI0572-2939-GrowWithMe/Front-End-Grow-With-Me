@@ -23,8 +23,8 @@
 }
 
 button.mat-raised-button {
-  background-color: #5DAA8A !important;
-  color: white !important;
+  background-color: #5DAA8A;
+  color: white;
   border-radius: 5px;
   font-size: 16px;
   padding: 8px 20px;
@@ -32,7 +32,7 @@ button.mat-raised-button {
 }
 
 button.mat-raised-button:hover {
-  background-color: #4a9a75 !important;
+  background-color: #4a9a75;
 }
 
 table {
