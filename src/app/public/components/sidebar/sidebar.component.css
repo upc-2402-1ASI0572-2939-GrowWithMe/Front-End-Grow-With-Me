@@ -70,7 +70,7 @@ mat-list-item span {
   color: #4c9e71;
 }
 
-/*@media (max-width: 768px) {
+@media (max-width: 768px) {
   .sidebar-logo {
     width: 40px;
   }
@@ -82,7 +82,7 @@ mat-list-item span {
   .logo p {
     font-size: 12px;
   }
-}*/
+}
 
 mat-sidenav[ng-reflect-mode="side"]:not([opened]) {
   width: 70px;

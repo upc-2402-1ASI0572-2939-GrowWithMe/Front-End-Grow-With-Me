@@ -82,7 +82,7 @@ mat-card {
 }
 
 /* Responsive adjustments */
-/*@media (max-width: 600px) {
+@media (max-width: 600px) {
   .calendar-wrapper {
     margin: 0.5rem;
   }
@@ -91,4 +91,4 @@ mat-card {
     padding: 0.5rem;
     font-size: 16px;
   }
-}*/
+}
