@@ -1,11 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-auth-form',
-  imports: [],
   templateUrl: './auth-form.component.html',
-  styleUrl: './auth-form.component.css'
+  styleUrls: ['./auth-form.component.css']
 })
 export class AuthFormComponent {
-
+  @Input() mode: 'login' | 'register' | 'reset' = 'login';
 }

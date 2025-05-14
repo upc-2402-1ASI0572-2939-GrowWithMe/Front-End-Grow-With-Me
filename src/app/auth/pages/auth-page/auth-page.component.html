@@ -1,4 +1,13 @@
-<app-logo-header></app-logo-header>
-<app-auth-card>
-  <app-auth-form [mode]="mode"></app-auth-form>
-</app-auth-card>
+<div class="page-wrapper">
+    <app-auth-card>
+    <div class="welcome-content">
+        <app-logo-header></app-logo-header>
+        <p class="subtitle">
+            {{ mode === 'login' ? 'Inicia sesión' : mode === 'register' ? 'Regístrate' : 'Restablece tu contraseña' }}
+            </p>
+
+
+
+    </div>
+    </app-auth-card>
+</div>

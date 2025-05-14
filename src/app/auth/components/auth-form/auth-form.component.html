@@ -1,1 +1,14 @@
-<p>auth-form works!</p>
+<form *ngIf="mode === 'login'">
+  <h3>Inicia Sesión</h3>
+  <!-- Correo + Contraseña -->
+</form>
+
+<form *ngIf="mode === 'register'">
+  <h3>Registrar Cuenta</h3>
+  <!-- Correo + Rol + Contraseña + Repetir -->
+</form>
+
+<form *ngIf="mode === 'reset'">
+  <h3>Restablecer contraseña</h3>
+  <!-- Correo + Contraseña + Repetir -->
+</form>

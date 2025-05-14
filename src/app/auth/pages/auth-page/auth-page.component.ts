@@ -4,9 +4,11 @@ import { AuthCardComponent } from '../../components/auth-card/auth-card.componen
 import { AuthFormComponent } from '../../components/auth-form/auth-form.component';
 import { InputFieldComponent } from '../../components/input-field/input-field.component';
 import { LogoHeaderComponent } from '../../components/logo-header/logo-header.component';
+import { NgIf } from '@angular/common';
+
 @Component({
   selector: 'app-auth-page',
-  imports: [AuthCardComponent, AuthFormComponent, InputFieldComponent, LogoHeaderComponent],
+  imports: [AuthCardComponent, AuthFormComponent, InputFieldComponent, LogoHeaderComponent,NgIf],
   templateUrl: './auth-page.component.html',
   styleUrl: './auth-page.component.css'
 })
