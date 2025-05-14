@@ -19,7 +19,6 @@ import {SidebarComponent} from '../../../public/components/sidebar/sidebar.compo
     MatIconButton,
     MatIcon,
     MatButton,
-    SidebarComponent,
   ],
   templateUrl: './table-crops.component.html',
   styleUrl: './table-crops.component.css'

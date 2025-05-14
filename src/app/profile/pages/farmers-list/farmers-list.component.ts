@@ -8,7 +8,7 @@ import {
   MatHeaderRow, MatHeaderRowDef, MatRow, MatRowDef,
   MatTable
 } from '@angular/material/table';
-import {MatButton, MatIconButton} from '@angular/material/button';
+import {MatIconButton} from '@angular/material/button';
 import {MatIcon} from '@angular/material/icon';
 import {Farmer} from '../../models/farmer.entity';
 import {FarmersService} from '../../services/farmers/farmers.service';
@@ -23,7 +23,6 @@ import {FarmersService} from '../../services/farmers/farmers.service';
     MatHeaderCellDef,
     MatCellDef,
     MatIcon,
-    MatButton,
     MatHeaderRow,
     MatHeaderRowDef,
     MatRow,

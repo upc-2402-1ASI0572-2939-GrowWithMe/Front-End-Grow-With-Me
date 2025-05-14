@@ -12,9 +12,6 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./home.component.css'],
   standalone: true,
   imports: [
-    MatSidenavContainer,
-    SidebarComponent,
-    MatSidenav,
     MatButton
   ]
 })

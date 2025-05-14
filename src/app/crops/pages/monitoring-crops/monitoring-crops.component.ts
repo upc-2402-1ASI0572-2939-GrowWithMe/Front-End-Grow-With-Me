@@ -7,7 +7,6 @@ import {NgIf} from '@angular/common';
   templateUrl: './monitoring-crops.component.html',
   styleUrls: ['./monitoring-crops-component.css'],
   standalone: true,
-
   imports: [MatIconModule, DashboardComponent,NgIf], // Import MatIconModule here
 })
 export class MonitoringCropsComponent {
