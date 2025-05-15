@@ -7,7 +7,7 @@ import {Notification} from '../models/notification.entity';
   providedIn: 'root'
 })
 export class NotificationsService {
-  private apiUrl: string = 'http://localhost:3000/notifications';
+  private apiUrl: string = 'https://growithme-fake-api.onrender.com/notifications';
   constructor(private http: HttpClient) { }
 
   getNotifications(): Observable<Notification[]> {

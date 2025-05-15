@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class ActivitiesService {
-  private baseUrl = 'http://localhost:3000/cropActivities';
+  private baseUrl = 'https://growithme-fake-api.onrender.com/cropActivities';
 
   constructor(private http: HttpClient) {}
 

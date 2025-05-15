@@ -7,7 +7,7 @@ import {Farmer} from '../../models/farmer.entity';
   providedIn: 'root'
 })
 export class FarmersService {
-  private apiUrl = 'http://localhost:3000/farmers';
+  private apiUrl = 'https://growithme-fake-api.onrender.com/farmers';
 
   constructor(private http: HttpClient) {}
 

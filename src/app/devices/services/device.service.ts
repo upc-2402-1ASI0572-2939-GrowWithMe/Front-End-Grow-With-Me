@@ -7,7 +7,7 @@ import {Observable} from 'rxjs';
   providedIn: 'root'
 })
 export class DeviceService {
-  private apiUrl = 'http://localhost:3000/devices';
+  private apiUrl = 'https://growithme-fake-api.onrender.com/devices';
   constructor(private http: HttpClient) { }
 
   createDevice(device: Omit<Device, "id">): Observable<Device> {
