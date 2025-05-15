@@ -14,8 +14,7 @@ import { Subscription } from 'rxjs';
   imports: [
     MatButton,
     MatSidenav,
-    MatSidenavContainer,
-    SidebarComponent
+    MatSidenavContainer
   ]
 })
 export class HomeComponent implements OnInit, OnDestroy {
