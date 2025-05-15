@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Consultant } from '../../../profile/models/consultant.entity';
-import { ConsultantsService } from '../../../profile/services/consultants/consultants.service';
+import { Consultant } from '../../../profiles/models/consultant.entity';
+import { ConsultantsService } from '../../../profiles/services/consultants/consultants.service';
 import { ConsultantCardComponent } from '../consultant-card/consultant-card.component';
 
 @Component({

@@ -5,7 +5,7 @@ import { CalendarPageComponent } from './crops/pages/calendar-page/calendar-page
 import { MonitoringCropsComponent } from './crops/pages/monitoring-crops/monitoring-crops.component';
 import { MyConsultantPageComponent } from './consultations/pages/my-consultant-page/my-consultant-page.component';
 import { HistoryViewComponent } from './consultations/pages/history-view/history-view.component';
-import { FarmersListComponent } from './profile/pages/farmers-list/farmers-list.component';
+import { FarmersListComponent } from './profiles/pages/farmers-list/farmers-list.component';
 import { MyDevicesPageComponent } from './devices/pages/my-devices-page/my-devices-page.component';
 import { NotificationListComponent } from './notifications/pages/notification-list/notification-list.component';
 

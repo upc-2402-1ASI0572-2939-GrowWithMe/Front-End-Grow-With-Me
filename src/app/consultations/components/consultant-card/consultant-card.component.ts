@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import {CommonModule, NgOptimizedImage} from '@angular/common';
-import { Consultant } from '../../../profile/models/consultant.entity';
+import { Consultant } from '../../../profiles/models/consultant.entity';
 
 @Component({
   selector: 'app-consultant-card',
