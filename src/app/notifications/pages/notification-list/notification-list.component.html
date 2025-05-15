@@ -2,16 +2,16 @@
   <!-- Lista de notificaciones (izquierda) -->
   <div class="notifications-list">
     <div class="list-header">
-      <h2>Notificaciones</h2>
+      <h2>Notifications</h2>
       <div class="filter-options">
         <mat-checkbox [(ngModel)]="allSelected" (change)="toggleAll()">
-          Seleccionar todas
+          Select all
         </mat-checkbox>
       </div>
     </div>
 
     <div class="categories">
-      <span class="category-label">Categorías:</span>
+      <span class="category-label">Categories:</span>
       <mat-chip-listbox multiple>
         <mat-chip-option *ngFor="let category of categories"
                          [selected]="isCategorySelected(category)"
@@ -73,8 +73,8 @@
   <ng-template #emptyState>
     <div class="empty-detail">
       <mat-icon>notifications_off</mat-icon>
-      <h3>Selecciona una notificación</h3>
-      <p>Elige una notificación de la lista para ver su contenido detallado</p>
+      <h3>Select a notification</h3>
+      <p>Choose a notification from the list to see its details</p>
     </div>
   </ng-template>
 </div>
