@@ -12,7 +12,10 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./home.component.css'],
   standalone: true,
   imports: [
-    MatButton
+    MatButton,
+    MatSidenav,
+    MatSidenavContainer,
+    SidebarComponent
   ]
 })
 export class HomeComponent implements OnInit, OnDestroy {
