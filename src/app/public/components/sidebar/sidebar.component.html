@@ -1,5 +1,9 @@
 <div class="sidenav-container">
-  <div id="sidebar" class="sidebar open">
+  <div #sidebar id="sidebar" class="sidebar open">
+  <button #sidebarIcon class="icon-button material-icons toggle-btn" (click)="toggleSidebar()">
+  chevron_left
+  </button>
+
     <a class="logo" href="/home">
       <img src="../../../../assets/images/Logo.png" alt="Logo" class="sidebar-logo" />
       <div class="logo-text">
@@ -9,7 +13,6 @@
     </a>
 
     <nav class="nav-list" id="nav-list">
-      <!-- Farmer menu -->
       <div class="nav-item" data-role="farmer">
         <a href="/devices">
           <span class="icon">📶</span>
@@ -29,7 +32,7 @@
         </a>
       </div>
       <div class="nav-item" data-role="farmer">
-        <a href="/consultants" class="active">
+        <a href="/consultants">
           <span class="icon">👤</span>
           <span class="label">My Consultant</span>
         </a>
