@@ -1,3 +1,5 @@
+@import 'material-icons/iconfont/material-icons.css';
+
 .sidenav-container {
   display: flex;
   height: 100vh;
@@ -55,6 +57,10 @@
   display: none;
 }
 
+.sidebar.closed .icon-button {
+  transform: rotate(180deg);
+}
+
 .icon-button {
   background: none;
   border: none;
@@ -102,4 +108,25 @@
   .logo-text p {
     font-size: 12px;
   }
+}
+
+.toggle-btn {
+  position: absolute;
+  top: 15px;
+  right: -15px;
+  z-index: 20;
+  background-color: white;
+  color: #2e7d32;
+  font-size: 26px;
+  border: none;
+  padding: 6px;
+  border-radius: 50%;
+  cursor: pointer;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease;
+}
+
+.toggle-btn:hover {
+  background-color: #e8f5e9;
+  transform: scale(1.1);
 }
