@@ -1,0 +1,36 @@
+<div class="register-crop-modal">
+  <h2 mat-dialog-title class="modal-title">Register New Crop</h2>
+
+  <mat-dialog-content>
+    <form class="crop-form" [formGroup]="cropForm">
+      <mat-form-field appearance="outline">
+        <mat-label>Crop Name</mat-label>
+        <input matInput formControlName="productName" required>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Category</mat-label>
+        <mat-select formControlName="category" required>
+          <mat-option value="Vegetables">Vegetables</mat-option>
+          <mat-option value="Fruits">Fruits</mat-option>
+          <mat-option value="Greens">Greens</mat-option>
+          <mat-option value="Species">Species</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Area (m²)</mat-label>
+        <input matInput type="number" formControlName="area" required>
+        <span matSuffix>m²</span>
+      </mat-form-field>
+    </form>
+  </mat-dialog-content>
+
+  <mat-dialog-actions class="modal-actions">
+    <button mat-button class="cancel-btn" (click)="onCancel()">Cancel</button>
+    <button mat-raised-button class="accept-btn" (click)="onSubmit()"
+            [disabled]="!cropForm.valid">Register</button>
+  </mat-dialog-actions>
+</div>
+
+

@@ -1,7 +1,7 @@
 .main-content {
   margin-left: 250px;
-  padding: 80px;
-  height: 70vh;
+  padding: 20px 80px 80px 80px;
+
 }
 
 .header {
@@ -22,16 +22,18 @@
   padding: 20px 20px;
 }
 
-button.mat-raised-button {
-  background-color: #5DAA8A;
+button.mat-button {
+  padding: 6px 20px;
+  background-color: #225A47;
   color: white;
-  border-radius: 5px;
-  font-size: 16px;
-  padding: 8px 20px;
-  margin-top: 20px;
+  border: none;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
 }
 
-button.mat-raised-button:hover {
+button.mat-button:hover {
   background-color: #4a9a75;
 }
 

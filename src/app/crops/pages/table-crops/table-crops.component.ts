@@ -9,6 +9,7 @@ import { Router, ActivatedRoute, RouterOutlet } from '@angular/router';
 import {Crop} from '../../models/crop.entity';
 import {RoleService} from '../../../iam/services/role.service';
 import {SidebarComponent} from '../../../public/components/sidebar/sidebar.component';
+import {RegisterCropComponent} from '../../components/register-crop/register-crop.component';
 
 @Component({
   selector: 'app-table-crops',
@@ -51,9 +52,17 @@ export class TableCropsComponent implements OnInit {
     });
   }
 
-
   onRegister(): void {
-    console.log('Register Crop');
+    const dialogRef = this.dialog.open(RegisterCropComponent, {
+      width: '400px'
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        // Lógica para guardar el nuevo cultivo
+        console.log('Nuevo cultivo:', result);
+      }
+    });
   }
 
   goToCalendar(id: string): void {

@@ -1,29 +1,36 @@
-/* Encabezado verde */
-.edit-crop-dialog {
-  background-color: #225a47;  /* Verde intenso */
-  color: white;  /* Texto blanco para mejor contraste */
-}
-
-.edit-crop-dialog h2 {
-  font-weight: 500;
-  font-size: 1.25rem;
-  margin: 0;
+.modal-title {
+  background-color: #225a47;
   color: white;
+  margin: 0;
+  font-size: 1.25rem;
+  font-weight: 500;
 }
 
-/* Fondo blanco para el resto */
 mat-dialog-content {
-  background-color: white;
   padding: 20px 24px;
+  align-items: center;
+  background-color: white;
+
 }
 
-.dialog-actions {
+.crop-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+mat-form-field {
+  width: 100%;
+
+}
+
+.modal-actions {
   display: flex;
   justify-content: center; /* Centra horizontalmente */
   align-items: center;    /* Centra verticalmente */
   gap: 16px;             /* Espacio entre botones */
   padding: 16px 24px;
-  background-color: white; /* Fondo transparente */
+  background: white;
 }
 
 /* Botón Cancelar */
@@ -34,15 +41,8 @@ mat-dialog-content {
 }
 
 /* Botón Confirmar */
-.confirm-btn {
+.accept-btn {
   background-color: #225a47 !important;  /* Fondo verde */
   color: white !important;              /* Texto blanco */
   padding: 0 16px;
-}
-
-
-/* Estilos originales para los campos (opcional) */
-mat-form-field {
-  width: 100%;
-  margin-bottom: 8px;
 }
