@@ -1,0 +1,29 @@
+<div class="monitoring-container">
+    <header>
+      <h1>Monitoreo de Cultivos</h1>
+    </header>
+    <div class="dashboard-grid">
+      <mat-card class="data-card">
+        <mat-card-content>
+          <h3>Temperatura</h3>
+          <div class="current-value">{{ temperature.current }} °C</div>
+          <div class="min-max">Min: {{ temperature.min }}°C | Max: {{ temperature.max }}°C</div>
+        </mat-card-content>
+      </mat-card>
+      <mat-card class="data-card">
+        <mat-card-content>
+          <h3>Humedad</h3>
+          <div class="current-value">{{ humidity.current }}%</div>
+          <div class="min-max">Min: {{ humidity.min }}% | Max: {{ humidity.max }}%</div>
+        </mat-card-content>
+      </mat-card>
+      <mat-card class="chart-card">
+        <mat-card-content>
+          <h3>Últimas 12 horas</h3>
+          <div class="chart-container">
+            <canvas #timeChart></canvas>
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>

@@ -1,0 +1,21 @@
+.monitoring-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f8f9fa;
+  }
+  
+  .dashboard-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+  
+  .data-card, .chart-card {
+    background-color: white;
+    border-radius: 8px;
+  }
+  
+  .chart-card {
+    grid-column: span 2;
+  }

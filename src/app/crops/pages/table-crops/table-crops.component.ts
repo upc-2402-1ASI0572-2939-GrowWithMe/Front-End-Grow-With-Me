@@ -6,9 +6,8 @@ import { CropsService } from '../../services/crops/crops.service';
 import { MatDialog } from '@angular/material/dialog';
 import { EditCropsComponent } from '../edit-crops/edit-crops.component';
 import { Router, ActivatedRoute, RouterOutlet } from '@angular/router';
-import {Crop} from '../../models/crop.entity';
-import {RoleService} from '../../../iam/services/role.service';
-import {SidebarComponent} from '../../../public/components/sidebar/sidebar.component';
+import { Crop } from '../../models/crop.entity';
+import { RoleService } from '../../../iam/services/role.service';
 
 @Component({
   selector: 'app-table-crops',
@@ -19,7 +18,6 @@ import {SidebarComponent} from '../../../public/components/sidebar/sidebar.compo
     MatIconButton,
     MatIcon,
     MatButton,
-    SidebarComponent,
   ],
   templateUrl: './table-crops.component.html',
   styleUrl: './table-crops.component.css'
@@ -34,7 +32,6 @@ export class TableCropsComponent implements OnInit {
     private router: Router,
     private roleService: RoleService
   ) {}
-
 
   ngOnInit(): void {
     this.loadCropsData();
@@ -52,17 +49,12 @@ export class TableCropsComponent implements OnInit {
     });
   }
 
-
   onRegister(): void {
-    console.log('Register Crop');
+  this.router.navigate(['/monitoring-crops']); // Redirige a la pantalla de Monitoring Crops
   }
 
   goToCalendar(id: string): void {
     this.router.navigate([`/crops/${id}/calendar`]);
-  }
-
-  goToMonitoring(id: string): void {
-    this.router.navigate([`/crops/${id}/monitoring`]);
   }
 
   openEditDialog(crop: Crop): void {
