@@ -38,20 +38,17 @@ mat-card {
   border-radius: 0 0 8px 8px;
 }
 
-/* 1. QUITAR el indicador de fecha actual */
 .mat-calendar-body-today {
-  border-color: transparent;
+  border-color: transparent !important;
 }
 
-/* 2. ESTILO para fecha SELECCIONADA (tu indicador personalizado) */
 .mat-calendar-body-selected {
-  background-color: #225A47;
-  color: white;
-  border-radius: 50%;
+  background-color: #225A47 !important;
+  color: white !important;
+  border-radius: 50% !important;
   position: relative;
 }
 
-/* Indicador para fecha seleccionada (punto blanco) */
 .mat-calendar-body-selected::after {
   content: '';
   position: absolute;
@@ -64,7 +61,6 @@ mat-card {
   transform: translateX(-50%);
 }
 
-/* 3. ESTILO para fechas con ACTIVIDADES (puntos rojos) */
 .mat-calendar-body-cell.activity-date .mat-calendar-body-cell-content {
   position: relative;
 }

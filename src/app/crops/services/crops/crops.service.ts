@@ -18,4 +18,7 @@ export class CropsService {
   deleteCrop(id: string): Observable<any> {
     return this.http.delete(`${this.apiUrl}/${id}`);
   }
+  createCrop(crop: Crop): Observable<Crop> {
+    return this.http.post<Crop>(this.apiUrl, crop);
+  }
 }

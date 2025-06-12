@@ -5,16 +5,8 @@
   </div>
 
   <div class="content-section">
-    <app-consultant-list />
-    <div class="button-group">
-      <button class="action-button" (click)="openForm()">Ask a Question</button>
-      <button class="action-button secondary" (click)="goToHistory()">View History</button>
+    <div class="card-list">
+      <app-consultant-list></app-consultant-list>
     </div>
   </div>
-
-  <app-consultation-form
-    *ngIf="showForm"
-    (submitConsultation)="handleSubmit($event)"
-    (closeModal)="closeForm()"
-  />
 </div>

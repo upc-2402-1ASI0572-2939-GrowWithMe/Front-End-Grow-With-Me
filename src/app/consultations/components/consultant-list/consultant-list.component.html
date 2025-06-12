@@ -3,6 +3,15 @@
     <app-consultant-card
       *ngFor="let consultant of consultants"
       [consultant]="consultant"
-    />
+    ></app-consultant-card>
   </div>
+  <div class="button-group">
+    <button class="action-button" (click)="openForm()">Ask a Question</button>
+    <button class="action-button" (click)="goToHistory()">View History</button>
+  </div>
+  <app-consultation-form
+    *ngIf="showForm"
+    (submitConsultation)="handleSubmit($event)"
+    (closeModal)="closeForm()"
+  ></app-consultation-form>
 </div>
