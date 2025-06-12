@@ -1,30 +1,21 @@
-body {
-  margin: 0;
-  padding: 0;
-  overflow-x: hidden;
-}
-
 .main-content {
-  display: flex;
-  justify-content: center;
-  width: 100%;
+  padding: 24px;
+  max-width: 1200px;
+  margin: 0 auto;
   box-sizing: border-box;
-  padding: 20px;
 }
 
 .table-container {
   width: 100%;
-  padding: 0 10px;
-  max-width: 850px; /* Escritorio grande */
-  box-sizing: border-box;
-  transform: translateX(20px); /* Mueve la tabla un poco a la derecha */
+  overflow-x: auto;
 }
 
 table.mat-elevation-z8 {
   width: 100%;
-  border-radius: 10px;
+  border-radius: 8px;
   overflow: hidden;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  border-collapse: collapse;
 }
 
 .mat-header-row {
@@ -42,36 +33,19 @@ table.mat-elevation-z8 {
 
 .mat-cell,
 .mat-header-cell {
-  padding: 12px 14px;
-  font-size: 15px;
-  color: #1b3f2e;
-  border-bottom: 1px solid #cfe9dc;
+  padding: 12px 16px;
+  font-size: 1rem;
+  white-space: nowrap;
 }
 
-.mat-row:hover {
-  background-color: #d5f0e3;
-  cursor: pointer;
-}
-
-td.mat-cell:first-child,
-th.mat-header-cell:first-child {
-  width: 60px;
-  text-align: center;
-}
-
-/* Tablet y pantallas medianas */
-@media screen and (max-width: 768px) {
-  .table-container {
-    max-width: 500px;
-    transform: translateX(10px); /* Menor desplazamiento en tablet */
-  }
-}
-
-/* Celulares medianos (como iPhone 8, Galaxy S8) */
-@media screen and (max-width: 540px) {
-  .table-container {
-    max-width: 480px;
-    transform: none; /* No desplazar en móviles */
+@media (max-width: 768px) {
+  table.mat-elevation-z8,
+  .mat-header-row,
+  .mat-row,
+  .mat-cell,
+  .mat-header-cell {
+    display: block;
+    width: 100%;
   }
 
   .mat-header-row {
@@ -79,44 +53,24 @@ th.mat-header-cell:first-child {
   }
 
   .mat-row {
-    display: block;
     margin-bottom: 16px;
-    border: 1px solid #a1d6b8;
-    border-radius: 10px;
-    padding: 10px;
-    background-color: #f5fcf9;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    overflow: hidden;
+    padding: 12px;
+    background-color: #fff;
   }
 
   .mat-cell {
-    display: block;
-    width: 100%;
-    border: none;
-    padding: 8px 12px;
-    box-sizing: border-box;
+    display: flex;
+    justify-content: space-between;
+    padding: 8px 0;
+    border-bottom: 1px solid #eee;
   }
 
   .mat-cell::before {
     content: attr(data-label);
-    font-weight: bold;
-    color: #003d2f;
-    display: block;
-    margin-bottom: 4px;
-  }
-}
-
-/* Celulares pequeños (como iPhone SE, Android antiguos) */
-@media screen and (max-width: 400px) {
-  .table-container {
-    max-width: 100%;
-    padding: 0 5px;
-  }
-
-  .mat-cell {
-    font-size: 14px;
-    padding: 6px 10px;
-  }
-
-  .mat-cell::before {
-    font-size: 13px;
+    font-weight: 600;
+    color: #007e66;
   }
 }
