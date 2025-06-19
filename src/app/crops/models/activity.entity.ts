@@ -1,8 +1,8 @@
 export class Activity {
   constructor(
     public id: number,
-    public cropId: string,
-    public description: string,
-    public date: Date
+    public cropId: number,
+    public date: Date,
+    public description: string
   ) {}
 }

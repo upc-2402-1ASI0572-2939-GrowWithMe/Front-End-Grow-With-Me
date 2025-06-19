@@ -21,7 +21,7 @@
       </mat-chip-listbox>
     </div>
 
-    <div class="messages-container">
+    <!--<div class="messages-container">
       <mat-list>
         <mat-list-item *ngFor="let notification of filteredNotifications"
                        (click)="selectNotification(notification)"
@@ -38,10 +38,10 @@
         </mat-list-item>
       </mat-list>
     </div>
-  </div>
+  </div>-->
 
   <!-- Panel de detalle (derecha) -->
-  <div class="notification-detail" *ngIf="selectedNotification; else emptyState">
+  <!--<div class="notification-detail" *ngIf="selectedNotification; else emptyState">
     <div class="detail-header">
       <h3>{{selectedNotification.title}}</h3>
       <div class="actions">
@@ -53,13 +53,13 @@
           <mat-icon>delete</mat-icon>
         </button>
       </div>
-    </div>
+    </div>-->
 
-    <div class="detail-body">
+    <!--<div class="detail-body">
       <div class="meta-info">
-        <span class="type-badge" [ngClass]="selectedNotification.type">
-          <mat-icon>{{getTypeIcon(selectedNotification.type)}}</mat-icon>
-          {{getTypeLabel(selectedNotification.type)}}
+        <span class="type-badge" [ngClass]="selectedNotification.">
+          <mat-icon>{{getTypeIcon(selectedNotification.title)}}</mat-icon>
+          {{getTypeLabel(selectedNotification.title)}}
         </span>
         <span class="time">{{selectedNotification.date}}</span>
       </div>
@@ -67,7 +67,7 @@
       <div class="message-content">
         <p>{{selectedNotification.message}}</p>
       </div>
-    </div>
+    </div>-->
   </div>
 
   <ng-template #emptyState>

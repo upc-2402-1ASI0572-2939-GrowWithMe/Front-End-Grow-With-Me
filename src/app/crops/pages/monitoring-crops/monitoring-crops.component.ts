@@ -5,7 +5,7 @@ import {NgIf} from '@angular/common';
 @Component({
   selector: 'app-monitoring-crops',
   templateUrl: './monitoring-crops.component.html',
-  styleUrls: ['./monitoring-crops-component.css'],
+  styleUrls: ['./monitoring-crops.component.css'],
   standalone: true,
   imports: [MatIconModule, DashboardComponent,NgIf], // Import MatIconModule here
 })

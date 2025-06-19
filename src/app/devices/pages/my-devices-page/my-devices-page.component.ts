@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, Input} from '@angular/core';
 import {Router} from '@angular/router';
 import {DeviceListComponent} from '../../components/device-list/device-list.component';
 import {AddDeviceFormComponent} from '../../components/add-device-form/add-device-form.component';
@@ -15,6 +15,7 @@ import {NgIf} from '@angular/common';
   styleUrl: './my-devices-page.component.css'
 })
 export class MyDevicesPageComponent {
+  @Input() farmerId!: number;
   showForm = false;
 
   constructor(private router: Router) {}

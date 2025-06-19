@@ -10,6 +10,7 @@
   </div>
 
   <app-add-device-form
+    [farmerId]="farmerId"
     *ngIf="showForm"
     (submitAddDevice)="handleSubmit($event)"
     (closeModal)="closeForm()"

@@ -22,7 +22,7 @@ import { Activity } from '../../models/activity.entity';
   styleUrl: './calendar.component.css'
 })
 export class CalendarComponent implements OnInit {
-  @Input() cropId!: string;
+  @Input() cropId!: number;
   @Output() dateSelected = new EventEmitter<Date>();
 
   selectedDate: Date | null = null;
@@ -38,12 +38,12 @@ export class CalendarComponent implements OnInit {
 
   ngOnInit(): void {
     if (this.cropId) {
-      this.cropsService.getCrops().subscribe(crops => {
+      this.cropsService.getAll().subscribe(crops => {
         const crop = crops.find(c => c.id === this.cropId);
         this.cropName = crop?.productName || 'Unknown Crop';
       });
 
-      this.activitiesService.getByCropId(this.cropId).subscribe(activities => {
+      this.activitiesService.getAllCropActivitiesByCropId(this.cropId).subscribe(activities => {
         this.activityDates = activities.map(a => new Date(a.date));
         console.log('Loaded activity dates:', this.activityDates);
         this.ready = true;

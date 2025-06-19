@@ -40,14 +40,15 @@ export class TableCropsComponent implements OnInit {
   }
 
   loadCropsData(): void {
-    const currentRole = this.roleService.getCurrentRole();
+    //const currentRole = this.roleService.getCurrentRole();
 
-    this.cropsService.getCrops().subscribe((data) => {
-      if (currentRole === 'farmer') {
-        this.cropsData = data.filter(crop => crop.profileId === 1);
+    this.cropsService.getAll().subscribe((data) => {
+      /*if (currentRole === 'farmer') {
+        this.cropsData = data.filter(crop => crop.farmerId === 1);
       } else {
         this.cropsData = data;
-      }
+      }*/
+      this.cropsData = data;
     });
   }
 

@@ -27,7 +27,7 @@ export class ActivityFormComponent implements OnInit {
     return this._date;
   }
 
-  @Input() cropId!: string;
+  @Input() cropId!: number;
   @Output() closeForm = new EventEmitter<void>();
 
   cropName: string = '';
@@ -45,7 +45,7 @@ export class ActivityFormComponent implements OnInit {
 
   ngOnInit(): void {
     if (this.cropId) {
-      this.cropsService.getCrops().subscribe(crops => {
+      this.cropsService.getAll().subscribe(crops => {
         const crop = crops.find(c => c.id === this.cropId);
         this.cropName = crop?.productName || 'Unknown Crop';
       });
@@ -55,7 +55,7 @@ export class ActivityFormComponent implements OnInit {
   }
 
   loadActivityIfExists(): void {
-    this.activitiesService.getByCropId(this.cropId).subscribe(activities => {
+    this.activitiesService.getAllCropActivitiesByCropId(this.cropId).subscribe(activities => {
       const match = activities.find(a => {
         const actDate = new Date(a.date);
         return actDate.toDateString() === this.date.toDateString();

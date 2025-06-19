@@ -3,10 +3,10 @@ import {Crop} from '../../crops/models/crop.entity';
 export class Farmer {
   constructor(
     public id: number,
-    public name: string,
+    public firstName: string,
+    public lastName: string,
     public email: string,
-    public numberOfCrops: number,
-    public crops?: Crop[]
+    public phone: string
   ) {
   }
 }

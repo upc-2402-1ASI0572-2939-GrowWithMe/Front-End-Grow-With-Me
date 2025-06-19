@@ -2,6 +2,8 @@ import {Component, EventEmitter, Input, OnChanges, Output, SimpleChanges} from '
 import { ActivitiesService } from '../../services/activities/activities.service';
 import { DatePipe, NgIf } from '@angular/common';
 import {CropsService} from '../../services/crops/crops.service';
+import {Crop} from '../../models/crop.entity';
+import {Activity} from '../../models/activity.entity';
 
 
 @Component({
@@ -16,11 +18,10 @@ import {CropsService} from '../../services/crops/crops.service';
 })
 export class ActivityDetailsComponent implements OnChanges {
   @Input() date!: Date;
-  @Input() cropId!: string;
+  @Input() cropId!: number;
   @Output() close = new EventEmitter<void>();
 
-
-  cropName: string = '';
+  productName: string = '';
   time: string = '';
   description: string = '';
   noActivityModalVisible = false;
@@ -39,13 +40,13 @@ export class ActivityDetailsComponent implements OnChanges {
   }
 
   loadActivityDetails(): void {
-    this.cropsService.getCrops().subscribe(crops => {
+    this.cropsService.getAll().subscribe(crops => {
       const crop = crops.find(c => c.id === this.cropId);
-      this.cropName = crop?.productName || 'Unknown Crop';
+      this.productName = crop?.productName || 'Unknown Crop';
     });
 
-    this.activitiesService.getByCropId(this.cropId).subscribe(activities => {
-      const match = activities.find(a => {
+    this.activitiesService.getAllCropActivitiesByCropId(this.cropId).subscribe((activities: Activity[]) => {
+      const match = activities.find((a: Activity) => {
         const actDate = new Date(a.date);
         return actDate.toDateString() === this.date.toDateString();
       });

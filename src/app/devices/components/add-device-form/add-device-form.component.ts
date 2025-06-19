@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Output} from '@angular/core';
+import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {Device} from '../../models/device.entity';
 import {FormsModule, NgForm} from '@angular/forms';
 import {DeviceService} from '../../services/device.service';
@@ -15,6 +15,8 @@ import {NgForOf, NgIf} from '@angular/common';
   styleUrl: './add-device-form.component.css'
 })
 export class AddDeviceFormComponent {
+  @Input() cropId!: number;
+  @Input() farmerId!: number;
   id: string = '';
   name: string = '';
   token: string = '';
@@ -38,8 +40,8 @@ export class AddDeviceFormComponent {
     this.submitted = true;
     if (form.invalid || this.token === null) return;
 
-    this.deviceService.getDevicesByFarmerId('1').subscribe(device => {
-      const deviceExists = device.some((d: Device) => d.token === this.token);
+    this.deviceService.getAllDevicesByFarmerId(this.farmerId).subscribe(device => {
+      const deviceExists = device.some((d: Device) => d === this.token);
       if (deviceExists) {
         alert('Device with this token already exists');
         return;
@@ -53,7 +55,7 @@ export class AddDeviceFormComponent {
         status: 'CONNECTED'
       };
 
-      this.deviceService.createDevice(newDevice).subscribe(() => {
+      this.deviceService.create(newDevice).subscribe(() => {
         this.successModalVisible = true;
         form.reset();
         this.submitted = false;

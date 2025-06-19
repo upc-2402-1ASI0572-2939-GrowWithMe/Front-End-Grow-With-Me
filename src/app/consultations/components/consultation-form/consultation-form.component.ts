@@ -1,4 +1,4 @@
-import { Component, Output, EventEmitter } from '@angular/core';
+import {Component, Output, EventEmitter, Input} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, NgForm } from '@angular/forms';
 import { Consultation } from '../../models/consultation.entity';
@@ -12,6 +12,7 @@ import { ConsultationService } from '../../services/consultations/consultation.s
   styleUrl: './consultation-form.component.css'
 })
 export class ConsultationFormComponent {
+  @Input() farmerId!: number;
   title: string = '';
   description: string = '';
   humidity: number | null = null;
@@ -29,27 +30,23 @@ export class ConsultationFormComponent {
     this.closeModal.emit(); // now close only after user clicks Accept
   }
 
-
   submitForm(form: NgForm) {
     this.submitted = true;
     if (form.invalid || this.humidity === null || this.temperature === null) return;
 
-    this.consultationService.getConsultationsByFarmerId('1').subscribe(existing => {
+    this.consultationService.getAllConsultationsByFarmerId(this.farmerId).subscribe(existing => {
       const maxId = existing.length > 0 ? Math.max(...existing.map(c => Number(c.id))) : 0;
       const newId = maxId + 1;
 
-      const sensorData = `Humidity: ${this.humidity}%, Temp: ${this.temperature}°C`;
-
       const newConsultation: Consultation = {
         id: newId,
+        farmerId: this.farmerId,
         title: this.title,
         description: this.description,
         date: new Date(),
-        status: 'pending',
-        farmerId: '1',
-        sensorData
+        status: 'PENDING'
       };
-      this.consultationService.createConsultation(newConsultation).subscribe({
+      this.consultationService.create(newConsultation).subscribe({
         next: (created) => {
           this.submitConsultation.emit(created);
           this.successModalVisible = true; // show popup

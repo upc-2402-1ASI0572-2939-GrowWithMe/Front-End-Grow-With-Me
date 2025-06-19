@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import { MatTableModule } from '@angular/material/table';
 import { MatIconButton } from '@angular/material/button';
 import { MatIcon } from '@angular/material/icon';
@@ -19,8 +19,9 @@ import {ConsultationDetailsComponent} from '../consultation-details/consultation
   styleUrl: './consultation-list.component.css'
 })
 export class ConsultationListComponent implements OnInit {
-  displayedColumns: string[] = ['id', 'title', 'description', 'sensorData'];
+  displayedColumns: string[] = ['id', 'title', 'description', 'status', 'date'];
   consultations: Consultation[] = [];
+  @Input() farmerId!:number;
 
   constructor(private consultationService: ConsultationService) {}
   selectedConsultation: Consultation | null = null;
@@ -38,8 +39,7 @@ export class ConsultationListComponent implements OnInit {
   }
 
   loadConsultations(): void {
-    const farmerId = '1'; // Replace with dynamic ID later
-    this.consultationService.getConsultationsByFarmerId(farmerId).subscribe(data => {
+    this.consultationService.getAllConsultationsByFarmerId(this.farmerId).subscribe(data => {
       this.consultations = data.sort((a, b) => a.id - b.id);
     });
   }

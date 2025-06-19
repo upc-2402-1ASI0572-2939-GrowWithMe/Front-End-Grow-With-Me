@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import {CommonModule, NgIf} from '@angular/common';
 import { CalendarComponent } from '../../components/calendar/calendar.component';
@@ -20,21 +20,26 @@ import {RoleService} from '../../../iam/services/role.service';
   styleUrl: './calendar-page.component.css'
 })
 export class CalendarPageComponent implements OnInit {
-  cropId: string = '';
+  @Input() cropId!: number;
   selectedDate: Date | null = null;
   role: string = 'farmer';
 
-  constructor(
-    private route: ActivatedRoute,
-    private roleService: RoleService
-  ) {
-    this.cropId = this.route.snapshot.paramMap.get('id') || '';
+  constructor(private route: ActivatedRoute, private roleService: RoleService) {
+    //this.cropId = this.route.snapshot.paramMap.get('cropId') || 0;
   }
 
   ngOnInit(): void {
     this.roleService.getRole$().subscribe((role: string) => {
       this.role = role;
     });
+
+    const id = this.route.snapshot.paramMap.get('cropId');
+    if (id) {
+      this.cropId = +id;
+    } else {
+      console.error('Crop ID not found in route parameters');
+      this.cropId = 0;
+    }
   }
 
   handleDateChange(date: Date) {

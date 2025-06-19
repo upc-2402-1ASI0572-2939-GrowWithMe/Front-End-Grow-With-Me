@@ -34,9 +34,9 @@ export class NotificationListComponent implements OnInit {
   loadNotificationsData(): void {
     const currentRole = this.roleService.getCurrentRole();
 
-    this.notificationsService.getNotifications().subscribe((data) => {
+    this.notificationsService.getAll().subscribe((data) => {
       if (currentRole === 'farmer') {
-        this.notificationsData = data.filter(notification => notification.profileId === 1);
+        this.notificationsData = data.filter(notification => notification.farmerId === 1);
       } else {
         this.notificationsData = data;
       }
@@ -95,14 +95,14 @@ export class NotificationListComponent implements OnInit {
   selectedCategories: string[] = [];
 
 // Filtro de notificaciones
-  get filteredNotifications() {
-    if (this.selectedCategories.length === 0) {
-      return this.notificationsData;
-    }
-    return this.notificationsData.filter(notification =>
-      this.selectedCategories.includes(notification.type)
-    );
-  }
+//   get filteredNotifications() {
+//     if (this.selectedCategories.length === 0) {
+//       return this.notificationsData;
+//     }
+//     return this.notificationsData.filter(notification =>
+//       this.selectedCategories.includes(notification.type)
+//     );
+//   }
 
 // Manejo de categorías
   isCategorySelected(category: any): boolean {

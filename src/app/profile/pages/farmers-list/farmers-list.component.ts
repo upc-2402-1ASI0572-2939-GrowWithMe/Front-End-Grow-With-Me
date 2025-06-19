@@ -44,7 +44,7 @@ export class FarmersListComponent implements OnInit{
 
   loadFarmersData(): void {
 
-    this.farmersService.getFarmers().subscribe((data: Farmer[]) => {
+    this.farmersService.getAll().subscribe((data: Farmer[]) => {
       this.farmersData = data;
 
     });
