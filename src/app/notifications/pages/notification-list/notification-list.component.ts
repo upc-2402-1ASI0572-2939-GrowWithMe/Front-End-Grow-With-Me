@@ -17,6 +17,11 @@ import {MatChipListbox, MatChipOption} from '@angular/material/chips';
   styleUrls: ['./notification-list.component.css'],
   imports: [MatListModule, MatCardModule, MatCheckbox, MatIcon, NgIf, NgForOf, FormsModule, NgClass, MatChipListbox, MatChipOption, MatIconButton]
 })
+
+/**
+ * Component to display a list of notifications with options for selection, marking as read, and deletion.
+ * Role: for farmer view.
+ */
 export class NotificationListComponent implements OnInit {
   notificationsData: Notification[] = [];
   allSelected: boolean = false;
@@ -57,7 +62,7 @@ export class NotificationListComponent implements OnInit {
   }
 
   deleteNotification(notification: Notification): void {
-    const confirmDelete = confirm('¿Estás seguro de que deseas eliminar esta notificación?');
+    const confirmDelete = confirm('Are you sure you want to delete this notification?');
     if (confirmDelete) {
       this.notificationsData = this.notificationsData.filter(n => n !== notification);
     }
@@ -65,7 +70,7 @@ export class NotificationListComponent implements OnInit {
 
   deleteSelected(): void {
     const selectedNotifications = this.notificationsData.filter(n => n.selected);
-    const confirmDelete = confirm('¿Deseas eliminar las notificaciones seleccionadas?');
+    const confirmDelete = confirm('Are you sure you want to delete the selected notifications?');
     if (confirmDelete) {
       this.notificationsData = this.notificationsData.filter(n => !n.selected);
     }

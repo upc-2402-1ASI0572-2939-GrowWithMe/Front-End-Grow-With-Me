@@ -9,6 +9,11 @@ import { Consultation } from '../../models/consultation.entity';
   templateUrl: './consultation-details.component.html',
   styleUrl: './consultation-details.component.css'
 })
+
+/**
+ * Component to display the details of a consultation.
+ * Role: for farmer view.
+ */
 export class ConsultationDetailsComponent {
   @Input() consultation!: Consultation;
   @Output() close = new EventEmitter<void>();

@@ -19,6 +19,11 @@ import {RoleService} from '../../../iam/services/role.service';
   templateUrl: './calendar-page.component.html',
   styleUrl: './calendar-page.component.css'
 })
+
+/**
+ * Component to display the calendar page with a calendar and activity management.
+ * Role: for farmer view.
+ */
 export class CalendarPageComponent implements OnInit {
   @Input() cropId!: number;
   selectedDate: Date | null = null;

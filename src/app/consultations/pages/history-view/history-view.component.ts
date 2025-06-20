@@ -12,6 +12,11 @@ import {ConsultationListComponent} from '../../components/consultation-list/cons
   templateUrl: './history-view.component.html',
   styleUrl: './history-view.component.css'
 })
+
+/**
+ * Component to display the history of consultations.
+ * Role: for farmer view.
+ */
 export class HistoryViewComponent {
 
 }

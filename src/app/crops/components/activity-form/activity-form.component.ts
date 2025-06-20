@@ -15,6 +15,11 @@ import { DatePipe, NgIf } from '@angular/common';
   templateUrl: './activity-form.component.html',
   styleUrl: './activity-form.component.css'
 })
+
+/**
+ * Component to create or update an activity for a specific crop on a given date.
+ * Role: for farmer view.
+ */
 export class ActivityFormComponent implements OnInit {
   private _date!: Date;
   @Input() set date(value: Date) {

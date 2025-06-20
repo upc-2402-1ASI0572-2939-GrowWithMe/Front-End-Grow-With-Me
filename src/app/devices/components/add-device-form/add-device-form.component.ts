@@ -14,6 +14,11 @@ import {NgForOf, NgIf} from '@angular/common';
   templateUrl: './add-device-form.component.html',
   styleUrl: './add-device-form.component.css'
 })
+
+/**
+ * Component to add a new device for a specific crop and farmer.
+ * Role: for farmer view.
+ */
 export class AddDeviceFormComponent {
   @Input() cropId!: number;
   @Input() farmerId!: number;

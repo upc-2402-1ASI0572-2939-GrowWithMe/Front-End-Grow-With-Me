@@ -13,6 +13,11 @@ import {NgForOf} from '@angular/common';
   templateUrl: './device-list.component.html',
   styleUrl: './device-list.component.css'
 })
+
+/**
+ * Component to display a list of devices.
+ * Role: for farmer view.
+ */
 export class DeviceListComponent implements OnInit {
   devices: Device[] = [];
 

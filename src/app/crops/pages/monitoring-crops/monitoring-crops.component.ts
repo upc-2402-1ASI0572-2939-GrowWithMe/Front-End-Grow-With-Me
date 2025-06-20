@@ -9,6 +9,11 @@ import {NgIf} from '@angular/common';
   standalone: true,
   imports: [MatIconModule, DashboardComponent,NgIf], // Import MatIconModule here
 })
+
+/**
+ * Component to display the crop monitoring dashboard.
+ * Role: for farmer view.
+ */
 export class MonitoringCropsComponent {
   title: string = 'Crop Monitoring';
   exportMessage: string = ''; // Variable to store the export status message

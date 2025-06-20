@@ -13,6 +13,11 @@ import {ActivatedRoute, Router} from '@angular/router';
   templateUrl: './consultant-list.component.html',
   styleUrl: './consultant-list.component.css'
 })
+
+/**
+ * Component to display a list of consultants.
+ * Role: for farmer view.
+ */
 export class ConsultantListComponent implements OnInit {
   showForm = false;
   consultants: Consultant[] = [];

@@ -15,6 +15,11 @@ import { NgIf } from '@angular/common';
   templateUrl: './my-consultant-page.component.html',
   styleUrl: './my-consultant-page.component.css'
 })
+
+/**
+ * Component to display the consultant page with a list of consultants and a form to request consultations.
+ * Role: for farmer view.
+ */
 export class MyConsultantPageComponent {
   showForm = false;
 

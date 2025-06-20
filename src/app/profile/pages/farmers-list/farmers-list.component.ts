@@ -32,6 +32,11 @@ import {FarmersService} from '../../services/farmers/farmers.service';
   templateUrl: './farmers-list.component.html',
   styleUrl: './farmers-list.component.css'
 })
+
+/**
+ * Component to display a list of farmers.
+ * Role: for consultant view.
+ */
 export class FarmersListComponent implements OnInit{
   displayedColumns = ['id', 'name', 'email', 'options'];
   farmersData: Farmer[] = [];

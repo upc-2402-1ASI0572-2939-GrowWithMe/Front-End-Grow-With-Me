@@ -11,6 +11,11 @@ import { ConsultationService } from '../../services/consultations/consultation.s
   templateUrl: './consultation-form.component.html',
   styleUrl: './consultation-form.component.css'
 })
+
+/**
+ * Component to handle the consultation form submission.
+ * Role: for farmer view.
+ */
 export class ConsultationFormComponent {
   @Input() farmerId!: number;
   title: string = '';

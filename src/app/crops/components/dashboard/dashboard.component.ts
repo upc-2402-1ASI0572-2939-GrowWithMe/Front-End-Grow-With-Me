@@ -6,6 +6,11 @@ import { Chart, ChartType } from 'chart.js/auto';
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.css']
 })
+
+/**
+ * Component to display the dashboard with charts for humidity and temperature.
+ * Role: for farmer view.
+ */
 export class DashboardComponent implements OnInit {
 
   public chart!: Chart;

@@ -23,6 +23,11 @@ import {SidebarComponent} from '../../../public/components/sidebar/sidebar.compo
   templateUrl: './table-crops.component.html',
   styleUrl: './table-crops.component.css'
 })
+
+/**
+ * Component to display a table of crops with options for registration, calendar, and monitoring.
+ * Role: for farmer view.
+ */
 export class TableCropsComponent implements OnInit {
   displayedColumns: string[] = ['id', 'productName', 'category', 'area', 'options'];
   cropsData: Crop[] = [];

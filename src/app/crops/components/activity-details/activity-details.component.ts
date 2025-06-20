@@ -16,6 +16,11 @@ import {Activity} from '../../models/activity.entity';
   ],
   styleUrl: './activity-details.component.css'
 })
+
+/**
+ * Component to display the details of an activity for a specific crop on a given date.
+ * Role: for farmer view.
+ */
 export class ActivityDetailsComponent implements OnChanges {
   @Input() date!: Date;
   @Input() cropId!: number;

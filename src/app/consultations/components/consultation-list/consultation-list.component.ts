@@ -18,6 +18,11 @@ import {ConsultationDetailsComponent} from '../consultation-details/consultation
   templateUrl: './consultation-list.component.html',
   styleUrl: './consultation-list.component.css'
 })
+
+/**
+ * Component to display a list of consultations for a farmer.
+ * Role: for farmer view.
+ */
 export class ConsultationListComponent implements OnInit {
   displayedColumns: string[] = ['id', 'title', 'description', 'status', 'date'];
   consultations: Consultation[] = [];

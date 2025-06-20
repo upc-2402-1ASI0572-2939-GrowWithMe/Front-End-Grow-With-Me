@@ -21,6 +21,11 @@ import { Activity } from '../../models/activity.entity';
   templateUrl: './calendar.component.html',
   styleUrl: './calendar.component.css'
 })
+
+/**
+ * Component to display a calendar with activity dates for a specific crop.
+ * Role: for farmer view.
+ */
 export class CalendarComponent implements OnInit {
   @Input() cropId!: number;
   @Output() dateSelected = new EventEmitter<Date>();

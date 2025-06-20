@@ -14,6 +14,11 @@ import {NgIf} from '@angular/common';
   templateUrl: './my-devices-page.component.html',
   styleUrl: './my-devices-page.component.css'
 })
+
+/**
+ * Component to display the devices page with a list of devices and a form to add new devices.
+ * Role: for farmer view.
+ */
 export class MyDevicesPageComponent {
   @Input() farmerId!: number;
   showForm = false;
