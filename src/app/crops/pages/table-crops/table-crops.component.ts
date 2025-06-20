@@ -1,63 +1,86 @@
-import {Component, OnInit} from '@angular/core';
-import {MatSidenav, MatSidenavContainer} from "@angular/material/sidenav";
-import {SidebarComponent} from "../../../public/components/sidebar/sidebar.component";
-import {MatColumnDef, MatTableModule} from '@angular/material/table';
-import {MatButton, MatIconButton} from '@angular/material/button';
-import {MatIcon} from '@angular/material/icon';
-import {CropsService} from '../../services/crops/crops.service';
-import {EditCropsComponent} from '../edit-crops/edit-crops.component';
-import {MatDialog} from '@angular/material/dialog';
+import { Component, OnInit } from '@angular/core';
+import { MatColumnDef, MatTableModule } from '@angular/material/table';
+import { MatButton, MatIconButton } from '@angular/material/button';
+import { MatIcon } from '@angular/material/icon';
+import { CropsService } from '../../services/crops/crops.service';
+import { MatDialog } from '@angular/material/dialog';
+import { EditCropsComponent } from '../edit-crops/edit-crops.component';
+import { Router, ActivatedRoute, RouterOutlet } from '@angular/router';
+import {Crop} from '../../models/crop.entity';
+import {RoleService} from '../../../iam/services/role.service';
+import {SidebarComponent} from '../../../public/components/sidebar/sidebar.component';
 
 @Component({
   selector: 'app-table-crops',
+  standalone: true,
   imports: [
-    MatSidenav,
-    MatSidenavContainer,
-    SidebarComponent,
     MatTableModule,
     MatColumnDef,
-    MatButton,
     MatIconButton,
     MatIcon,
+    MatButton,
   ],
   templateUrl: './table-crops.component.html',
   styleUrl: './table-crops.component.css'
 })
+
+/**
+ * Component to display a table of crops with options for registration, calendar, and monitoring.
+ * Role: for farmer view.
+ */
 export class TableCropsComponent implements OnInit {
-  displayedColumns: string[] = ['id', 'name', 'type', 'area', 'options'];
-  cropsData: any[] = [];
+  displayedColumns: string[] = ['id', 'productName', 'category', 'area', 'options'];
+  cropsData: Crop[] = [];
 
-  constructor(public cropsService: CropsService, public dialog: MatDialog) {}
+  constructor(
+    public cropsService: CropsService,
+    public dialog: MatDialog,
+    private router: Router,
+    private roleService: RoleService
+  ) {}
 
 
-
-  ngOnInit() {
+  ngOnInit(): void {
     this.loadCropsData();
   }
 
-  loadCropsData() {
-    this.cropsService.getCrops().subscribe((data) => {
+  loadCropsData(): void {
+    //const currentRole = this.roleService.getCurrentRole();
+
+    this.cropsService.getAll().subscribe((data) => {
+      /*if (currentRole === 'farmer') {
+        this.cropsData = data.filter(crop => crop.farmerId === 1);
+      } else {
+        this.cropsData = data;
+      }*/
       this.cropsData = data;
     });
   }
 
-  onRegister() {
-    // Lógica para registrar un nuevo cultivo (puedes abrir un modal o redirigir a otra página)
-    console.log('Registrar Cultivo');
+
+  onRegister(): void {
+    console.log('Register Crop');
   }
 
-  openEditDialog(crop: any): void {
+  goToCalendar(id: string): void {
+    this.router.navigate([`/crops/${id}/calendar`]);
+  }
+
+  goToMonitoring(id: string): void {
+    this.router.navigate([`/crops/${id}/monitoring`]);
+  }
+
+  openEditDialog(crop: Crop): void {
     const dialogRef = this.dialog.open(EditCropsComponent, {
       width: '400px',
-      data: { crop: { ...crop } },  // Pasa una copia del cultivo actual
+      data: { crop: { ...crop } },
     });
 
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        console.log('Cultivo editado:', result);
-        // Aquí puedes hacer la lógica para actualizar el cultivo en tu array de cultivos.
+        console.log('Edited crop:', result);
+        // Reload data if needed
       }
     });
   }
-
 }

@@ -1,0 +1,23 @@
+<div class="main-content">
+  <div class="header">
+    <h2>Calendar</h2>
+    <hr class="divider" />
+  </div>
+
+  <div class="content-row">
+    <app-calendar [cropId]="cropId" (dateSelected)="handleDateChange($event)" />
+
+    <app-activity-form
+      *ngIf="selectedDate && role === 'farmer'"
+      [date]="selectedDate"
+      [cropId]="cropId"
+      (closeForm)="closeForm()" />
+
+    <app-activity-details
+      *ngIf="selectedDate && role === 'consultant'"
+      [date]="selectedDate"
+      [cropId]="cropId"
+      (close)="closeForm()" />
+
+  </div>
+</div>

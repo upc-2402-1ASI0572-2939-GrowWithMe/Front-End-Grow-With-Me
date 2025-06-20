@@ -30,6 +30,11 @@ import {MatFormFieldModule} from '@angular/material/form-field';
   templateUrl: './edit-crops.component.html',
   styleUrl: './edit-crops.component.css'
 })
+
+/**
+ * Component to edit crop details.
+ * Role: for farmer view.
+ */
 export class EditCropsComponent {
   constructor(
     public dialogRef: MatDialogRef<EditCropsComponent>,

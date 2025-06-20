@@ -1,13 +1,9 @@
-<mat-sidenav-container class="sidenav-container">
-  <!-- Sidebar -->
-  <mat-sidenav #sidenav mode="side" opened>
-    <app-sidebar></app-sidebar> <!-- Sidebar -->
-  </mat-sidenav>
-</mat-sidenav-container>
-
-<!-- Contenido Principal -->
 <div class="main-content">
   <div class="space-in-white">
-    <p>Este es el área principal en blanco o contenido adicional.</p>
+    <p>Current Role: {{ role }}</p>
+    <button mat-raised-button color="primary" (click)="switchRole()">
+      Switch Role
+    </button>
+    <p>This is the main content area.</p>
   </div>
 </div>

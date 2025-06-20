@@ -1,0 +1,80 @@
+<div class="notifications-container">
+  <!-- Lista de notificaciones (izquierda) -->
+  <div class="notifications-list">
+    <div class="list-header">
+      <h2>Notificaciones</h2>
+      <div class="filter-options">
+        <mat-checkbox [(ngModel)]="allSelected" (change)="toggleAll()">
+          Seleccionar todas
+        </mat-checkbox>
+      </div>
+    </div>
+
+    <div class="categories">
+      <span class="category-label">Categorías:</span>
+      <mat-chip-listbox multiple>
+        <mat-chip-option *ngFor="let category of categories"
+                         [selected]="isCategorySelected(category)"
+                         (click)="toggleCategory(category)">
+          {{category.name}}
+        </mat-chip-option>
+      </mat-chip-listbox>
+    </div>
+
+    <!--<div class="messages-container">
+      <mat-list>
+        <mat-list-item *ngFor="let notification of filteredNotifications"
+                       (click)="selectNotification(notification)"
+                       [class.active]="notification === selectedNotification"
+                       [class.unread]="notification.status === 'unread'">
+          <div class="notification-preview">
+            <div class="notification-type" [ngClass]="notification.type">
+              <mat-icon>{{getTypeIcon(notification.type)}}</mat-icon>
+            </div>
+            <div class="notification-content">
+              <h4>{{notification.title}}</h4>
+            </div>
+          </div>
+        </mat-list-item>
+      </mat-list>
+    </div>
+  </div>-->
+
+  <!-- Panel de detalle (derecha) -->
+  <!--<div class="notification-detail" *ngIf="selectedNotification; else emptyState">
+    <div class="detail-header">
+      <h3>{{selectedNotification.title}}</h3>
+      <div class="actions">
+        <button mat-icon-button (click)="markAsRead(selectedNotification)"
+                *ngIf="selectedNotification.status === 'unread'">
+          <mat-icon>mark_email_read</mat-icon>
+        </button>
+        <button mat-icon-button color="warn" (click)="deleteNotification(selectedNotification)">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </div>
+    </div>-->
+
+    <!--<div class="detail-body">
+      <div class="meta-info">
+        <span class="type-badge" [ngClass]="selectedNotification.">
+          <mat-icon>{{getTypeIcon(selectedNotification.title)}}</mat-icon>
+          {{getTypeLabel(selectedNotification.title)}}
+        </span>
+        <span class="time">{{selectedNotification.date}}</span>
+      </div>
+
+      <div class="message-content">
+        <p>{{selectedNotification.message}}</p>
+      </div>
+    </div>-->
+  </div>
+
+  <ng-template #emptyState>
+    <div class="empty-detail">
+      <mat-icon>notifications_off</mat-icon>
+      <h3>Selecciona una notificación</h3>
+      <p>Elige una notificación de la lista para ver su contenido detallado</p>
+    </div>
+  </ng-template>
+</div>

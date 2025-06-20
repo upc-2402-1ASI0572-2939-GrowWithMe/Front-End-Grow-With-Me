@@ -1,0 +1,18 @@
+<div class="my-devices-content">
+  <div class="my-devices-header">
+    <h2>My Devices</h2>
+    <hr class="divider"/>
+  </div>
+
+  <div class="my-devices-section">
+    <button class="add-device-btn" (click)="openForm()">Connect a Device</button>
+    <app-device-list></app-device-list>
+  </div>
+
+  <app-add-device-form
+    [farmerId]="farmerId"
+    *ngIf="showForm"
+    (submitAddDevice)="handleSubmit($event)"
+    (closeModal)="closeForm()"
+  />
+</div>
