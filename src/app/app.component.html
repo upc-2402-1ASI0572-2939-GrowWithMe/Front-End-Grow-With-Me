@@ -1,11 +1,26 @@
 <div class="top-bar">
   <div class="icon-container">
-    <button mat-icon-button>
+    <!-- BOTÓN DE NOTIFICACIONES -->
+    <button mat-icon-button [matMenuTriggerFor]="notificationMenu">
       <mat-icon>notifications</mat-icon>
     </button>
+
+    <!-- MENÚ DE NOTIFICACIONES -->
+    <mat-menu #notificationMenu="matMenu" class="notification-menu">
+      <div class="notification-content">
+        <mat-list role="list">
+          <mat-list-item *ngFor="let n of notifications" role="listitem">
+            {{ n }}
+          </mat-list-item>
+        </mat-list>
+      </div>
+    </mat-menu>
+
+    <!-- OTRO ICONO -->
     <button mat-icon-button>
       <mat-icon>account_circle</mat-icon>
     </button>
   </div>
 </div>
+
 <router-outlet></router-outlet>

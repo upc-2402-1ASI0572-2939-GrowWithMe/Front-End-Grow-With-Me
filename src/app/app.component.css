@@ -19,3 +19,19 @@ button.mat-icon-button {
 button.mat-icon-button:hover {
   color: #1b5e20;
 }
+
+.notification-menu .notification-content {
+  max-height: 300px;
+  width: 300px;
+  overflow-y: auto;
+  padding: 8px 0;
+}
+
+.mat-menu-panel {
+  padding: 0;
+}
+
+.mat-list-item {
+  font-size: 14px;
+  white-space: normal;
+}
