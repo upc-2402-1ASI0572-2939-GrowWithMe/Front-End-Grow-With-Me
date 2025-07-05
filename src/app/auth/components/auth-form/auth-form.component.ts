@@ -72,7 +72,7 @@ export class AuthFormComponent {
           formData.get('password') as string
         );
         this.storeSessionData(response.data);
-        window.location.href = '/home'; // recarga total
+        window.location.href = '/home';
       } catch (err) {
         console.error('Error al iniciar sesión:', err);
       }

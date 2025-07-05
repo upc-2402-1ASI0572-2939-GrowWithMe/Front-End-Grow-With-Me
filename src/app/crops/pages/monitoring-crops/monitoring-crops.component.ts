@@ -2,12 +2,13 @@ import { Component } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { DashboardComponent } from '../../components/dashboard/dashboard.component';
 import {NgIf} from '@angular/common';
+import {MatButton} from '@angular/material/button';
 @Component({
   selector: 'app-monitoring-crops',
   templateUrl: './monitoring-crops.component.html',
   styleUrls: ['./monitoring-crops.component.css'],
   standalone: true,
-  imports: [MatIconModule, DashboardComponent,NgIf], // Import MatIconModule here
+  imports: [MatIconModule, DashboardComponent, NgIf, MatButton], // Import MatIconModule here
 })
 
 /**
