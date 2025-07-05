@@ -225,3 +225,7 @@ h1 {
   }
 
 }
+
+.btn.settings-btn.logout {
+  margin-top: 1rem;
+}

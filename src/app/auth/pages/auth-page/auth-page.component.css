@@ -41,15 +41,22 @@ auth-card {
   margin-top: 0.5rem;
 }
 
-/* ✅ Responsive */
 @media (max-width: 600px) {
-  .welcome-content {
+  .page-wrapper {
+    padding: 1.5rem 0.5rem;
     max-width: 100%;
-    padding: 0 1rem;
+    display: flex;
+    justify-content: center; /* ✅ Centro horizontal */
+    margin-left: 125px;
   }
 
   auth-card {
-    max-width: 90%;
-    padding: 1.5rem;
+    max-width: 95%;
+    padding: 1.2rem;
+    margin: 1.5rem auto;
+  }
+
+  .welcome-content {
+    padding: 0;
   }
 }

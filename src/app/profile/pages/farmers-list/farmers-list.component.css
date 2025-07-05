@@ -1,7 +1,7 @@
 .main-content {
-
+  margin-left: 250px;
   padding: 80px;
-  height: 70vh;
+  height: auto;
 }
 
 .header {
@@ -19,7 +19,7 @@
 }
 
 .register-section {
-  padding: 20px 20px;
+  padding: 20px;
 }
 
 button.mat-raised-button {
@@ -35,19 +35,32 @@ button.mat-raised-button:hover {
   background-color: #4a9a75 !important;
 }
 
+/* Scroll horizontal para móviles */
+.table-responsive {
+  overflow-x: auto;
+  width: 100%;
+}
+
+/* Tabla */
 table {
-  width: 70%;
+  width: 100%;
+  min-width: 600px;
   max-width: 1200px;
   border-radius: 15px;
   margin-top: 30px;
+  border-collapse: collapse;
 }
 
 th,
 td {
   text-align: center;
-  padding: 10px 10px;
+  padding: 10px;
   font-size: 14px;
   font-family: 'Roboto', sans-serif;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 200px;
 }
 
 th {
@@ -61,4 +74,30 @@ td {
 
 tr:hover {
   background-color: #c8e6c9;
+}
+
+/* Botones alineados */
+.options-buttons {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+/* Espaciado inferior */
+.table-spacing {
+  height: 40px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  th, td {
+    font-size: 12px;
+    max-width: 150px;
+  }
+
+  .options-buttons {
+    flex-direction: column;
+    align-items: center;
+  }
 }

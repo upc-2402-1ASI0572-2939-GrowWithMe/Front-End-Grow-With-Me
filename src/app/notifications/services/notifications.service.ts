@@ -13,8 +13,9 @@ export class NotificationsService extends BaseService<Notification> {
     this.resourceEndpoint = '/notifications';
   }
 
-  getAllNotificationsByFarmerId(farmerId: number): Observable<Notification[]> {
-    return this.http.get<Notification[]>(`${this.basePath}${this.resourceEndpoint}?farmerId=${farmerId}`, this.httpOptions)
+  getAllNotificationsForFarmer(): Observable<Notification[]> {
+    return this.http.get<Notification[]>(`${this.basePath}${this.resourceEndpoint}/farmer`, this.httpOptions)
       .pipe(retry(2), catchError(this.handleError));
   }
+
 }

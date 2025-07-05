@@ -19,6 +19,9 @@ export class MainLayoutComponent implements OnInit {
   get mainContentClass(): string {
     return this.isSidebarOpen ? 'main-content-area' : 'main-content-area collapsed';
   }
+  tokenExists(): boolean {
+    return !!localStorage.getItem('authToken');
+  }
 
   ngOnInit(): void {
     this.isLoggedIn = !!localStorage.getItem('authToken');

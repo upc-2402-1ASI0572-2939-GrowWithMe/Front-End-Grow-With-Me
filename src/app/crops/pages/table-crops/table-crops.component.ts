@@ -40,6 +40,7 @@ export class TableCropsComponent implements OnInit {
 
   ngOnInit(): void {
     const role = localStorage.getItem('userRole');
+    console.log('User role from localStorage:', role);
     this.isConsultant = role === 'CONSULTANT_ROLE';
     this.title = role === 'FARMER_ROLE' ? 'My Crops' : 'Crops';
     this.loadCropsData(this.isConsultant ? 'consultant' : 'farmer');

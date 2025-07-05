@@ -4,6 +4,7 @@ import { ConsultantsService } from '../../services/consultants/consultants.servi
 import { Farmer } from '../../models/farmer.entity';
 import { Consultant } from '../../models/consultant.entity';
 import {NgIf, NgOptimizedImage} from '@angular/common';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-profile',
@@ -17,7 +18,8 @@ export class ProfileComponent implements OnInit {
 
   constructor(
     private farmersService: FarmersService,
-    private consultantsService: ConsultantsService
+    private consultantsService: ConsultantsService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -38,5 +40,10 @@ export class ProfileComponent implements OnInit {
         this.user = consultants.find(c => c.id === id) || null;
       });
     }
+  }
+
+  logout(): void {
+    localStorage.clear();
+    this.router.navigate(['/']);
   }
 }

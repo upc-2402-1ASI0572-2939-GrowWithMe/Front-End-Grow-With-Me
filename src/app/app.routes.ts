@@ -25,7 +25,7 @@ export const routes: Routes = [
       { path: 'home', component: HomeComponent },
       { path: 'crops', component: TableCropsComponent },
       { path: 'crops/:cropId/calendar', component: CalendarPageComponent },
-      { path: 'crops/:id/monitoring', component: MonitoringCropsComponent },
+      { path: 'crops/:cropId/monitoring', component: MonitoringCropsComponent },
       { path: 'consultants', component: MyConsultantPageComponent },
       { path: 'consultants/:id/history', component: HistoryViewComponent },
       { path: 'farmers', component: FarmersListComponent },
