@@ -1,15 +1,16 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { MatTableModule, MatColumnDef } from '@angular/material/table';
 import { MatButton, MatIconButton } from '@angular/material/button';
 import { MatIcon } from '@angular/material/icon';
-import { CropsService } from '../../services/crops/crops.service';
+import { NgIf } from '@angular/common';
 import { MatDialog } from '@angular/material/dialog';
+
+import { Crop } from '../../models/crop.entity';
+import { CropsService } from '../../services/crops/crops.service';
 import { EditCropsComponent } from '../../components/edit-crops/edit-crops.component';
 import { CreateCropsComponent } from '../../components/create-crops/create-crops.component';
 import { DeleteCropsComponent } from '../../components/delete-crops/delete-crops.component';
-import { Router } from '@angular/router';
-import { Crop } from '../../models/crop.entity';
-import {NgIf} from '@angular/common';
 
 @Component({
   selector: 'app-table-crops',
@@ -20,7 +21,7 @@ import {NgIf} from '@angular/common';
     MatIconButton,
     MatIcon,
     MatButton,
-    NgIf,
+    NgIf
   ],
   templateUrl: './table-crops.component.html',
   styleUrl: './table-crops.component.css'
@@ -35,23 +36,33 @@ export class TableCropsComponent implements OnInit {
   constructor(
     public cropsService: CropsService,
     public dialog: MatDialog,
-    private router: Router
+    private router: Router,
+    private route: ActivatedRoute
   ) {}
 
   ngOnInit(): void {
     const role = localStorage.getItem('userRole');
-    console.log('User role from localStorage:', role);
     this.isConsultant = role === 'CONSULTANT_ROLE';
     this.title = role === 'FARMER_ROLE' ? 'My Crops' : 'Crops';
-    this.loadCropsData(this.isConsultant ? 'consultant' : 'farmer');
+
+    const farmerIdParam = this.route.snapshot.paramMap.get('farmerId');
+    const farmerId = farmerIdParam ? Number(farmerIdParam) : null;
+
+    if (this.isConsultant && farmerId) {
+      this.loadCropsData('farmer', farmerId);
+    } else if (!this.isConsultant) {
+      const userId = Number(localStorage.getItem('userId'));
+      this.loadCropsData('farmer', userId);
+    } else {
+      this.loadCropsData('consultant');
+    }
   }
 
-  loadCropsData(role: string): void {
-    const userId = Number(localStorage.getItem('userId'));
+  loadCropsData(role: string, farmerId?: number): void {
     const sortById = (data: Crop[]) => data.sort((a, b) => Number(a.id) - Number(b.id));
 
-    if (role === 'farmer') {
-      this.cropsService.getAllCropsByFarmerId(userId).subscribe(data => {
+    if (role === 'farmer' && farmerId) {
+      this.cropsService.getAllCropsByFarmerId(farmerId).subscribe(data => {
         this.cropsData = sortById(data);
       });
     } else {
@@ -68,7 +79,13 @@ export class TableCropsComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        this.loadCropsData(this.isConsultant ? 'consultant' : 'farmer');
+        const farmerIdParam = this.route.snapshot.paramMap.get('farmerId');
+        const farmerId = farmerIdParam ? Number(farmerIdParam) : null;
+        this.loadCropsData(
+          this.isConsultant && farmerId ? 'farmer' : (this.isConsultant ? 'consultant' : 'farmer'),
+          farmerId ?? undefined
+        );
+
       }
     });
   }
@@ -89,7 +106,13 @@ export class TableCropsComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        this.loadCropsData(this.isConsultant ? 'consultant' : 'farmer');
+        const farmerIdParam = this.route.snapshot.paramMap.get('farmerId');
+        const farmerId = farmerIdParam ? Number(farmerIdParam) : null;
+        this.loadCropsData(
+          this.isConsultant && farmerId ? 'farmer' : (this.isConsultant ? 'consultant' : 'farmer'),
+          farmerId ?? undefined
+        );
+
       }
     });
   }

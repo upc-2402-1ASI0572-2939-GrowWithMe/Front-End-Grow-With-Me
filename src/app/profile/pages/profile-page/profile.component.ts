@@ -3,17 +3,19 @@ import { FarmersService } from '../../services/farmers/farmers.service';
 import { ConsultantsService } from '../../services/consultants/consultants.service';
 import { Farmer } from '../../models/farmer.entity';
 import { Consultant } from '../../models/consultant.entity';
-import {NgIf, NgOptimizedImage} from '@angular/common';
-import {Router} from '@angular/router';
+import { NgIf } from '@angular/common';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
   imports: [NgIf],
-  styleUrls: ['./profile.component.css']
+  styleUrls: ['./profile.component.css'],
+  standalone: true
 })
 export class ProfileComponent implements OnInit {
   isFarmer = false;
+  isLoggedIn = false;
   user: Farmer | Consultant | null = null;
 
   constructor(
@@ -25,7 +27,9 @@ export class ProfileComponent implements OnInit {
   ngOnInit(): void {
     const userId = localStorage.getItem('userId');
     const userRole = localStorage.getItem('userRole');
-    if (!userId || !userRole) return;
+    this.isLoggedIn = !!userId && !!userRole;
+
+    if (!this.isLoggedIn) return;
 
     const id = Number(userId);
 
@@ -44,6 +48,9 @@ export class ProfileComponent implements OnInit {
 
   logout(): void {
     localStorage.clear();
-    this.router.navigate(['/']);
+    this.isLoggedIn = false;
+    this.user = null;
+    window.location.href = '/';
   }
+
 }

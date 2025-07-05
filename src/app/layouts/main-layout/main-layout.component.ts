@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import {RouterLink, RouterOutlet} from '@angular/router';
+import { Router } from '@angular/router';
+import { RouterLink, RouterOutlet } from '@angular/router';
 import { SidebarComponent } from '../../public/components/sidebar/sidebar.component';
 import { NgIf } from '@angular/common';
-import {MatIconButton} from '@angular/material/button';
-import {MatIcon} from '@angular/material/icon';
+import { MatIconButton } from '@angular/material/button';
+import { MatIcon } from '@angular/material/icon';
 
 @Component({
   selector: 'app-main-layout',
@@ -16,9 +17,12 @@ export class MainLayoutComponent implements OnInit {
   isLoggedIn = false;
   isSidebarOpen = true;
 
+  constructor(private router: Router) {}
+
   get mainContentClass(): string {
     return this.isSidebarOpen ? 'main-content-area' : 'main-content-area collapsed';
   }
+
   tokenExists(): boolean {
     return !!localStorage.getItem('authToken');
   }
@@ -29,5 +33,14 @@ export class MainLayoutComponent implements OnInit {
 
   onSidebarToggle(open: boolean): void {
     this.isSidebarOpen = open;
+  }
+
+  goToNotifications(): void {
+    const role = localStorage.getItem('userRole');
+    if (role === 'FARMER_ROLE') {
+      this.router.navigate(['/notifications']);
+    } else if (role === 'CONSULTANT_ROLE') {
+      this.router.navigate(['/farmers/history']);
+    }
   }
 }

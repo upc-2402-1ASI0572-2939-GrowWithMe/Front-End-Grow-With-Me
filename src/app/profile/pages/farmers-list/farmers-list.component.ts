@@ -56,11 +56,11 @@ export class FarmersListComponent implements OnInit {
   }
 
   showCrops(farmerId: number): void {
-    console.log(`Show crops for the farmer ID: ${farmerId}`);
+    this.router.navigate([`/crops/${farmerId}`]);
   }
 
   showNotifications(farmerId: number): void {
     console.log(`Show notifications for farmer ID: ${farmerId}`);
-    this.router.navigate([`/notifications`]);
+    this.router.navigate([`/farmers/history`]);
   }
 }

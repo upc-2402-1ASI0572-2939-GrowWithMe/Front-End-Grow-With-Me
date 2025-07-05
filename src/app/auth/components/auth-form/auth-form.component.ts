@@ -28,7 +28,6 @@ export class AuthFormComponent {
       this.selectedFile = input.files[0];
     }
   }
-
   async onSubmit(event: Event) {
     event.preventDefault();
     const form = event.target as HTMLFormElement;
@@ -60,7 +59,7 @@ export class AuthFormComponent {
         );
 
         this.storeSessionData(loginResponse.data);
-        this.router.navigate(['/home']);
+        window.location.href = '/home'; // recarga total
       } catch (err) {
         console.error('Error al registrar:', err);
       }
@@ -73,7 +72,7 @@ export class AuthFormComponent {
           formData.get('password') as string
         );
         this.storeSessionData(response.data);
-        this.router.navigate(['/home']);
+        window.location.href = '/home'; // recarga total
       } catch (err) {
         console.error('Error al iniciar sesión:', err);
       }

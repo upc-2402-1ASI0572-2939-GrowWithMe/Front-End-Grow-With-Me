@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { ConsultationService } from '../../services/consultations/consultation.service';
 import { Consultation } from '../../models/consultation.entity';
 import { ConsultationDetailsComponent } from '../consultation-details/consultation-details.component';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-consultation-list',
@@ -21,14 +22,25 @@ export class ConsultationListComponent implements OnInit {
   consultations: Consultation[] = [];
   selectedConsultation: Consultation | null = null;
 
-  constructor(private consultationService: ConsultationService) {}
+  constructor(
+    private consultationService: ConsultationService,
+    private route: ActivatedRoute
+  ) {}
 
   ngOnInit(): void {
-    const farmerId = Number(localStorage.getItem('userId'));
-    if (!isNaN(farmerId) && farmerId > 0) {
-      this.loadConsultations(farmerId);
+    const role = localStorage.getItem('userRole');
+    const userId = Number(localStorage.getItem('userId'));
+
+    if (role === 'FARMER_ROLE') {
+      if (!isNaN(userId) && userId > 0) {
+        this.loadConsultations(userId);
+      } else {
+        console.error('Farmer ID inválido o ausente en localStorage');
+      }
+    } else if (role === 'CONSULTANT_ROLE') {
+      this.loadAllConsultations();
     } else {
-      console.error('Invalid or missing farmerId in localStorage');
+      console.error('Rol no reconocido:', role);
     }
   }
 
@@ -38,10 +50,22 @@ export class ConsultationListComponent implements OnInit {
         this.consultations = data.sort((a, b) => a.id - b.id);
       },
       error: (err) => {
-        console.error('Error loading consultations:', err);
+        console.error('Error loading consultations by farmerId:', err);
       }
     });
   }
+
+  loadAllConsultations(): void {
+    this.consultationService.getAll().subscribe({
+      next: (data) => {
+        this.consultations = data.sort((a, b) => a.id - b.id);
+      },
+      error: (err) => {
+        console.error('Error cargando todas las consultas:', err);
+      }
+    });
+  }
+
 
   selectConsultation(consultation: Consultation): void {
     this.selectedConsultation = consultation;
@@ -49,13 +73,5 @@ export class ConsultationListComponent implements OnInit {
 
   closeDetails(): void {
     this.selectedConsultation = null;
-  }
-
-  viewConsultation(consultation: Consultation): void {
-    console.log('Viewing consultation:', consultation);
-  }
-
-  deleteConsultation(consultation: Consultation): void {
-    console.log('Deleting consultation:', consultation);
   }
 }

@@ -1,7 +1,6 @@
-<div class="top-bar" *ngIf="isLoggedIn && tokenExists()">
-
-<div class="icon-container">
-    <button mat-icon-button [routerLink]="'/notifications'">
+<div class="top-bar" *ngIf="isLoggedIn">
+  <div class="icon-container">
+    <button mat-icon-button (click)="goToNotifications()">
       <mat-icon>notifications</mat-icon>
     </button>
     <button mat-icon-button [routerLink]="'/profile'">
@@ -12,7 +11,7 @@
 
 <div class="layout-container">
   <app-sidebar *ngIf="isLoggedIn" (sidebarToggled)="onSidebarToggle($event)"></app-sidebar>
-<ng-container></ng-container>
+  <ng-container></ng-container>
   <div [class]="mainContentClass">
     <router-outlet></router-outlet>
   </div>
