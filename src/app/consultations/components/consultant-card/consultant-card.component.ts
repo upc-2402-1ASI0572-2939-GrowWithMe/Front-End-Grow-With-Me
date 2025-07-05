@@ -5,7 +5,7 @@ import { Consultant } from '../../../profile/models/consultant.entity';
 @Component({
   selector: 'app-consultant-card',
   standalone: true,
-  imports: [CommonModule, NgOptimizedImage],
+  imports: [CommonModule],
   templateUrl: './consultant-card.component.html',
   styleUrl: './consultant-card.component.css'
 })

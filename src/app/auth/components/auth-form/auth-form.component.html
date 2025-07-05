@@ -1,14 +1,84 @@
-<form *ngIf="mode === 'login'">
-  <h3>Inicia Sesión</h3>
-  <!-- Correo + Contraseña -->
+<!-- LOGIN -->
+<form *ngIf="mode === 'login'" (submit)="onSubmit($event)">
+  <label>Correo electrónico</label>
+  <input type="email" name="email" required />
+
+  <label>Contraseña</label>
+  <input type="password" name="password" required minlength="8"
+         pattern="(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^A-Za-z0-9]).{8,}" />
+
+  <button type="submit">Ingresar</button>
+
+  <p class="link-reset">¿No te acuerdas tu contraseña? <a href="/reset">Reestablecela</a></p>
 </form>
 
-<form *ngIf="mode === 'register'">
-  <h3>Registrar Cuenta</h3>
-  <!-- Correo + Rol + Contraseña + Repetir -->
+<!-- REGISTER -->
+<form *ngIf="mode === 'register'" class="form-grid" (submit)="onSubmit($event)">
+  <div class="form-group">
+    <label>Correo electrónico</label>
+    <input type="email" name="email" required />
+  </div>
+
+  <div class="form-group">
+    <label>Rol</label>
+    <select name="roles" required>
+      <option value="FARMER_ROLE">Agricultor</option>
+      <option value="CONSULTANT_ROLE">Consultor</option>
+    </select>
+  </div>
+
+  <div class="form-group">
+    <label>Nombres</label>
+    <input type="text" name="firstName" required />
+  </div>
+
+  <div class="form-group">
+    <label>Apellidos</label>
+    <input type="text" name="lastName" required />
+  </div>
+
+  <div class="form-group">
+    <label>DNI</label>
+    <input type="text" name="dni" required pattern="\d{8}" maxlength="8"
+           inputmode="numeric" oninput="this.value = this.value.replace(/[^0-9]/g, '')" />
+  </div>
+
+  <div class="form-group">
+    <label>Teléfono</label>
+    <input type="text" name="phone" required pattern="\d{9}" maxlength="9"
+           inputmode="numeric" oninput="this.value = this.value.replace(/[^0-9]/g, '')" />
+  </div>
+
+  <div class="form-group">
+    <label>Foto (imagen)</label>
+    <input type="file" name="photoUrl" accept="image/*" (change)="onFileSelected($event)" required />
+  </div>
+
+  <div class="form-group">
+    <label>Contraseña</label>
+    <input type="password" name="password" required minlength="8"
+           pattern="(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^A-Za-z0-9]).{8,}" />
+  </div>
+
+  <div class="form-group">
+    <label>Repetir Contraseña</label>
+    <input type="password" name="repeatPassword" required />
+  </div>
+
+  <button type="submit">Registrar</button>
 </form>
 
-<form *ngIf="mode === 'reset'">
-  <h3>Restablecer contraseña</h3>
-  <!-- Correo + Contraseña + Repetir -->
+<!-- RESET -->
+<form *ngIf="mode === 'reset'" (submit)="onSubmit($event)">
+  <label>Correo electrónico</label>
+  <input type="email" name="email" required />
+
+  <label>Nueva Contraseña</label>
+  <input type="password" name="password" required minlength="8"
+         pattern="(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^A-Za-z0-9]).{8,}" />
+
+  <label>Repetir Contraseña</label>
+  <input type="password" name="repeatPassword" required />
+
+  <button type="submit">Restablecer</button>
 </form>

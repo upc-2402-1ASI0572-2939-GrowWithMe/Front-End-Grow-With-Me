@@ -21,11 +21,6 @@ import { Activity } from '../../models/activity.entity';
   templateUrl: './calendar.component.html',
   styleUrl: './calendar.component.css'
 })
-
-/**
- * Component to display a calendar with activity dates for a specific crop.
- * Role: for farmer view.
- */
 export class CalendarComponent implements OnInit {
   @Input() cropId!: number;
   @Output() dateSelected = new EventEmitter<Date>();
@@ -43,14 +38,24 @@ export class CalendarComponent implements OnInit {
 
   ngOnInit(): void {
     if (this.cropId) {
-      this.cropsService.getAll().subscribe(crops => {
-        const crop = crops.find(c => c.id === this.cropId);
+      this.cropsService.getById(this.cropId).subscribe(crop => {
         this.cropName = crop?.productName || 'Unknown Crop';
       });
 
       this.activitiesService.getAllCropActivitiesByCropId(this.cropId).subscribe(activities => {
-        this.activityDates = activities.map(a => new Date(a.date));
-        console.log('Loaded activity dates:', this.activityDates);
+        if (activities && activities.length > 0) {
+          this.activityDates = activities
+            .map(a => {
+              const raw = a.activityDate;
+              const parsed = new Date(raw + 'T00:00:00');
+              return isNaN(parsed.getTime()) ? null : parsed;
+            })
+            .filter((d): d is Date => d !== null);
+
+          console.log('Loaded activity dates:', this.activityDates);
+        } else {
+          this.activityDates = [];
+        }
         this.ready = true;
       });
     }

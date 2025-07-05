@@ -1,11 +1,16 @@
-/* Contenedor principal del contenido */
 .welcome-content {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.5rem;
+  width: 30%;
+  min-width: 300px;
+  max-width: 500px;
+  margin: 3rem auto;
+  padding: 2rem;
+  background-color: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
   text-align: center;
+  box-sizing: border-box;
 }
+
 
 /* Frase inspiradora */
 .subtitle {
@@ -46,4 +51,14 @@
   background-color: #f0fef6;    /* Color de fondo global */
   padding: 1rem;                /* Espaciado para pantallas pequeñas */
   box-sizing: border-box;
+}
+@media (max-width: 600px) {
+  .welcome-content {
+    width: 90%;
+    padding: 1.5rem;
+  }
+
+  .welcome-buttons button {
+    width: 100%; /* botones apilados en móviles */
+  }
 }

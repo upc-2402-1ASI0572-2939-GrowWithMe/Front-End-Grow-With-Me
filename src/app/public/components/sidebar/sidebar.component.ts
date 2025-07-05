@@ -1,13 +1,12 @@
-// src/app/components/sidebar/sidebar.component.ts
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import { Component, OnDestroy, OnInit, Output, EventEmitter } from '@angular/core';
 import { MatListItem, MatNavList } from '@angular/material/list';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { MatIcon } from '@angular/material/icon';
-import { MatSidenav, MatSidenavContainer } from '@angular/material/sidenav';
 import { MatIconButton } from '@angular/material/button';
-import {NgIf, NgOptimizedImage} from '@angular/common';
+import { NgIf, NgOptimizedImage } from '@angular/common';
 import { Subscription } from 'rxjs';
-import {RoleService} from '../../../iam/services/role.service';
+import { RoleService } from '../../../iam/services/role.service';
+
 @Component({
   selector: 'app-sidebar',
   standalone: true,
@@ -16,23 +15,31 @@ import {RoleService} from '../../../iam/services/role.service';
     MatListItem,
     MatNavList,
     RouterLink,
-    MatSidenavContainer,
     MatIconButton,
-    MatSidenav,
     NgIf,
-    NgOptimizedImage,
+    NgOptimizedImage
   ],
   templateUrl: './sidebar.component.html',
-  styleUrl: './sidebar.component.css',
+  styleUrls: ['./sidebar.component.css']
 })
 export class SidebarComponent implements OnInit, OnDestroy {
   isSidebarOpen: boolean = true;
   role: string = 'farmer';
   private roleSub!: Subscription;
+  showSidebar: boolean = true;
 
-  constructor(private roleService: RoleService) {}
+  @Output() sidebarToggled = new EventEmitter<boolean>();
+
+  constructor(private roleService: RoleService, private router: Router) {}
 
   ngOnInit(): void {
+    const hiddenRoutes = ['/', '/login', '/register', '/reset'];
+    this.showSidebar = !hiddenRoutes.includes(this.router.url);
+
+    this.router.events.subscribe(() => {
+      this.showSidebar = !hiddenRoutes.includes(this.router.url);
+    });
+
     this.roleSub = this.roleService.getRole$().subscribe((role: string) => {
       this.role = role;
     });
@@ -40,6 +47,7 @@ export class SidebarComponent implements OnInit, OnDestroy {
 
   toggleSidebar(): void {
     this.isSidebarOpen = !this.isSidebarOpen;
+    this.sidebarToggled.emit(this.isSidebarOpen);
   }
 
   ngOnDestroy(): void {

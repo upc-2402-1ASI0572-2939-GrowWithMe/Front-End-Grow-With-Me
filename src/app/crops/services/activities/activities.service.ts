@@ -10,11 +10,11 @@ import {BaseService} from '../../../shared/services/base.service';
 export class ActivitiesService extends BaseService<Activity> {
   constructor(http: HttpClient) {
     super(http);
-    this.resourceEndpoint = '/activities';
+    this.resourceEndpoint = '/crop-activities';
   }
 
   getAllCropActivitiesByCropId(cropId: number): Observable<Activity[]> {
-    return this.http.get<Activity[]>(`${this.basePath}${this.resourceEndpoint}?cropId=${cropId}`, this.httpOptions);
+    return this.http.get<Activity[]>(`${this.basePath}${this.resourceEndpoint}/crops/${cropId}`, this.httpOptions);
   }
 
   deleteAllCropActivitiesByCropId(cropId: number): Observable<void> {

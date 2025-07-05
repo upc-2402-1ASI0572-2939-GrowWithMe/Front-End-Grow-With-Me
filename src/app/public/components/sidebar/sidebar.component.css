@@ -1,48 +1,25 @@
-.sidenav-container {
-  display: flex;
-  height: 100vh;
-}
-
-mat-sidenav {
+.sidebar {
   width: 250px;
   background-color: #DCEFE4;
   color: #225A47;
-}
-
-mat-sidenav[ng-reflect-mode="side"] {
+  height: 100vh;
+  padding-top: 20px;
   position: fixed;
-  z-index: 10;
+  overflow-y: auto;
+  transition: width 0.3s ease;
+  z-index: 1000;
+  left: 0;
+  top: 0;
 }
 
-mat-nav-list {
-  padding: 0;
+.sidebar.closed {
+  width: 70px;
 }
 
-mat-list-item {
-  cursor: pointer;
-}
-
-mat-list-item.active {
-  background-color: #DCEFE4;
-}
-
-button.mat-icon-button {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  z-index: 20;
-}
-
-mat-list-item span {
-  margin-left: 10px;
-  color: #225A47;
-}
-
-.logo {
-  display: flex;
-  align-items: center;
-  margin-top: 20px;
-  margin-left: 15px;
+/* Oculta textos cuando está comprimido */
+.sidebar.closed .logo-text,
+.sidebar.closed mat-list-item span {
+  display: none;
 }
 
 .sidebar-logo {
@@ -52,8 +29,15 @@ mat-list-item span {
   margin-right: 10px;
 }
 
+.logo {
+  display: flex;
+  align-items: center;
+  margin-left: 15px;
+  text-decoration: none;
+  color: inherit;
+}
+
 .logo-text {
-  justify-content: center;
   margin-left: 10px;
 }
 
@@ -70,34 +54,42 @@ mat-list-item span {
   color: #4c9e71;
 }
 
-@media (max-width: 768px) {
-  .sidebar-logo {
-    width: 40px;
-  }
-
-  .logo h1 {
-    font-size: 20px;
-  }
-
-  .logo p {
-    font-size: 12px;
-  }
+button.mat-icon-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
 }
 
-mat-sidenav[ng-reflect-mode="side"]:not([opened]) {
-  width: 70px;
+.sidebar.closed button.mat-icon-button {
+  right: 5px;
+}
+
+mat-nav-list {
+  padding: 0;
+}
+
+mat-list-item {
+  cursor: pointer;
 }
 
 mat-list-item span {
+  margin-left: 10px;
+  color: #225A47;
   display: inline;
 }
 
-mat-sidenav[ng-reflect-mode="side"]:not([opened]) mat-list-item span {
-  display: none;
-}
-a.logo {
-  display: flex;
-  align-items: center;
-  text-decoration: none;
-  color: inherit;
+/* ✅ Fuerza sidebar comprimido en responsive */
+@media (max-width: 768px) {
+  .sidebar {
+    width: 70px !important;
+  }
+
+  .sidebar .logo-text,
+  .sidebar mat-list-item span {
+    display: none !important;
+  }
+
+  button.mat-icon-button {
+    display: none;
+  }
 }

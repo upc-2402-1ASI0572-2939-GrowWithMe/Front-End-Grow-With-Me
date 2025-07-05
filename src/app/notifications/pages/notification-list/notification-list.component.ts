@@ -1,31 +1,46 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { MatListModule } from '@angular/material/list';
 import { MatCardModule } from '@angular/material/card';
 import { RoleService } from '../../../iam/services/role.service';
 import { NotificationsService } from '../../services/notifications.service';
 import { Notification } from '../../models/notification.entity';
-import {MatCheckbox} from '@angular/material/checkbox';
-import {NgClass, NgForOf, NgIf} from '@angular/common';
-import {FormsModule} from '@angular/forms';
-import {MatButton, MatIconButton} from '@angular/material/button';
-import {MatIcon} from '@angular/material/icon';
-import {MatChipListbox, MatChipOption} from '@angular/material/chips';
+import { MatCheckbox } from '@angular/material/checkbox';
+import { NgClass, NgForOf, NgIf } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+import { MatButton, MatIconButton } from '@angular/material/button';
+import { MatIcon } from '@angular/material/icon';
+import { MatChipListbox, MatChipOption } from '@angular/material/chips';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-notification-list',
   templateUrl: './notification-list.component.html',
   styleUrls: ['./notification-list.component.css'],
-  imports: [MatListModule, MatCardModule, MatCheckbox, MatIcon, NgIf, NgForOf, FormsModule, NgClass, MatChipListbox, MatChipOption, MatIconButton]
+  standalone: true,
+  imports: [
+    MatListModule,
+    MatCardModule,
+    MatCheckbox,
+    MatIcon,
+    NgForOf,
+    FormsModule,
+    MatChipListbox,
+    MatChipOption
+  ]
 })
-
-/**
- * Component to display a list of notifications with options for selection, marking as read, and deletion.
- * Role: for farmer view.
- */
-export class NotificationListComponent implements OnInit {
+export class NotificationListComponent implements OnInit, OnDestroy {
   notificationsData: Notification[] = [];
   allSelected: boolean = false;
-  selectedNotification: Notification | null = null;  // Propiedad para almacenar la notificación seleccionada
+  selectedNotification: Notification | null = null;
+  selectedCategories: string[] = [];
+  private roleSubscription!: Subscription;
+
+  categories = [
+    { name: 'Creaciones', value: 'creation' },
+    { name: 'Actualizaciones', value: 'update' },
+    { name: 'Consultor', value: 'consultant' },
+    { name: 'Buecer', value: 'buecer' }
+  ];
 
   constructor(
     private notificationsService: NotificationsService,
@@ -33,14 +48,18 @@ export class NotificationListComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.loadNotificationsData();
+    this.roleSubscription = this.roleService.getRole$().subscribe(role => {
+      this.loadNotificationsData(role);
+    });
   }
 
-  loadNotificationsData(): void {
-    const currentRole = this.roleService.getCurrentRole();
+  ngOnDestroy(): void {
+    this.roleSubscription.unsubscribe();
+  }
 
+  loadNotificationsData(role: string): void {
     this.notificationsService.getAll().subscribe((data) => {
-      if (currentRole === 'farmer') {
+      if (role === 'farmer') {
         this.notificationsData = data.filter(notification => notification.farmerId === 1);
       } else {
         this.notificationsData = data;
@@ -58,7 +77,7 @@ export class NotificationListComponent implements OnInit {
   }
 
   markAsRead(notification: Notification): void {
-    notification.status = 'read';  // Cambiar el estado de la notificación
+    notification.status = 'read';
   }
 
   deleteNotification(notification: Notification): void {
@@ -69,47 +88,22 @@ export class NotificationListComponent implements OnInit {
   }
 
   deleteSelected(): void {
-    const selectedNotifications = this.notificationsData.filter(n => n.selected);
     const confirmDelete = confirm('Are you sure you want to delete the selected notifications?');
     if (confirmDelete) {
       this.notificationsData = this.notificationsData.filter(n => !n.selected);
     }
   }
 
-  // Función para abrir los detalles de la notificación seleccionada
   openNotificationDetail(notification: Notification): void {
     this.selectedNotification = notification;
-    // Agregar la clase 'show' al panel lateral
     document.querySelector('.notification-detail-panel')?.classList.add('show');
   }
 
-  // Función para cerrar el panel lateral
   closeNotificationDetail(): void {
     this.selectedNotification = null;
-    // Eliminar la clase 'show' para ocultar el panel lateral
     document.querySelector('.notification-detail-panel')?.classList.remove('show');
   }
 
-  // Agrega estas propiedades y métodos a tu componente
-  categories = [
-    { name: 'Creaciones', value: 'creation' },
-    { name: 'Actualizaciones', value: 'update' },
-    { name: 'Consultor', value: 'consultant' },
-    { name: 'Buecer', value: 'buecer' }
-  ];
-  selectedCategories: string[] = [];
-
-// Filtro de notificaciones
-//   get filteredNotifications() {
-//     if (this.selectedCategories.length === 0) {
-//       return this.notificationsData;
-//     }
-//     return this.notificationsData.filter(notification =>
-//       this.selectedCategories.includes(notification.type)
-//     );
-//   }
-
-// Manejo de categorías
   isCategorySelected(category: any): boolean {
     return this.selectedCategories.includes(category.value);
   }
@@ -122,7 +116,6 @@ export class NotificationListComponent implements OnInit {
     }
   }
 
-// Selección de notificación
   selectNotification(notification: Notification): void {
     this.selectedNotification = notification;
     if (notification.status === 'unread') {
@@ -130,10 +123,8 @@ export class NotificationListComponent implements OnInit {
     }
   }
 
-
-  // Agrega estos métodos para manejar los tipos
   getTypeIcon(type: string): string {
-    switch(type?.toLowerCase()) {
+    switch (type?.toLowerCase()) {
       case 'creation':
       case 'creaciones':
         return 'add_circle';

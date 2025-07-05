@@ -1,11 +1,9 @@
-import {Component, Input, OnInit} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MatTableModule } from '@angular/material/table';
-import { MatIconButton } from '@angular/material/button';
-import { MatIcon } from '@angular/material/icon';
 import { CommonModule } from '@angular/common';
 import { ConsultationService } from '../../services/consultations/consultation.service';
 import { Consultation } from '../../models/consultation.entity';
-import {ConsultationDetailsComponent} from '../consultation-details/consultation-details.component';
+import { ConsultationDetailsComponent } from '../consultation-details/consultation-details.component';
 
 @Component({
   selector: 'app-consultation-list',
@@ -16,20 +14,34 @@ import {ConsultationDetailsComponent} from '../consultation-details/consultation
     ConsultationDetailsComponent
   ],
   templateUrl: './consultation-list.component.html',
-  styleUrl: './consultation-list.component.css'
+  styleUrls: ['./consultation-list.component.css']
 })
-
-/**
- * Component to display a list of consultations for a farmer.
- * Role: for farmer view.
- */
 export class ConsultationListComponent implements OnInit {
-  displayedColumns: string[] = ['id', 'title', 'description', 'status', 'date'];
+  displayedColumns: string[] = ['id', 'title', 'description'];
   consultations: Consultation[] = [];
-  @Input() farmerId!:number;
+  selectedConsultation: Consultation | null = null;
 
   constructor(private consultationService: ConsultationService) {}
-  selectedConsultation: Consultation | null = null;
+
+  ngOnInit(): void {
+    const farmerId = Number(localStorage.getItem('userId'));
+    if (!isNaN(farmerId) && farmerId > 0) {
+      this.loadConsultations(farmerId);
+    } else {
+      console.error('Invalid or missing farmerId in localStorage');
+    }
+  }
+
+  loadConsultations(farmerId: number): void {
+    this.consultationService.getAllConsultationsByFarmerId(farmerId).subscribe({
+      next: (data) => {
+        this.consultations = data.sort((a, b) => a.id - b.id);
+      },
+      error: (err) => {
+        console.error('Error loading consultations:', err);
+      }
+    });
+  }
 
   selectConsultation(consultation: Consultation): void {
     this.selectedConsultation = consultation;
@@ -38,17 +50,6 @@ export class ConsultationListComponent implements OnInit {
   closeDetails(): void {
     this.selectedConsultation = null;
   }
-
-  ngOnInit(): void {
-    this.loadConsultations();
-  }
-
-  loadConsultations(): void {
-    this.consultationService.getAllConsultationsByFarmerId(this.farmerId).subscribe(data => {
-      this.consultations = data.sort((a, b) => a.id - b.id);
-    });
-  }
-
 
   viewConsultation(consultation: Consultation): void {
     console.log('Viewing consultation:', consultation);

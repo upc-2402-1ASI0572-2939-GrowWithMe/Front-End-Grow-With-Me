@@ -14,6 +14,6 @@ export class ConsultationService extends BaseService<Consultation> {
   }
 
   getAllConsultationsByFarmerId(farmerId: number): Observable<Consultation[]> {
-    return this.http.get<Consultation[]>(`${this.basePath}${this.resourceEndpoint}?farmerId=${farmerId}`, this.httpOptions);
+    return this.http.get<Consultation[]>(`${this.basePath}${this.resourceEndpoint}/${farmerId}`, this.httpOptions);
   }
 }

@@ -1,19 +1,30 @@
-import { Component } from '@angular/core';
-import { RouterModule } from '@angular/router';
-import {SidebarComponent} from '../../public/components/sidebar/sidebar.component';
-import { RouterOutlet } from '@angular/router';
-import {MyDevicesPageComponent} from '../../devices/pages/my-devices-page/my-devices-page.component';
-
-import {MatSidenav, MatSidenavContainer} from '@angular/material/sidenav';
-import {MatIcon} from '@angular/material/icon';
+import { Component, OnInit } from '@angular/core';
+import {RouterLink, RouterOutlet} from '@angular/router';
+import { SidebarComponent } from '../../public/components/sidebar/sidebar.component';
+import { NgIf } from '@angular/common';
 import {MatIconButton} from '@angular/material/button';
+import {MatIcon} from '@angular/material/icon';
 
 @Component({
   selector: 'app-main-layout',
-  imports: [RouterOutlet, MatSidenav, MatSidenavContainer, SidebarComponent, MatIcon, MatIconButton],
+  standalone: true,
+  imports: [RouterOutlet, SidebarComponent, NgIf, MatIconButton, MatIcon, RouterLink],
   templateUrl: './main-layout.component.html',
-  styleUrl: './main-layout.component.css'
+  styleUrls: ['./main-layout.component.css']
 })
-export class MainLayoutComponent {
+export class MainLayoutComponent implements OnInit {
+  isLoggedIn = false;
+  isSidebarOpen = true;
 
+  get mainContentClass(): string {
+    return this.isSidebarOpen ? 'main-content-area' : 'main-content-area collapsed';
+  }
+
+  ngOnInit(): void {
+    this.isLoggedIn = !!localStorage.getItem('authToken');
+  }
+
+  onSidebarToggle(open: boolean): void {
+    this.isSidebarOpen = open;
+  }
 }

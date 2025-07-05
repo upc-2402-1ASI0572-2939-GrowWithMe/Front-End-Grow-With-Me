@@ -10,6 +10,6 @@ import {BaseService} from '../../../shared/services/base.service';
 export class FarmersService extends BaseService<Farmer> {
   constructor(http: HttpClient) {
     super(http);
-    this.resourceEndpoint = '/farmers';
+    this.resourceEndpoint = '/users/farmers';
   }
 }

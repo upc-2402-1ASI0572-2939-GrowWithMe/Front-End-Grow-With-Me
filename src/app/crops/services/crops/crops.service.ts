@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import {Crop} from '../../models/crop.entity';
-import {BaseService} from '../../../shared/services/base.service';
+import { Crop } from '../../models/crop.entity';
+import { BaseService } from '../../../shared/services/base.service';
 
 @Injectable({
   providedIn: 'root'
@@ -14,6 +14,6 @@ export class CropsService extends BaseService<Crop> {
   }
 
   getAllCropsByFarmerId(farmerId: number): Observable<Crop[]> {
-    return this.http.get<Crop[]>(`${this.basePath}${this.resourceEndpoint}?farmerId=${farmerId}`, this.httpOptions);
+    return this.http.get<Crop[]>(`${this.basePath}${this.resourceEndpoint}/farmer/${farmerId}`, this.httpOptions);
   }
 }

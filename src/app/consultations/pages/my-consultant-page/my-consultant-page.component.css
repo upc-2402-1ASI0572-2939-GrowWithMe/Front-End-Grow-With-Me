@@ -24,11 +24,6 @@
   gap: 1.5rem;
   justify-content: flex-start;
 }
-.content-section {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-}
 
 
 .button-group {

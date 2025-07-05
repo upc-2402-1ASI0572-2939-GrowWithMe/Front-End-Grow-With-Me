@@ -1,14 +1,15 @@
-import { Component, OnInit } from '@angular/core';
-import { MatColumnDef, MatTableModule } from '@angular/material/table';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { MatTableModule, MatColumnDef } from '@angular/material/table';
 import { MatButton, MatIconButton } from '@angular/material/button';
 import { MatIcon } from '@angular/material/icon';
 import { CropsService } from '../../services/crops/crops.service';
 import { MatDialog } from '@angular/material/dialog';
-import { EditCropsComponent } from '../edit-crops/edit-crops.component';
-import { Router, ActivatedRoute, RouterOutlet } from '@angular/router';
-import {Crop} from '../../models/crop.entity';
-import {RoleService} from '../../../iam/services/role.service';
-import {SidebarComponent} from '../../../public/components/sidebar/sidebar.component';
+import { EditCropsComponent } from '../../components/edit-crops/edit-crops.component';
+import { CreateCropsComponent } from '../../components/create-crops/create-crops.component';
+import { DeleteCropsComponent } from '../../components/delete-crops/delete-crops.component';
+import { Router } from '@angular/router';
+import { Crop } from '../../models/crop.entity';
+import {NgIf} from '@angular/common';
 
 @Component({
   selector: 'app-table-crops',
@@ -19,47 +20,56 @@ import {SidebarComponent} from '../../../public/components/sidebar/sidebar.compo
     MatIconButton,
     MatIcon,
     MatButton,
+    NgIf,
   ],
   templateUrl: './table-crops.component.html',
   styleUrl: './table-crops.component.css'
 })
-
-/**
- * Component to display a table of crops with options for registration, calendar, and monitoring.
- * Role: for farmer view.
- */
 export class TableCropsComponent implements OnInit {
   displayedColumns: string[] = ['id', 'productName', 'category', 'area', 'options'];
   cropsData: Crop[] = [];
+  title: string = 'Crops';
+  isConsultant = false;
+  deleteDialogOpen = false;
 
   constructor(
     public cropsService: CropsService,
     public dialog: MatDialog,
-    private router: Router,
-    private roleService: RoleService
+    private router: Router
   ) {}
 
-
   ngOnInit(): void {
-    this.loadCropsData();
+    const role = localStorage.getItem('userRole');
+    this.isConsultant = role === 'CONSULTANT_ROLE';
+    this.title = role === 'FARMER_ROLE' ? 'My Crops' : 'Crops';
+    this.loadCropsData(this.isConsultant ? 'consultant' : 'farmer');
   }
 
-  loadCropsData(): void {
-    //const currentRole = this.roleService.getCurrentRole();
+  loadCropsData(role: string): void {
+    const userId = Number(localStorage.getItem('userId'));
+    const sortById = (data: Crop[]) => data.sort((a, b) => Number(a.id) - Number(b.id));
 
-    this.cropsService.getAll().subscribe((data) => {
-      /*if (currentRole === 'farmer') {
-        this.cropsData = data.filter(crop => crop.farmerId === 1);
-      } else {
-        this.cropsData = data;
-      }*/
-      this.cropsData = data;
-    });
+    if (role === 'farmer') {
+      this.cropsService.getAllCropsByFarmerId(userId).subscribe(data => {
+        this.cropsData = sortById(data);
+      });
+    } else {
+      this.cropsService.getAll().subscribe(data => {
+        this.cropsData = sortById(data);
+      });
+    }
   }
-
 
   onRegister(): void {
-    console.log('Register Crop');
+    const dialogRef = this.dialog.open(CreateCropsComponent, {
+      width: '400px'
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.loadCropsData(this.isConsultant ? 'consultant' : 'farmer');
+      }
+    });
   }
 
   goToCalendar(id: string): void {
@@ -78,8 +88,25 @@ export class TableCropsComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        console.log('Edited crop:', result);
-        // Reload data if needed
+        this.loadCropsData(this.isConsultant ? 'consultant' : 'farmer');
+      }
+    });
+  }
+
+  openDeleteDialog(cropId: number): void {
+    if (this.deleteDialogOpen) return;
+    this.deleteDialogOpen = true;
+
+    const dialogRef = this.dialog.open(DeleteCropsComponent, {
+      width: '350px',
+      data: { cropId }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      this.deleteDialogOpen = false;
+
+      if (result) {
+        this.cropsData = this.cropsData.filter(c => c.id !== cropId);
       }
     });
   }

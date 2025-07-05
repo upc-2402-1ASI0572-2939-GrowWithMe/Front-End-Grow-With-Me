@@ -8,7 +8,7 @@ import { NgIf } from '@angular/common';
 
 @Component({
   selector: 'app-auth-page',
-  imports: [AuthCardComponent, AuthFormComponent, InputFieldComponent, LogoHeaderComponent,NgIf],
+  imports: [AuthCardComponent, LogoHeaderComponent],
   templateUrl: './auth-page.component.html',
   styleUrl: './auth-page.component.css'
 })

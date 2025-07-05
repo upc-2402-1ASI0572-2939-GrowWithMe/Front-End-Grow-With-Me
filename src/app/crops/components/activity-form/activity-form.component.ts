@@ -2,7 +2,7 @@ import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
 import { CropsService } from '../../services/crops/crops.service';
 import { ActivitiesService } from '../../services/activities/activities.service';
 import { FormsModule } from '@angular/forms';
-import { DatePipe, NgIf } from '@angular/common';
+import { DatePipe, NgIf, formatDate } from '@angular/common';
 
 @Component({
   selector: 'app-activity-form',
@@ -15,11 +15,6 @@ import { DatePipe, NgIf } from '@angular/common';
   templateUrl: './activity-form.component.html',
   styleUrl: './activity-form.component.css'
 })
-
-/**
- * Component to create or update an activity for a specific crop on a given date.
- * Role: for farmer view.
- */
 export class ActivityFormComponent implements OnInit {
   private _date!: Date;
   @Input() set date(value: Date) {
@@ -61,16 +56,32 @@ export class ActivityFormComponent implements OnInit {
 
   loadActivityIfExists(): void {
     this.activitiesService.getAllCropActivitiesByCropId(this.cropId).subscribe(activities => {
+      if (!activities) {
+        this.currentActivityId = null;
+        this.description = '';
+        this.time = '';
+        return;
+      }
+
+      const truncateToDate = (d: Date) => new Date(d.getFullYear(), d.getMonth(), d.getDate());
+
+      const selectedDate = truncateToDate(this.date);
+
       const match = activities.find(a => {
-        const actDate = new Date(a.date);
-        return actDate.toDateString() === this.date.toDateString();
+        const [year, month, day] = a.activityDate.split('-').map(Number);
+        const actDate = new Date(year, month - 1, day);
+
+        const activityDate = truncateToDate(actDate);
+        return activityDate.getTime() === selectedDate.getTime();
       });
+
+
 
       if (match) {
         this.currentActivityId = Number(match.id);
         this.description = match.description;
 
-        const time = new Date(match.date);
+        const time = new Date(match.activityDate);
         this.time = `${time.getHours().toString().padStart(2, '0')}:${time.getMinutes().toString().padStart(2, '0')}`;
       } else {
         this.currentActivityId = null;
@@ -85,24 +96,18 @@ export class ActivityFormComponent implements OnInit {
     const [hours, minutes] = this.time.split(':').map(Number);
     datetime.setHours(hours, minutes, 0, 0);
 
-    this.activitiesService.getAll().subscribe(allActivities => {
-      const maxId = allActivities.length > 0 ? Math.max(...allActivities.map(a => +a.id)) : 0;
-      const nextId = maxId + 1;
+    const formattedDate = formatDate(datetime, 'yyyy-MM-dd', 'en-US');
 
-      const newActivity = {
-        id: nextId,
-        cropId: this.cropId,
-        description: this.description,
-        date: datetime.toISOString()
-      };
-
-      this.activitiesService.create(newActivity).subscribe({
-        next: () => {
-          this.modalMessage = 'Activity created successfully';
-          this.successModalVisible = true;
-        },
-        error: err => console.error('Error creating activity:', err)
-      });
+    this.activitiesService.create({
+      cropId: this.cropId,
+      activityDate: formattedDate,
+      description: this.description
+    }).subscribe({
+      next: () => {
+        this.modalMessage = 'Activity created successfully';
+        this.successModalVisible = true;
+      },
+      error: err => console.error('Error creating activity:', err)
     });
   }
 
@@ -113,11 +118,12 @@ export class ActivityFormComponent implements OnInit {
     const [hours, minutes] = this.time.split(':').map(Number);
     datetime.setHours(hours, minutes, 0, 0);
 
+    const formattedDate = formatDate(datetime, 'yyyy-MM-dd', 'en-US');
+
     const updated = {
-      id: this.currentActivityId,
       cropId: this.cropId,
-      description: this.description,
-      date: datetime.toISOString()
+      activityDate: formattedDate,
+      description: this.description
     };
 
     this.activitiesService.update(this.currentActivityId.toString(), updated).subscribe({
@@ -136,7 +142,7 @@ export class ActivityFormComponent implements OnInit {
   deleteActivity(): void {
     if (this.currentActivityId == null) return;
 
-    this.activitiesService.delete(this.currentActivityId.toString()).subscribe({
+    this.activitiesService.delete(this.currentActivityId).subscribe({
       next: () => {
         this.modalMessage = 'Activity deleted successfully';
         this.successModalVisible = true;

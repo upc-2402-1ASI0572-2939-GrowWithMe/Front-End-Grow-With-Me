@@ -1,0 +1,57 @@
+<h2 mat-dialog-title>Create Crop</h2>
+
+<mat-dialog-content>
+  <form>
+    <mat-form-field appearance="fill">
+      <mat-label>Product Name</mat-label>
+      <input matInput [(ngModel)]="productName" name="productName" required />
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Code</mat-label>
+      <input matInput [(ngModel)]="code" name="code" required />
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Category</mat-label>
+      <mat-select [(ngModel)]="category" name="category" required>
+        <mat-option value="VEGETABLE">Vegetable</mat-option>
+        <mat-option value="FRUIT">Fruit</mat-option>
+        <mat-option value="HERB">Herb</mat-option>
+        <mat-option value="FLOWER">Flower</mat-option>
+        <mat-option value="GRAIN">Grain</mat-option>
+        <mat-option value="NUT">Nut</mat-option>
+        <mat-option value="LEGUME">Legume</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Area (m²)</mat-label>
+      <input
+        matInput
+        type="text"
+        inputmode="decimal"
+        pattern="^[0-9]+(\.[0-9]{1,2})?$"
+        [(ngModel)]="area"
+        name="area"
+        required
+        (keypress)="onlyAllowNumbers($event)"
+      />
+    </mat-form-field>
+
+
+    <mat-form-field appearance="fill">
+      <mat-label>Location</mat-label>
+      <input matInput [(ngModel)]="location" name="location" required />
+    </mat-form-field>
+  </form>
+</mat-dialog-content>
+
+<mat-dialog-actions>
+  <button mat-button (click)="cancel()">Cancel</button>
+  <button mat-button color="primary" (click)="createCrop()">Confirm</button>
+</mat-dialog-actions>
+
+<div *ngIf="successModalVisible" class="modal-message">
+  {{ modalMessage }}
+</div>
