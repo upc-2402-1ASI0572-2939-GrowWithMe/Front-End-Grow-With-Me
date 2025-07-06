@@ -11,7 +11,7 @@ import { FarmersListComponent } from './profiles/pages/farmers-list/farmers-list
 import { MyDevicesPageComponent } from './devices/pages/my-devices-page/my-devices-page.component';
 import { NotificationListComponent } from './notifications/pages/notification-list/notification-list.component';
 import {AuthPageComponent} from './auth/pages/auth-page/auth-page.component';
-import {ProfileComponent} from './profile/pages/profile-page/profile.component';
+import {ProfileComponent} from './profiles/pages/profile-page/profile.component';
 
 export const routes: Routes = [
   {
