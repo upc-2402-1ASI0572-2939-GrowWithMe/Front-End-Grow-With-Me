@@ -1,0 +1,61 @@
+<div class="container" *ngIf="isLoggedIn && user">
+  <h1>My Profile</h1>
+  <div class="divider"></div>
+
+  <div class="card">
+    <div class="card-header">
+      <div class="badge">
+        <span class="material-icons">verified</span>
+        Verified
+      </div>
+      <span class="material-icons">edit</span>
+    </div>
+
+    <div class="card-content">
+      <div class="avatar">
+        <img [src]="user.photoUrl || 'https://via.placeholder.com/150'" alt="{{ user.firstName }} {{ user.lastName }}" />
+      </div>
+
+      <div class="info">
+        <h2>{{ user.firstName }} {{ user.lastName }}</h2>
+      </div>
+
+      <div class="field">
+        <span class="material-icons">email</span>
+        <div>
+          <p class="label">Email</p>
+          <p class="value">{{ user.email }}</p>
+        </div>
+      </div>
+
+      <div class="field">
+        <span class="material-icons">phone</span>
+        <div>
+          <p class="label">Phone</p>
+          <p class="value">{{ user.phone }}</p>
+        </div>
+      </div>
+
+      <div class="field" *ngIf="!isFarmer">
+        <span class="material-icons">badge</span>
+        <div>
+          <p class="label">ID</p>
+          <p class="value">{{ user.dni }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div style="text-align: center; margin-top: 1.5rem;">
+    <button class="btn settings-btn">
+      <span class="material-icons" style="font-size: 20px;">settings</span>
+      <span>Account Settings</span>
+    </button>
+  </div>
+  <div style="text-align: center; margin-top: 1rem;">
+    <button class="btn settings-btn logout" (click)="logout()">
+      <span class="material-icons" style="font-size: 20px;">logout</span>
+      <span>Log Out</span>
+    </button>
+  </div>
+</div>

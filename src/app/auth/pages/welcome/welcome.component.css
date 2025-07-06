@@ -1,0 +1,65 @@
+.welcome-content {
+  width: 30%;
+  min-width: 300px;
+  max-width: 500px;
+  margin: 3rem auto;
+  padding: 2rem;
+  background-color: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  box-sizing: border-box;
+}
+
+
+/* Frase inspiradora */
+.subtitle {
+  font-size: 1.1rem;
+  color: #2d6a4f;
+  font-weight: 600;
+  margin-top: 0.5rem;
+}
+
+/* Botones */
+.welcome-buttons {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.welcome-buttons button {
+  background-color: #2d6a4f;
+  color: white;
+  padding: 0.6rem 1.5rem;
+  border: none;
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.welcome-buttons button:hover {
+  background-color: #1e4c39;
+}
+.page-wrapper {
+  height: 100vh;                 /* Ocupar todo el alto visible */
+  display: flex;
+  justify-content: center;      /* Centra horizontalmente */
+  align-items: center;          /* Centra verticalmente */
+  background-color: #f0fef6;    /* Color de fondo global */
+  padding: 1rem;                /* Espaciado para pantallas pequeñas */
+  box-sizing: border-box;
+}
+@media (max-width: 600px) {
+  .welcome-content {
+    width: 50%;
+    padding: 1.5rem;
+    margin-left: 250px;
+  }
+
+  .welcome-buttons button {
+    width: 100%; /* botones apilados en móviles */
+  }
+}

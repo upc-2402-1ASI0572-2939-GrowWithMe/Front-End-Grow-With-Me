@@ -1,0 +1,33 @@
+.body-total {
+  display: flex;
+  align-items: center;
+  justify-content: center; /* centra horizontalmente */
+  gap: 1rem;
+  text-align: center;
+}
+
+.logo-body img {
+  width: 80px;
+  height: auto;
+}
+
+.text-logo-body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center; /* centra texto horizontalmente */
+}
+
+.text-logo-body h2 {
+  margin: 0;
+  color: #1D483A;
+  font-weight: bold;
+  font-size: 40px;
+}
+
+.text-logo-body p {
+  margin: 0;
+  color: #5DAA8A;
+  font-weight: bold;
+  font-size: 20px;
+}

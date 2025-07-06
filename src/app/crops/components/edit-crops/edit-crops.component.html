@@ -1,0 +1,53 @@
+<h2 mat-dialog-title>Edit Crop</h2>
+
+<mat-dialog-content>
+  <form class="crop-form">
+
+    <mat-form-field appearance="fill">
+      <mat-label>Crop Name</mat-label>
+      <input matInput [(ngModel)]="data.crop.productName" name="productName" required />
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Code</mat-label>
+      <input matInput [(ngModel)]="data.crop.code" name="code" required />
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Category</mat-label>
+      <mat-select [(ngModel)]="data.crop.category" name="category" required>
+        <mat-option value="VEGETABLE">Vegetable</mat-option>
+        <mat-option value="FRUIT">Fruit</mat-option>
+        <mat-option value="HERB">Herb</mat-option>
+        <mat-option value="FLOWER">Flower</mat-option>
+        <mat-option value="GRAIN">Grain</mat-option>
+        <mat-option value="NUT">Nut</mat-option>
+        <mat-option value="LEGUME">Legume</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Area (m²)</mat-label>
+      <input
+        matInput
+        type="text"
+        inputmode="decimal"
+        pattern="^[0-9]+(\.[0-9]{1,2})?$"
+        [(ngModel)]="data.crop.area"
+        name="area"
+        required
+      />
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Location</mat-label>
+      <input matInput [(ngModel)]="data.crop.location" name="location" required />
+    </mat-form-field>
+
+  </form>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-button (click)="onCancel()">Cancel</button>
+  <button mat-raised-button color="primary" (click)="onConfirm()">Confirm</button>
+</mat-dialog-actions>

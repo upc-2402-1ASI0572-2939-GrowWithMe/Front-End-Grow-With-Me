@@ -1,0 +1,18 @@
+.auth-card {
+  max-width: 100%; /* ✅ Limita el ancho general del card */
+  width: 60%;
+  margin: 3rem auto;
+  padding: 2rem;
+  background-color: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  box-sizing: border-box;
+}
+
+@media (max-width: 600px) {
+  .auth-card {
+    width: 100%;     /* ✅ Menor ancho en móviles */
+    padding: 1.5rem;    /* ✅ Padding más cómodo */
+    margin: 2rem auto;  /* ✅ Menor margen */
+  }
+}

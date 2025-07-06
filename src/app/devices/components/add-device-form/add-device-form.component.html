@@ -6,26 +6,19 @@
     </div>
 
     <form #form="ngForm" (ngSubmit)="submitForm(form)" novalidate>
-      <label>Device ID</label>
-      <input type="text" [(ngModel)]="id" name="id" required> />
-
-      <label>Name</label>
-      <input type="text" [(ngModel)]="name" name="name" required> />
-
-      <label>Token</label>
-      <input type="text" [(ngModel)]="token" name="token" required> />
-
-      <label>Type</label>
-      <select [(ngModel)]="deviceType" name="type" required>
-        <option *ngFor="let type of deviceTypes" [value]="type">{{ type }}</option>
+      <label>Crop</label>
+      <select [(ngModel)]="cropId" name="cropId" required>
+        <option *ngFor="let crop of crops" [value]="crop.id">{{ crop.productName }}</option>
       </select>
 
-      <div *ngIf="submitted && (form.invalid || id === null || token === null || deviceType === null)" class="error-message">
+      <label>Name</label>
+      <input type="text" [(ngModel)]="name" name="name" required />
+
+      <div *ngIf="submitted && form.invalid" class="error-message">
         Please fill out all fields before submitting.
       </div>
 
       <button type="submit" class="submit-btn">Submit</button>
-
     </form>
   </div>
 </div>

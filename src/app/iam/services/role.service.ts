@@ -1,36 +1,24 @@
-// core/services/role.service.ts
+// role.service.ts
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable({ providedIn: 'root' })
 export class RoleService {
-  private readonly key = 'userRole';
-  private defaultRole: 'farmer' | 'consultant' = 'farmer';
+  private roleSubject = new BehaviorSubject<string>(this.getStoredRole());
+  role$ = this.roleSubject.asObservable();
 
-  private roleSubject: BehaviorSubject<'farmer' | 'consultant'>;
-
-  constructor() {
-    const storedRole = localStorage.getItem(this.key) as 'farmer' | 'consultant';
-    this.roleSubject = new BehaviorSubject<'farmer' | 'consultant'>(storedRole || this.defaultRole);
+  private getStoredRole(): string {
+    const storedRole = localStorage.getItem('userRole')?.toUpperCase();
+    if (storedRole === 'FARMER_ROLE') return 'farmer';
+    if (storedRole === 'CONSULTANT_ROLE') return 'consultant';
+    return '';
   }
 
-  getRole$() {
-    return this.roleSubject.asObservable();
-  }
-
-  getCurrentRole(): 'farmer' | 'consultant' {
-    return this.roleSubject.value;
-  }
-
-  setRole(role: 'farmer' | 'consultant') {
-    localStorage.setItem(this.key, role);
+  setRole(role: string) {
     this.roleSubject.next(role);
   }
 
-  toggleRole() {
-    const newRole = this.roleSubject.value === 'farmer' ? 'consultant' : 'farmer';
-    this.setRole(newRole);
+  getRole$() {
+    return this.role$;
   }
 }

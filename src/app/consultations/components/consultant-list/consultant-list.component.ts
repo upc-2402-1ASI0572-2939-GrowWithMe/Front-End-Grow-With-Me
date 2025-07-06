@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Consultant } from '../../../profiles/models/consultant.entity';
-import { ConsultantsService } from '../../../profiles/services/consultants/consultants.service';
+import { Consultant } from '../../../profile/models/consultant.entity';
+import { ConsultantsService } from '../../../profile/services/consultants/consultants.service';
 import { ConsultantCardComponent } from '../consultant-card/consultant-card.component';
 import {ConsultationFormComponent} from '../consultation-form/consultation-form.component';
-import {Router} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 
 @Component({
   selector: 'app-consultant-list',
@@ -13,26 +13,44 @@ import {Router} from '@angular/router';
   templateUrl: './consultant-list.component.html',
   styleUrl: './consultant-list.component.css'
 })
+
+/**
+ * Component to display a list of consultants.
+ * Role: for farmer view.
+ */
 export class ConsultantListComponent implements OnInit {
   showForm = false;
   consultants: Consultant[] = [];
-  constructor(private consultantService: ConsultantsService, private router: Router) {}
+  farmerId!: number;
+
+  constructor(private consultantService: ConsultantsService, private router: Router, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
-    this.consultantService.getConsultants().subscribe(data => {
+    this.consultantService.getAll().subscribe(data => {
       this.consultants = data;
     });
+
+    const id = this.route.snapshot.paramMap.get('farmerId');
+    if (id) {
+      this.farmerId = +id;
+    } else {
+      console.error('Farmer ID not found in route parameters');
+      this.farmerId = 0;
+    }
   }
+
   openForm() {
     this.showForm = true;
   }
+
   closeForm() {
     this.showForm = false;
   }
+
   goToHistory() {
-    const userId = 1;
-    this.router.navigate([`/consultants/${userId}/history`]);
+    this.router.navigate([`/consultants/${this.farmerId}/history`]);
   }
+
   handleSubmit(data: any) {
     console.log('Form submitted:', data);
   }

@@ -20,6 +20,7 @@
     "@angular/platform-browser-dynamic": "^19.2.0",
     "@angular/router": "^19.2.0",
     "@swimlane/ngx-charts": "^22.0.0",
+    "axios": "^1.10.0",
     "chart.js": "^4.4.9",
     "json-server": "^1.0.0-beta.3",
     "material-design-icons": "^3.0.1",

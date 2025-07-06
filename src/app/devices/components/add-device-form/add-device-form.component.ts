@@ -1,63 +1,66 @@
-import {Component, EventEmitter, Output} from '@angular/core';
-import {Device} from '../../models/device.entity';
-import {FormsModule, NgForm} from '@angular/forms';
-import {DeviceService} from '../../services/device.service';
-import {NgForOf, NgIf} from '@angular/common';
+import { Component, EventEmitter, Input, Output, OnInit } from '@angular/core';
+import { FormsModule, NgForm } from '@angular/forms';
+import { NgForOf, NgIf } from '@angular/common';
+import { DeviceService } from '../../services/device.service';
+import { Crop } from '../../../crops/models/crop.entity';
+import { CropsService } from '../../../crops/services/crops/crops.service';
 
 @Component({
   selector: 'app-add-device-form',
-  imports: [
-    FormsModule,
-    NgForOf,
-    NgIf
-  ],
+  standalone: true,
+  imports: [FormsModule, NgForOf, NgIf],
   templateUrl: './add-device-form.component.html',
   styleUrl: './add-device-form.component.css'
 })
-export class AddDeviceFormComponent {
-  id: string = '';
+export class AddDeviceFormComponent implements OnInit {
+  @Input() cropId!: number;
+  @Input() farmerId!: number;
+  @Output() submitAddDevice = new EventEmitter<void>();
+  @Output() closeModal = new EventEmitter<void>();
+  @Output() deviceCreated = new EventEmitter<void>();
+
   name: string = '';
-  token: string = '';
-  deviceTypes: string[] = ['Humidity Sensor', 'Temperature Sensor'];
-  deviceType: string = '';
-  status: string = '';
   submitted: boolean = false;
   successModalVisible: boolean = false;
+  crops: Crop[] = [];
 
-  @Output() submitAddDevice = new EventEmitter<Device>();
-  @Output() closeModal = new EventEmitter<void>();
+  constructor(
+    private deviceService: DeviceService,
+    private cropsService: CropsService
+  ) {}
 
-  constructor(private deviceService: DeviceService) { }
+  ngOnInit(): void {
+    if (!this.farmerId) {
+      const id = localStorage.getItem('userId');
+      if (!id) return;
+      this.farmerId = Number(id);
+    }
+
+    this.cropsService.getAllCropsByFarmerId(this.farmerId).subscribe({
+      next: crops => this.crops = crops,
+      error: err => console.error('Error loading crops:', err)
+    });
+  }
 
   handleSuccessAccept() {
     this.successModalVisible = false;
     this.closeModal.emit();
+    this.deviceCreated.emit();
   }
 
   submitForm(form: NgForm) {
     this.submitted = true;
-    if (form.invalid || this.token === null) return;
+    if (form.invalid) return;
 
-    this.deviceService.getDevicesByFarmerId('1').subscribe(device => {
-      const deviceExists = device.some((d: Device) => d.token === this.token);
-      if (deviceExists) {
-        alert('Device with this token already exists');
-        return;
-      }
-
-      const newDevice: Device = {
-        id: 0,
-        name: this.name,
-        token: this.token,
-        deviceType: this.deviceType,
-        status: 'CONNECTED'
-      };
-
-      this.deviceService.createDevice(newDevice).subscribe(() => {
+    this.deviceService.createDevice(this.cropId, this.name).subscribe({
+      next: () => {
         this.successModalVisible = true;
-        form.reset();
+        form.resetForm();
         this.submitted = false;
-      });
-    })
+      },
+      error: err => {
+        console.error('Error creating device:', err);
+      }
+    });
   }
 }

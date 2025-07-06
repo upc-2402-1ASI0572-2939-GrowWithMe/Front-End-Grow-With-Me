@@ -1,0 +1,18 @@
+<div class="top-bar" *ngIf="isLoggedIn">
+  <div class="icon-container">
+    <button mat-icon-button (click)="goToNotifications()">
+      <mat-icon>notifications</mat-icon>
+    </button>
+    <button mat-icon-button [routerLink]="'/profile'">
+      <mat-icon>account_circle</mat-icon>
+    </button>
+  </div>
+</div>
+
+<div class="layout-container">
+  <app-sidebar *ngIf="isLoggedIn" (sidebarToggled)="onSidebarToggle($event)"></app-sidebar>
+  <ng-container></ng-container>
+  <div [class]="mainContentClass">
+    <router-outlet></router-outlet>
+  </div>
+</div>

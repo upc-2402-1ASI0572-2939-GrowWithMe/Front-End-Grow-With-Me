@@ -11,14 +11,7 @@
 
       <label>Description</label>
       <textarea [(ngModel)]="description" name="description" rows="4" required></textarea>
-
-      <label>Humidity (%)</label>
-      <input type="number" [(ngModel)]="humidity" name="humidity" min="0" max="100" required />
-
-      <label>Temperature (°C)</label>
-      <input type="number" [(ngModel)]="temperature" name="temperature" required />
-
-      <div *ngIf="submitted && (form.invalid || humidity === null || temperature === null)" class="error-message">
+      <div *ngIf="submitted && (form.invalid )" class="error-message">
         Please fill out all fields before submitting.
       </div>
 

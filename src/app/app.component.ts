@@ -1,18 +1,19 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { Router, NavigationEnd } from '@angular/router';
 import { RouterOutlet } from '@angular/router';
-import {MyDevicesPageComponent} from './devices/pages/my-devices-page/my-devices-page.component';
-
-import {MatSidenav, MatSidenavContainer} from '@angular/material/sidenav';
-import {SidebarComponent} from './public/components/sidebar/sidebar.component';
-import {MatIcon} from '@angular/material/icon';
+import { SidebarComponent } from './public/components/sidebar/sidebar.component';
+import { filter } from 'rxjs/operators';
+import {NgIf} from '@angular/common';
 import {MatIconButton} from '@angular/material/button';
+import {MatIcon} from '@angular/material/icon';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, MatSidenav, MatSidenavContainer, SidebarComponent, MatIcon, MatIconButton],
+  standalone: true,
+  imports: [RouterOutlet],
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.css'],
 })
-export class AppComponent {
+export class AppComponent{
   title = 'FrontGWM';
 }

@@ -1,7 +1,7 @@
 <div class="my-devices-content">
   <div class="my-devices-header">
     <h2>My Devices</h2>
-    <hr class="divider"/>
+    <hr class="divider" />
   </div>
 
   <div class="my-devices-section">
@@ -10,8 +10,10 @@
   </div>
 
   <app-add-device-form
+    [farmerId]="farmerId"
     *ngIf="showForm"
     (submitAddDevice)="handleSubmit($event)"
     (closeModal)="closeForm()"
+    (deviceCreated)="onDeviceCreated()"
   />
 </div>

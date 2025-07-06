@@ -1,15 +1,17 @@
+import {Activity} from './activity.entity';
+
 export class Crop {
   constructor(
-    public id: string,
-    public code: string,
+    public id: number,
+    public farmerId: number,
+    public cropActivities: Activity[],
     public productName: string,
+    public code: string,
     public category: string,
+    public status: string,
     public area: number,
     public location: string,
-    public status: string,
     public cost: number,
-    public profitReturn: number,
-    public registrationDate: Date,
-    public profileId?: number
+    public registrationDate: Date
   ) {}
 }

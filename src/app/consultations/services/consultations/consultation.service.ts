@@ -2,20 +2,18 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Consultation } from '../../models/consultation.entity';
+import {BaseService} from '../../../shared/services/base.service';
 
 @Injectable({
   providedIn: 'root'
 })
-export class ConsultationService {
-  private apiUrl = 'https://growithme-fake-api.onrender.com/consultations';
-
-  constructor(private http: HttpClient) {}
-
-  getConsultationsByFarmerId(farmerId: string): Observable<Consultation[]> {
-    return this.http.get<Consultation[]>(`${this.apiUrl}?farmerId=${farmerId}`);
+export class ConsultationService extends BaseService<Consultation> {
+  constructor(http: HttpClient) {
+    super(http);
+    this.resourceEndpoint = '/consultations';
   }
 
-  createConsultation(consultation: Omit<Consultation, "id">): Observable<Consultation> {
-    return this.http.post<Consultation>(this.apiUrl, consultation);
+  getAllConsultationsByFarmerId(farmerId: number): Observable<Consultation[]> {
+    return this.http.get<Consultation[]>(`${this.basePath}${this.resourceEndpoint}/${farmerId}`, this.httpOptions);
   }
 }

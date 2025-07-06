@@ -1,21 +1,21 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, BehaviorSubject } from 'rxjs';
+import {Observable, BehaviorSubject, retry, catchError} from 'rxjs';
 import {Notification} from '../models/notification.entity';
+import {BaseService} from '../../shared/services/base.service';
 
 @Injectable({
   providedIn: 'root'
 })
-export class NotificationsService {
-  private apiUrl: string = 'https://growithme-fake-api.onrender.com/notifications';
-  constructor(private http: HttpClient) { }
-
-  getNotifications(): Observable<Notification[]> {
-    return this.http.get<Notification[]>(this.apiUrl);
+export class NotificationsService extends BaseService<Notification> {
+  constructor(http: HttpClient) {
+    super(http);
+    this.resourceEndpoint = '/notifications';
   }
 
-  deleteNotification(id: number): Observable<any> {
-    return this.http.delete(`${this.apiUrl}/${id}`);
+  getAllNotificationsForFarmer(): Observable<Notification[]> {
+    return this.http.get<Notification[]>(`${this.basePath}${this.resourceEndpoint}/farmer`, this.httpOptions)
+      .pipe(retry(2), catchError(this.handleError));
   }
 
 }

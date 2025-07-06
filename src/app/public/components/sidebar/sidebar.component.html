@@ -1,42 +1,49 @@
-<div class="sidenav-container">
-  <div #sidebar id="sidebar" class="sidebar open">
-  <button #sidebarIcon class="icon-button material-icons toggle-btn" (click)="toggleSidebar()">
-  chevron_left
+<div class="sidebar" [class.closed]="!isSidebarOpen" *ngIf="showSidebar">
+  <a class="logo" routerLink="/home">
+    <img ngSrc="../../../../assets/images/Logo.png" alt="Logo" class="sidebar-logo" height="512" width="512" />
+    <div class="logo-text">
+      <h1>GWM</h1>
+      <p>Grow With Me</p>
+    </div>
+  </a>
+
+  <button mat-icon-button (click)="toggleSidebar()">
+    <mat-icon>{{ isSidebarOpen ? 'chevron_left' : 'chevron_right' }}</mat-icon>
   </button>
 
-    <a class="logo" href="/home">
-      <img src="../../../../assets/images/Logo.png" alt="Logo" class="sidebar-logo" />
-      <div class="logo-text">
-        <h1>GWM</h1>
-        <p>Grow With Me</p>
-      </div>
-    </a>
+  <mat-nav-list>
+    <ng-container *ngIf="role === 'farmer'">
+      <mat-list-item routerLink="/devices">
+        <mat-icon>wifi</mat-icon>
+        <span *ngIf="isSidebarOpen">My Devices</span>
+      </mat-list-item>
+      <mat-list-item routerLink="/crops">
+        <mat-icon>nature</mat-icon>
+        <span *ngIf="isSidebarOpen">My Crops</span>
+      </mat-list-item>
+      <mat-list-item routerLink="/notifications">
+        <mat-icon>notifications</mat-icon>
+        <span *ngIf="isSidebarOpen">My Notifications</span>
+      </mat-list-item>
+      <mat-list-item routerLink="/consultants">
+        <mat-icon>person</mat-icon>
+        <span *ngIf="isSidebarOpen">My Consultant</span>
+      </mat-list-item>
+    </ng-container>
 
-    <nav class="nav-list" id="nav-list">
-      <div class="nav-item" data-role="farmer">
-        <a href="/devices">
-          <span class="icon">📶</span>
-          <span class="label">My Devices</span>
-        </a>
-      </div>
-      <div class="nav-item" data-role="farmer">
-        <a href="/crops" class="active">
-          <span class="icon">🌱</span>
-          <span class="label">My Crops</span>
-        </a>
-      </div>
-      <div class="nav-item" data-role="farmer">
-        <a href="/notifications">
-          <span class="icon">🔔</span>
-          <span class="label">My Notifications</span>
-        </a>
-      </div>
-      <div class="nav-item" data-role="farmer">
-        <a href="/consultants">
-          <span class="icon">👤</span>
-          <span class="label">My Consultant</span>
-        </a>
-      </div>
-    </nav>
-  </div>
+    <ng-container *ngIf="role === 'consultant'">
+      <mat-list-item routerLink="/farmers">
+        <mat-icon>group</mat-icon>
+        <span *ngIf="isSidebarOpen">Farmers</span>
+      </mat-list-item>
+      <mat-list-item routerLink="/crops">
+        <mat-icon>nature</mat-icon>
+        <span *ngIf="isSidebarOpen">Crops</span>
+      </mat-list-item>
+      <mat-list-item routerLink="/farmers/history">
+        <mat-icon>notifications</mat-icon>
+        <span *ngIf="isSidebarOpen">Notifications</span>
+      </mat-list-item>
+    </ng-container>
+  </mat-nav-list>
 </div>

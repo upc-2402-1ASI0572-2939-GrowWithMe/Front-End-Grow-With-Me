@@ -2,6 +2,8 @@ import {Component, EventEmitter, Input, OnChanges, Output, SimpleChanges} from '
 import { ActivitiesService } from '../../services/activities/activities.service';
 import { DatePipe, NgIf } from '@angular/common';
 import {CropsService} from '../../services/crops/crops.service';
+import {Crop} from '../../models/crop.entity';
+import {Activity} from '../../models/activity.entity';
 
 
 @Component({
@@ -14,13 +16,17 @@ import {CropsService} from '../../services/crops/crops.service';
   ],
   styleUrl: './activity-details.component.css'
 })
+
+/**
+ * Component to display the details of an activity for a specific crop on a given date.
+ * Role: for farmer view.
+ */
 export class ActivityDetailsComponent implements OnChanges {
   @Input() date!: Date;
-  @Input() cropId!: string;
+  @Input() cropId!: number;
   @Output() close = new EventEmitter<void>();
 
-
-  cropName: string = '';
+  productName: string = '';
   time: string = '';
   description: string = '';
   noActivityModalVisible = false;
@@ -37,21 +43,23 @@ export class ActivityDetailsComponent implements OnChanges {
       this.loadActivityDetails();
     }
   }
-
   loadActivityDetails(): void {
-    this.cropsService.getCrops().subscribe(crops => {
+    const previousDate = new Date(this.date);
+    previousDate.setDate(previousDate.getDate() - 1); // Resta un día
+
+    this.cropsService.getAll().subscribe(crops => {
       const crop = crops.find(c => c.id === this.cropId);
-      this.cropName = crop?.productName || 'Unknown Crop';
+      this.productName = crop?.productName || 'Unknown Crop';
     });
 
-    this.activitiesService.getByCropId(this.cropId).subscribe(activities => {
-      const match = activities.find(a => {
-        const actDate = new Date(a.date);
-        return actDate.toDateString() === this.date.toDateString();
+    this.activitiesService.getAllCropActivitiesByCropId(this.cropId).subscribe((activities: Activity[]) => {
+      const match = activities.find((a: Activity) => {
+        const actDate = new Date(a.activityDate);
+        return actDate.toDateString() === previousDate.toDateString();
       });
 
       if (match) {
-        const matchDate = new Date(match.date);
+        const matchDate = new Date(match.activityDate);
         this.description = match.description;
         this.time = `${matchDate.getHours().toString().padStart(2, '0')}:${matchDate.getMinutes().toString().padStart(2, '0')}`;
         this.hasActivity = true;
@@ -63,6 +71,7 @@ export class ActivityDetailsComponent implements OnChanges {
       }
     });
   }
+
 
 
   closeNoActivityModal(): void {

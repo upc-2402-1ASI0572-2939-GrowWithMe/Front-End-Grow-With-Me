@@ -1,11 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { MatTableModule } from '@angular/material/table';
-import { MatIconButton } from '@angular/material/button';
-import { MatIcon } from '@angular/material/icon';
 import { CommonModule } from '@angular/common';
 import { ConsultationService } from '../../services/consultations/consultation.service';
 import { Consultation } from '../../models/consultation.entity';
-import {ConsultationDetailsComponent} from '../consultation-details/consultation-details.component';
+import { ConsultationDetailsComponent } from '../consultation-details/consultation-details.component';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-consultation-list',
@@ -16,14 +15,57 @@ import {ConsultationDetailsComponent} from '../consultation-details/consultation
     ConsultationDetailsComponent
   ],
   templateUrl: './consultation-list.component.html',
-  styleUrl: './consultation-list.component.css'
+  styleUrls: ['./consultation-list.component.css']
 })
 export class ConsultationListComponent implements OnInit {
-  displayedColumns: string[] = ['id', 'title', 'description', 'sensorData'];
+  displayedColumns: string[] = ['id', 'title', 'description'];
   consultations: Consultation[] = [];
-
-  constructor(private consultationService: ConsultationService) {}
   selectedConsultation: Consultation | null = null;
+
+  constructor(
+    private consultationService: ConsultationService,
+    private route: ActivatedRoute
+  ) {}
+
+  ngOnInit(): void {
+    const role = localStorage.getItem('userRole');
+    const userId = Number(localStorage.getItem('userId'));
+
+    if (role === 'FARMER_ROLE') {
+      if (!isNaN(userId) && userId > 0) {
+        this.loadConsultations(userId);
+      } else {
+        console.error('Farmer ID inválido o ausente en localStorage');
+      }
+    } else if (role === 'CONSULTANT_ROLE') {
+      this.loadAllConsultations();
+    } else {
+      console.error('Rol no reconocido:', role);
+    }
+  }
+
+  loadConsultations(farmerId: number): void {
+    this.consultationService.getAllConsultationsByFarmerId(farmerId).subscribe({
+      next: (data) => {
+        this.consultations = data.sort((a, b) => a.id - b.id);
+      },
+      error: (err) => {
+        console.error('Error loading consultations by farmerId:', err);
+      }
+    });
+  }
+
+  loadAllConsultations(): void {
+    this.consultationService.getAll().subscribe({
+      next: (data) => {
+        this.consultations = data.sort((a, b) => a.id - b.id);
+      },
+      error: (err) => {
+        console.error('Error cargando todas las consultas:', err);
+      }
+    });
+  }
+
 
   selectConsultation(consultation: Consultation): void {
     this.selectedConsultation = consultation;
@@ -31,25 +73,5 @@ export class ConsultationListComponent implements OnInit {
 
   closeDetails(): void {
     this.selectedConsultation = null;
-  }
-
-  ngOnInit(): void {
-    this.loadConsultations();
-  }
-
-  loadConsultations(): void {
-    const farmerId = '1'; // Replace with dynamic ID later
-    this.consultationService.getConsultationsByFarmerId(farmerId).subscribe(data => {
-      this.consultations = data.sort((a, b) => a.id - b.id);
-    });
-  }
-
-
-  viewConsultation(consultation: Consultation): void {
-    console.log('Viewing consultation:', consultation);
-  }
-
-  deleteConsultation(consultation: Consultation): void {
-    console.log('Deleting consultation:', consultation);
   }
 }

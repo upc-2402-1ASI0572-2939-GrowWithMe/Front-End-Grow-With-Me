@@ -2,5 +2,6 @@
   <app-device-card
     *ngFor="let device of devices"
     [device]="device"
-    />
+    [cropName]="getCropName(device.cropId)"
+  />
 </div>
