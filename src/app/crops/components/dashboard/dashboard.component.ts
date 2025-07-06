@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Chart, ChartType } from 'chart.js/auto';
+import { ActivatedRoute } from '@angular/router';
 import { EnvironmentDataService } from '../../services/dashboard/dashboard.service';
 
 @Component({
@@ -9,25 +10,36 @@ import { EnvironmentDataService } from '../../services/dashboard/dashboard.servi
 })
 export class DashboardComponent implements OnInit {
   public chart!: Chart;
-  private readonly deviceId = 2;
+  public cropId!: number;
 
-  constructor(private environmentService: EnvironmentDataService) {}
+  constructor(
+    private environmentService: EnvironmentDataService,
+    private route: ActivatedRoute
+  ) {}
 
   ngOnInit(): void {
-    this.loadSensorData();
+    this.route.paramMap.subscribe(params => {
+      const id = params.get('cropId');
+      if (id) {
+        this.cropId = +id;
+        this.loadSensorData(this.cropId);
+      }
+    });
 
-    // Opcional: actualizar cada 60 segundos
-    setInterval(() => this.loadSensorData(), 60000);
+    setInterval(() => {
+      if (this.cropId) {
+        this.loadSensorData(this.cropId);
+      }
+    }, 60000);
   }
 
-  private loadSensorData(): void {
-    this.environmentService.getSensorDataByDeviceId(this.deviceId).subscribe({
+  private loadSensorData(deviceId: number): void {
+    this.environmentService.getSensorDataByDeviceId(deviceId).subscribe({
       next: (data) => {
         console.log('Temperatures:', data.temperatureList);
         console.log('Humidities:', data.humidityList);
 
-        const labels = this.getTimeLabels(data.temperatureList.length, 10); // suponiendo cada 10 minutos
-
+        const labels = this.getTimeLabels(data.temperatureList.length, 10); // cada 10 min
         const chartData = {
           labels,
           datasets: [
@@ -70,7 +82,6 @@ export class DashboardComponent implements OnInit {
     }
   }
 
-  // 🕒 Genera etiquetas de tiempo tipo HH:mm, suponiendo un intervalo (ej. 10 min)
   private getTimeLabels(count: number, intervalMinutes: number): string[] {
     const now = new Date();
     const labels: string[] = [];

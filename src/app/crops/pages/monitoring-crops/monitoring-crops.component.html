@@ -4,7 +4,7 @@
   </header>
 
   <div class="subheader">
-    <h2>Dashboard: Tomato</h2>
+    <h2>Dashboard: {{ cropName }}</h2>
     <button mat-raised-button class="export-button" (click)="exportData()">
       <mat-icon>file_download</mat-icon>
       Export Data
@@ -12,28 +12,25 @@
   </div>
 
   <div class="dashboard-grid">
-    <!-- Temperature Card -->
     <div class="card temperature-card">
       <h3>Temperature</h3>
-      <p>24.5°C</p>
+      <p *ngIf="temperatureList.length > 0">{{ temperatureList[temperatureList.length - 1] }}°C</p>
+      <p *ngIf="temperatureList.length === 0">--</p>
     </div>
 
-    <!-- Humidity Card -->
     <div class="card humidity-card">
       <h3>Humidity</h3>
-      <p>65%</p>
+      <p *ngIf="humidityList.length > 0">{{ humidityList[humidityList.length - 1] }}%</p>
+      <p *ngIf="humidityList.length === 0">--</p>
     </div>
   </div>
 
-  <!-- Dashboard Section -->
   <div class="chart-section">
     <h3>Last 12 Hours Dashboard</h3>
     <div class="chart-placeholder">
-        <app-dashboard>
-        </app-dashboard>
+      <app-dashboard></app-dashboard>
     </div>
   </div>
 
-  <!-- Export Message -->
   <p class="export-message" *ngIf="exportMessage">{{ exportMessage }}</p>
 </div>
