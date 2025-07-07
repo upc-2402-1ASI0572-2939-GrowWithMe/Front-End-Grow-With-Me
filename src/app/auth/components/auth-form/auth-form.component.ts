@@ -20,6 +20,7 @@ export class AuthFormComponent {
 
   selectedFile!: File;
   photoUrl: string = '';
+  errorMessage: string = '';
   authService = new AuthService();
 
   onFileSelected(event: Event) {
@@ -28,8 +29,11 @@ export class AuthFormComponent {
       this.selectedFile = input.files[0];
     }
   }
+
   async onSubmit(event: Event) {
     event.preventDefault();
+    this.errorMessage = '';
+
     const form = event.target as HTMLFormElement;
     const formData = new FormData(form);
 
@@ -52,16 +56,20 @@ export class AuthFormComponent {
 
         await this.authService.signUp(user);
 
-        // Login automático tras registro
         const loginResponse = await this.authService.signInUser(
           user.email as string,
           user.password as string
         );
 
-        this.storeSessionData(loginResponse.data);
-        window.location.href = '/home'; // recarga total
-      } catch (err) {
+        if (loginResponse.status === 200 && loginResponse.data?.token) {
+          this.storeSessionData(loginResponse.data);
+          window.location.href = '/home';
+        } else {
+          this.errorMessage = 'Login failed after registration.';
+        }
+      } catch (err: any) {
         console.error('Error al registrar:', err);
+        this.errorMessage = err?.response?.data?.message || 'Error during registration.';
       }
     }
 
@@ -71,15 +79,21 @@ export class AuthFormComponent {
           formData.get('email') as string,
           formData.get('password') as string
         );
-        this.storeSessionData(response.data);
-        window.location.href = '/home';
-      } catch (err) {
+
+        if (response.status === 200 && response.data?.token) {
+          this.storeSessionData(response.data);
+          window.location.href = '/home';
+        } else {
+          this.errorMessage = 'Login failed. Please check your credentials.';
+        }
+      } catch (err: any) {
         console.error('Error al iniciar sesión:', err);
+        this.errorMessage = err?.response?.data?.message || 'Error during login.';
       }
     }
 
     if (this.mode === 'reset') {
-      console.log('Funcionalidad de restablecer contraseña aún no implementada.');
+      this.errorMessage = 'Reset password not implemented yet.';
     }
   }
 

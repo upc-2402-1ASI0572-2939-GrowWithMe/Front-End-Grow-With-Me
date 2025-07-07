@@ -1,4 +1,4 @@
 export const environment = {
   production: false,
-  baseUrl: 'http://localhost:8080/api/v1'
+  baseUrl: 'https://fresh-wahoo-tolerant.ngrok-free.app/api/v1'
 };

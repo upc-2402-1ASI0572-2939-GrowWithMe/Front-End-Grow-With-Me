@@ -135,4 +135,12 @@ app-logo-header img {
   }
 }
 
+/* auth-form.component.css */
+.error-message {
+  color: #b00020;
+  margin-top: 10px;
+  font-size: 14px;
+  text-align: center;
+}
+
 

@@ -11,6 +11,7 @@
 
   <p class="link-reset">Forgot your password? <a href="/reset">Reset it</a></p>
 </form>
+<p *ngIf="errorMessage && mode === 'login'" class="error-message">{{ errorMessage }}</p>
 
 <!-- REGISTER -->
 <form *ngIf="mode === 'register'" class="form-grid" (submit)="onSubmit($event)">
@@ -67,6 +68,7 @@
 
   <button type="submit">Register</button>
 </form>
+<p *ngIf="errorMessage && mode === 'register'" class="error-message">{{ errorMessage }}</p>
 
 <!-- RESET -->
 <form *ngIf="mode === 'reset'" (submit)="onSubmit($event)">
@@ -82,3 +84,4 @@
 
   <button type="submit">Reset</button>
 </form>
+<p *ngIf="errorMessage && mode === 'reset'" class="error-message">{{ errorMessage }}</p>
