@@ -1,10 +1,7 @@
 // src/app/pages/home/home.component.ts
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { RoleService } from '../../../iam/services/role.service';
-import { MatSidenavContainer, MatSidenav } from '@angular/material/sidenav';
-import { SidebarComponent } from '../../components/sidebar/sidebar.component';
 import { Subscription } from 'rxjs';
-import { NgIf } from '@angular/common';
 
 @Component({
   selector: 'app-home',
@@ -12,10 +9,14 @@ import { NgIf } from '@angular/common';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
-export class HomeComponent {
+export class HomeComponent implements OnInit {
   role: 'farmer' | 'consultant' = 'farmer';
   private roleSub!: Subscription;
 
   constructor(private roleService: RoleService) {}
 
+  ngOnInit(): void {
+    const token = localStorage.getItem('authToken');
+    console.log('Auth Token:', token);
+  }
 }

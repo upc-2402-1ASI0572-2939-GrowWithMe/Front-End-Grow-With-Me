@@ -8,7 +8,9 @@ import { NgIf } from '@angular/common';
   selector: 'app-my-consultant-page',
   standalone: true,
   imports: [
-    ConsultantListComponent
+    ConsultantListComponent,
+    ConsultationFormComponent,
+    NgIf
   ],
   templateUrl: './my-consultant-page.component.html',
   styleUrl: './my-consultant-page.component.css'
@@ -19,5 +21,24 @@ import { NgIf } from '@angular/common';
  * Role: for farmer view.
  */
 export class MyConsultantPageComponent {
+  showForm = false;
 
+  constructor(private router: Router) {}
+
+  openForm() {
+    this.showForm = true;
+  }
+
+  closeForm() {
+    this.showForm = false;
+  }
+
+  handleSubmit(data: any) {
+    console.log('Form submitted:', data);
+  }
+
+  goToHistory() {
+    const userId = 1; // Replace with the actual user/consultant ID logic
+    this.router.navigate([`/consultants/${userId}/history`]);
+  }
 }

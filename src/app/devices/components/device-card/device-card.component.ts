@@ -18,10 +18,4 @@ export class DeviceCardComponent {
 
   constructor(private deviceService: DeviceService) {}
 
-  activateDevice() {
-    this.deviceService.activateDevice(this.device.id).subscribe({
-      next: () => this.device.isActive = true,
-      error: err => console.error('Error activating device:', err)
-    });
-  }
 }

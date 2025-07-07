@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
-import {HttpClient, HttpHeaders} from '@angular/common/http';
-import {Device} from '../models/device.entity';
-import {catchError, Observable, retry} from 'rxjs';
-import {BaseService} from '../../shared/services/base.service';
+import { HttpClient } from '@angular/common/http';
+import { Device } from '../models/device.entity';
+import { catchError, Observable, retry } from 'rxjs';
+import { BaseService } from '../../shared/services/base.service';
 
 @Injectable({
   providedIn: 'root'
@@ -13,23 +13,31 @@ export class DeviceService extends BaseService<Device> {
     this.resourceEndpoint = '/devices';
   }
 
-  getAllDevicesByCropId(cropId: number): Observable<Device[]> {
-    return this.http.get<Device[]>(`${this.basePath}${this.resourceEndpoint}?cropId=${cropId}`, this.httpOptions)
+  // Solo se necesita cropId y name porque farmerId se obtiene por el token
+  createDevice(cropId: number, name: string): Observable<Device> {
+    const url = `${this.basePath}${this.resourceEndpoint}`;
+    const body = { cropId, name };
+    return this.http.post<Device>(url, body, this.httpOptions)
       .pipe(retry(2), catchError(this.handleError));
   }
 
+  // No se pasa farmerId por query param; se obtiene del backend vía auth
   getAllDevicesByFarmerId(): Observable<Device[]> {
-    return this.http.get<Device[]>(`${this.basePath}${this.resourceEndpoint}/farmer`, this.httpOptions)
+    const url = `${this.basePath}${this.resourceEndpoint}/farmer`;
+    return this.http.get<Device[]>(url, this.httpOptions)
       .pipe(retry(2), catchError(this.handleError));
   }
 
-  createDevice(cropId: number, name: string): Observable<any> {
-    const url = `${this.basePath}${this.resourceEndpoint}?cropId=${cropId}&name=${encodeURIComponent(name)}`;
-    return this.http.post(url, {}, this.httpOptions);
+  // Retorna temperatura y humedad (no un Device completo)
+  getSensorData(deviceId: number): Observable<any> {
+    const url = `${this.basePath}${this.resourceEndpoint}/sensor-data/${deviceId}`;
+    return this.http.get<any>(url, this.httpOptions)
+      .pipe(retry(2), catchError(this.handleError));
   }
+
   activateDevice(deviceId: number): Observable<any> {
     const url = `${this.basePath}${this.resourceEndpoint}/activate/${deviceId}`;
-    return this.http.post(url, {}, this.httpOptions)
+    return this.http.post<any>(url, {}, this.httpOptions)
       .pipe(retry(2), catchError(this.handleError));
   }
 }
